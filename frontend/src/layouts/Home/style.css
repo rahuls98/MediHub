@@ -1,0 +1,10 @@
+.HomeFeed_Grid {
+    max-height: 100vh; 
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.HomeFeed_Grid::-webkit-scrollbar {
+    display: none;
+}

@@ -15,10 +15,10 @@ const HomeProfile = () => {
         <div className="HomeProfile_following">
             <p className="HomeProfile_following_title">Following</p>
             <div className="HomeProfile_following_metrics">
-                <div className="HomeProfile_following_mediprof">
+                <div className="HomeProfile_following_experts">
                     <span>100</span>
                     <br/>
-                    <span className="HomeProfile_following_category">Medical professionals</span>
+                    <span className="HomeProfile_following_category">Experts</span>
                 </div>
                 <div className="HomeProfile_following_topics">
                     <span>200</span>
@@ -27,8 +27,8 @@ const HomeProfile = () => {
                 </div>
             </div>
         </div>
-        <hr />
-        <p>My profile</p>
+        {/* <hr />
+        <p>My profile</p> */}
     </div>
 }
 

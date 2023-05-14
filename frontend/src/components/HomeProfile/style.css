@@ -33,8 +33,13 @@
     text-align: center;
 }
 
+.HomeProfile_name {
+    margin-top: 0px;
+}
+
 .HomeProfile_following {
     padding-bottom: 15px;
+    text-align: center;
 }
 
 .HomeProfile_following_metrics {

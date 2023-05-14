@@ -1,0 +1,56 @@
+.HomeProfile_container {
+    margin: 0 10px 0 10px;
+    padding-bottom: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.HomeProfile_banner {
+    height: 100px;
+    background: whitesmoke;
+    border-radius: 8px 8px 0 0;
+}
+
+.HomeProfile_image_container {
+    width: 100%;
+    transform: translateY(-35px);
+    display: flex;
+    justify-content: center;
+}
+
+.HomeProfile_image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: gray;   
+}
+
+.HomeProfile_description {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 20px 0 20px;
+    text-align: center;
+}
+
+.HomeProfile_following {
+    padding-bottom: 15px;
+}
+
+.HomeProfile_following_metrics {
+    display: flex;
+}
+
+.HomeProfile_following_metrics > div {
+    flex: 1 1 0;
+    width: 0;
+    padding: 10px 0 10px 0;
+}
+
+.HomeProfile_following_metrics > div:first-child {
+    border-right: gray solid 1px;
+}
+
+.HomeProfile_following_category {
+    font-size: 12px;
+}

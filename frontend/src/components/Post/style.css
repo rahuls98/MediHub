@@ -1,13 +1,21 @@
 .Post_container {
     margin: 0 10px 20px 10px;
     background: white;
-    padding: 10px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    display: flex;
+}
+
+.Post_content {
+    margin-left: 10px;
+    flex-grow: 1;
 }
 
 .Post_header {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
 }
 
 .Post_expert_photo {
@@ -17,12 +25,10 @@
     background: gray;
 } 
 
-.Post_upvotes {
-    margin-top: 30px;
-    text-align: center;
+.Post_metrics{
+    display: flex;
 }
 
-.Post_expert_details {
-    flex-grow: 1;
-    margin-left: 10px;
+.Post_metrics div {
+    text-align: center;
 }

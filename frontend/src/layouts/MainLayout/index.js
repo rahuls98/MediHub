@@ -9,7 +9,7 @@ const MainLayout = () => {
             <Grid item lg={2}>
                <Sidebar />
             </Grid>
-            <Grid className="HomeFeed_Grid" item lg={10}>
+            <Grid item lg={10}>
                 <FeedLayout />
             </Grid>
         </Grid>

@@ -2,3 +2,16 @@
     height: 100vh;
     box-sizing: border-box;
 }
+
+.FeedLayout_content {
+    box-sizing: border-box;
+    height: calc(100vh - 70px);
+    overflow: scroll;
+    padding: 10px 10px 0 10px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.FeedLayout_content::-webkit-scrollbar {
+    display: none;
+}

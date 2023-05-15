@@ -16,7 +16,6 @@ const SidebarMenu = () => {
             }}>
             <ListItemButton><DynamicFeedIcon /> Feed</ListItemButton>
             <ListItemButton><PersonIcon />Following</ListItemButton>
-            <ListItemButton>Suggested</ListItemButton>
             <ListItemButton><BookmarkAddedIcon />Saved</ListItemButton>
         </List>
     </div>

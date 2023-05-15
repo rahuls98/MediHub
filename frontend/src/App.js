@@ -1,10 +1,10 @@
 import './App.css';
-import HomeLayout from './layouts/Home';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
     return (
         <div className="App">
-            <HomeLayout />
+            <MainLayout />
         </div>
     );
 }

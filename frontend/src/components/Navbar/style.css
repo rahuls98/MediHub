@@ -1,0 +1,7 @@
+.Navbar_container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}

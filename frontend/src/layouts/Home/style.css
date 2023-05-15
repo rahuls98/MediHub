@@ -1,3 +1,15 @@
+.HomeFeed_container {
+    height: 100vh;
+}
+
+.HomeLayout_appbar {
+    height: 70px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px 0 10px;
+}
+
 .HomeFeed_Grid {
     max-height: 100vh; 
     overflow: auto;

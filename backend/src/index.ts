@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 var cors = require('cors')
 require('dotenv').config();
 import authenticationRoutes from "./routes/authentication";
+import textProcessingRoutes from "./routes/textProcessing";
 import vaultRoutes from "./routes/vault";
 const PORT:Number = 8000;
 
@@ -9,6 +10,7 @@ const server: Express = express();
 server.use(cors());
 
 server.use("/authentication", authenticationRoutes);
+server.use("/text-processing", textProcessingRoutes);
 server.use("/vault", vaultRoutes)
 
 server.get("/", (req: Request, res: Response) => {

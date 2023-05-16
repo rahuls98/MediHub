@@ -1,14 +1,6 @@
 import express, {Request, Response, Router} from "express"
-import {
-    PangeaConfig,
-    AuthNService,
-    PangeaErrors,
-    AuthN,
-} from "pangea-node-sdk";
-const token:string = process.env.PANGEA_AUTHN_TOKEN ? process.env.PANGEA_AUTHN_TOKEN : "";
-const domain:string = process.env.PANGEA_DOMAIN ? process.env.PANGEA_DOMAIN : "";
-const config = new PangeaConfig({ domain });
-const authn = new AuthNService(token, config);
+import { PangeaErrors, AuthN } from "pangea-node-sdk";
+import PangeaService from "../services/Pangea";
 
 const router:Router = express.Router();
 
@@ -22,6 +14,7 @@ const getSampleUser = () => {
 
 router.get('/signup', async (req:Request, res:Response) => {
     const sampleUser = getSampleUser();
+    const authn = PangeaService.getAuthentication();
     try {
         await authn.user.create(
             sampleUser.EMAIL,

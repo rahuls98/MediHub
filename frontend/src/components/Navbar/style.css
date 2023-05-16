@@ -13,3 +13,7 @@
 .Navbar_left {
     width: 500px;
 }
+
+.Navbar_right {
+    display: flex;
+}

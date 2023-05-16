@@ -1,6 +1,7 @@
 import "./style.css";
 import NavbarProfileChip from "../NavbarProfileChip";
 import NavbarSearch from "../NavbarSearch";
+import PostCreateModal from "../PostCreateModal";
 
 const Navbar = () => {
     return <div className="Navbar_container">
@@ -8,6 +9,7 @@ const Navbar = () => {
             <NavbarSearch /> 
         </div>
         <div className="Navbar_right">
+            <PostCreateModal />
             <NavbarProfileChip />
         </div>
     </div>

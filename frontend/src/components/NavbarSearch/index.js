@@ -1,15 +1,15 @@
 import "./style.css";
-import Input from '@mui/joy/Input';
 import SearchIcon from '@mui/icons-material/Search';
+import medicalDictionary from "../../utils/medicalDictionary";
+import Autocomplete from '@mui/joy/Autocomplete';
 
 const NavbarSearch = () => {
     return <div className="NavbarSearch_container">
-        <Input
-            size="md"
-            sx={{
-                "--Input-radius": "25px",
-            }}
-            fullWidth
+        <Autocomplete
+            placeholder="Search"
+            freeSolo
+            options={medicalDictionary}
+            sx={{ width: 400 }}
             startDecorator={<SearchIcon />}
         />
     </div>

@@ -1,13 +1,11 @@
 import "./style.css";
-import Navbar from "../../components/Navbar";
 import Grid from '@mui/material/Grid';
 import FeedTrending from "../../components/FeedTrending";
 import Post from "../../components/Post";
 
-const FeedLayout = () => {
-    return <div className="FeedLayout_container">
-        <Navbar />
-        <div className="FeedLayout_content" >
+const FeedLayoutContent = () => {
+    return <div className="FeedLayoutContent_container">
+        <div className="FeedLayoutContent_content" >
             <Grid container spacing={0}>
                 <Grid item lg={8}>
                     <Post />
@@ -23,4 +21,4 @@ const FeedLayout = () => {
     </div>
 }
 
-export default FeedLayout;
+export default FeedLayoutContent;

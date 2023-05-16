@@ -1,9 +1,9 @@
-.FeedLayout_container {
+.FeedLayoutContent_container {
     height: 100vh;
     box-sizing: border-box;
 }
 
-.FeedLayout_content {
+.FeedLayoutContent_content {
     box-sizing: border-box;
     height: calc(100vh - 70px);
     overflow: scroll;
@@ -12,6 +12,6 @@
     scrollbar-width: none;  /* Firefox */
 }
 
-.FeedLayout_content::-webkit-scrollbar {
+.FeedLayoutContent_content::-webkit-scrollbar {
     display: none;
 }

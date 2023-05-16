@@ -1,0 +1,9 @@
+.MySessionsLayoutContent_container {
+    height: calc(100vh - 70px);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.MySessionsLayoutContent_container th {
+    background: transparent;
+}

@@ -1,16 +1,37 @@
+import { useState } from "react";
 import "./style.css";
 import Sidebar from "../../components/Sidebar";
 import Grid from '@mui/material/Grid';
-import FeedLayout from "../FeedLayout";
+import Navbar from "../../components/Navbar";
+import FeedLayoutContent from "../FeedLayoutContent";
+import MySessionsLayoutContent from "../MySessionsLayoutContent";
 
 const MainLayout = () => {
+    const [layoutContent, setLayoutContent] = useState('sessions');
+
+    const getNavbarCreateOption = () => {
+        switch (layoutContent) {
+            case 'feed': return 'post';
+            case 'sessions': return 'session';
+            default: return null;
+        }
+    }
+
+    const getLayoutContent = () => {
+        switch (layoutContent) {
+            case 'feed': return <FeedLayoutContent />
+            case 'sessions': return <MySessionsLayoutContent />
+        }
+    }
+
     return <div className="MainLayout_container">
         <Grid container spacing={0}>
             <Grid item lg={2}>
                <Sidebar />
             </Grid>
             <Grid item lg={10}>
-                <FeedLayout />
+                <Navbar createOption={getNavbarCreateOption()} />
+                { getLayoutContent() }
             </Grid>
         </Grid>
     </div>

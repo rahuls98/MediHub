@@ -1,0 +1,34 @@
+.FeedPost_container {
+    margin: 0 10px 20px 10px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+}
+
+.FeedPost_content {
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.FeedPost_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.FeedPost_expert_photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: gray;
+} 
+
+.FeedPost_metrics{
+    display: flex;
+}
+
+.FeedPost_metrics div {
+    text-align: center;
+}

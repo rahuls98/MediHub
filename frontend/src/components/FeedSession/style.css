@@ -1,4 +1,4 @@
-.Post_container {
+.FeedSession_container {
     margin: 0 10px 20px 10px;
     background: white;
     padding: 20px;
@@ -7,28 +7,28 @@
     display: flex;
 }
 
-.Post_content {
+.FeedSession_content {
     margin-left: 10px;
     flex-grow: 1;
 }
 
-.Post_header {
+.FeedSession_header {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.Post_expert_photo {
+.FeedSession_expert_photo {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     background: gray;
 } 
 
-.Post_metrics{
+.FeedSession_metrics{
     display: flex;
 }
 
-.Post_metrics div {
+.FeedSession_metrics div {
     text-align: center;
 }

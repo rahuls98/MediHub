@@ -5,8 +5,3 @@
     border-radius: 8px;
     box-shadow: var(--box-shadow);
 }
-
-.FeedTrending_heading {
-    display: flex;
-    align-items: center;
-}

@@ -1,0 +1,33 @@
+.Authenticationlayout_container {
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.Authenticationlayout_logo_container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-right: rgb(235, 235, 235) solid 1px;
+    padding: 0 80px 0 80px;
+}
+
+.Authenticationlayout_logo {
+    width: 100%;
+    background: transparent;
+}
+
+.Authenticationlayout_form_container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Authenticationlayout_form {
+    width: 60%;
+    margin-top: 30px;
+}

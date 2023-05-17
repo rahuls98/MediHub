@@ -1,15 +1,15 @@
 import "./style.css";
 import NavbarProfileChip from "../NavbarProfileChip";
 import NavbarSearch from "../NavbarSearch";
-import PostCreateModal from "../PostCreateModal";
-import SessionCreateModal from "../SessionCreateModal";
+import ModalPostCreate from "../ModalPostCreate";
+import ModalSessionCreate from "../ModalSessionCreate";
 
 const Navbar = props => {
 
     const getNavbarCreateOption = () => {
         switch (props.createOption) {
-            case 'post': return <PostCreateModal />;
-            case 'session': return <SessionCreateModal />;
+            case 'post': return <ModalPostCreate />;
+            case 'session': return <ModalSessionCreate />;
             default: return null;
         }
     }

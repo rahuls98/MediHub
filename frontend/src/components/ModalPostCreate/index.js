@@ -6,17 +6,17 @@ import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
 import TextEditor from "../TextEditor";
 
-const SessionCreateModal = () => {
+const ModalPostCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
 
-    return <div className="SessionCreateModal_container">
+    return <div className="ModalPostCreate_container">
         <Button variant="outlined" onClick={() => setModalOpen(true)}>
-            New session
+            New post
         </Button>
         <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
             <ModalDialog variant="plain">
                 <ModalClose />
-                <h2 className="SessionCreateModal_heading">New Session</h2>
+                <h2 className="ModalPostCreate_heading">New post</h2>
                 <br />
                 <TextEditor />
             </ModalDialog>
@@ -24,4 +24,4 @@ const SessionCreateModal = () => {
     </div>
 }
 
-export default SessionCreateModal;
+export default ModalPostCreate;

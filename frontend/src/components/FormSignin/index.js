@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import VerticalSpace from "../../components/VerticalSpace";
 
 const FormSignin = () => {
+
     return <div className="FormSignin_container">
         <h1>Welcome!</h1>
         <p>Please enter your details.</p>
@@ -13,6 +14,7 @@ const FormSignin = () => {
             label="Email" 
             variant="outlined"
             type="email"
+            style={{ background: 'white' }}
             fullWidth 
             required />
         <VerticalSpace size={30} />
@@ -21,6 +23,7 @@ const FormSignin = () => {
             label="Password" 
             variant="outlined"
             type="password" 
+            style={{ background: 'white' }}
             fullWidth 
             required />
         <VerticalSpace size={10} />

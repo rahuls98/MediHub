@@ -17,7 +17,6 @@
 
 .Authenticationlayout_logo {
     width: 100%;
-    background: transparent;
 }
 
 .Authenticationlayout_form_container {
@@ -25,6 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: var(--background);
 }
 
 .Authenticationlayout_form {

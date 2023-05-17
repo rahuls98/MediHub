@@ -7,7 +7,8 @@ import FeedLayoutContent from "../FeedLayoutContent";
 import MySessionsLayoutContent from "../MySessionsLayoutContent";
 
 const MainLayout = () => {
-    const [layoutContent, setLayoutContent] = useState('sessions');
+    // eslint-disable-next-line
+    const [layoutContent, setLayoutContent] = useState('feed');
 
     const getNavbarCreateOption = () => {
         switch (layoutContent) {
@@ -21,6 +22,7 @@ const MainLayout = () => {
         switch (layoutContent) {
             case 'feed': return <FeedLayoutContent />
             case 'sessions': return <MySessionsLayoutContent />
+            default: return;
         }
     }
 

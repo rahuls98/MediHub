@@ -1,3 +1,7 @@
 .NavbarProfileChip_container {
     justify-self: end;
 }
+
+.NavbarProfileChip_container .MuiSvgIcon-root {
+    margin: 0;
+}

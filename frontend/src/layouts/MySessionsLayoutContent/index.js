@@ -3,7 +3,6 @@ import Table from '@mui/joy/Table';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -32,8 +31,8 @@ const MySessionsLayoutContent = () => {
                     <td>6</td>
                     <td>
                         <div style={{display: 'flex'}}>
-                            <Button variant="outlined" color="error" startIcon={<DeleteIcon />} />
-                            <Button variant="outlined" startIcon={<EditIcon />} />
+                            <Button variant="outlined" color="error"><DeleteIcon sx={{ fontSize: 20 }}/></Button>
+                            <Button variant="outlined"><EditIcon sx={{ fontSize: 20 }}/></Button>
                         </div>
                     </td>
                     <td>
@@ -54,8 +53,8 @@ const MySessionsLayoutContent = () => {
                     <td>6</td>
                     <td>
                         <div style={{display: 'flex'}}>
-                            <Button variant="outlined" color="error" startIcon={<DeleteIcon />} />
-                            <Button variant="outlined" startIcon={<EditIcon />} />
+                            <Button variant="outlined" color="error"><DeleteIcon sx={{ fontSize: 20 }}/></Button>
+                            <Button variant="outlined"><EditIcon sx={{ fontSize: 20 }}/></Button>
                         </div>
                     </td>
                     <td>
@@ -76,8 +75,8 @@ const MySessionsLayoutContent = () => {
                     <td>6</td>
                     <td>
                         <div style={{display: 'flex'}}>
-                            <Button variant="outlined" color="error" startIcon={<DeleteIcon />} />
-                            <Button variant="outlined" startIcon={<EditIcon />} />
+                            <Button variant="outlined" color="error"><DeleteIcon sx={{ fontSize: 20 }}/></Button>
+                            <Button variant="outlined"><EditIcon sx={{ fontSize: 20 }}/></Button>
                         </div>
                     </td>
                     <td></td>

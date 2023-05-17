@@ -1,11 +1,11 @@
 .FeedLayoutContent_container {
-    height: 100vh;
+    height: calc(100vh - 70px);
     box-sizing: border-box;
 }
 
 .FeedLayoutContent_content {
     box-sizing: border-box;
-    height: calc(100vh - 70px);
+    height: 100%;
     overflow: scroll;
     padding: 10px 10px 0 10px;
     -ms-overflow-style: none;  /* IE and Edge */

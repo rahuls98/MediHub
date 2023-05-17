@@ -1,0 +1,8 @@
+:root {
+    --text-primary: #1F2B5B;
+    --text-highlight: #E24065;
+}
+
+* {
+    color: var(--text-primary);
+}

@@ -10,14 +10,25 @@ import FollowingLayoutContent from "../FollowingLayoutContent";
 
 const MainLayout = () => {
     // eslint-disable-next-line
-    const [layoutContent, setLayoutContent] = useState('following');
+    const [layoutContent, setLayoutContent] = useState('saved');
 
-    const getNavbarCreateOption = () => {
-        switch (layoutContent) {
-            case 'feed': return 'post';
-            case 'sessions': return 'session';
-            default: return null;
+    const getNavbarOptions = () => {
+        let navbarOptions = {
+            withSearch: false,
+            createOption: null
         }
+        switch (layoutContent) {
+            case 'feed': 
+                navbarOptions.withSearch = true;
+                navbarOptions.createOption = 'feed';
+                break;
+            case 'sessions': 
+                navbarOptions.withSearch = true;
+                navbarOptions.createOption = 'session';
+                break;
+            default: break;
+        }
+        return navbarOptions;
     }
 
     const getLayoutContent = () => {
@@ -36,7 +47,7 @@ const MainLayout = () => {
                <Sidebar />
             </Grid>
             <Grid item lg={10}>
-                <Navbar createOption={getNavbarCreateOption()} />
+                <Navbar {...getNavbarOptions()} />
                 { getLayoutContent() }
             </Grid>
         </Grid>

@@ -16,7 +16,11 @@ const Navbar = props => {
 
     return <div className="Navbar_container">
         <div className="Navbar_left">
-            <NavbarSearch /> 
+            {
+                props.withSearch ?
+                <NavbarSearch /> :
+                null
+            }
         </div>
         <div className="Navbar_right">
             {getNavbarCreateOption()}

@@ -1,0 +1,12 @@
+.SavedLayoutContent_container {
+    height: calc(100vh - 70px);
+    box-sizing: border-box;
+    overflow: scroll;
+    padding: 10px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.SavedLayoutContent_container::-webkit-scrollbar {
+    display: none;
+}

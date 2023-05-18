@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const MySessionsLayoutContent = () => {
-    return <div className="MySessionsLayoutContent_container">
+const SessionsLayoutContent = () => {
+    return <div className="SessionsLayoutContent_container">
         <Table stickyHeader>
             <thead>
                 <tr>
@@ -86,4 +86,4 @@ const MySessionsLayoutContent = () => {
     </div>
 }
 
-export default MySessionsLayoutContent;
+export default SessionsLayoutContent;

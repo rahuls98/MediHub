@@ -4,15 +4,12 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import Button from '@mui/material/Button';
 
 const FeedPost = () => {
-    const [liked, setLiked] = useState(false);
     const [saved, setSaved] = useState(false);
 
     return <div className="FeedPost_container">
@@ -47,8 +44,10 @@ const FeedPost = () => {
             </div>
             <p className="FeedPost_content">Long text</p>
             <Stack direction="row" spacing={1}>
-                <Button variant="outlined" startIcon={liked?<FavoriteIcon />:<FavoriteBorderIcon />} onClick={() => setLiked(!liked)}>
-                    Like
+                <Button variant="outlined">
+                    <ThumbUpAltIcon />
+                </Button><Button variant="outlined">
+                    <ThumbDownAltIcon />
                 </Button>
                 <Button variant="outlined" startIcon={saved?<BookmarkIcon />:<BookmarkBorderIcon />} onClick={() => setSaved(!saved)}>
                     Save

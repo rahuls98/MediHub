@@ -4,11 +4,13 @@ import Sidebar from "../../components/Sidebar";
 import Grid from '@mui/material/Grid';
 import Navbar from "../../components/Navbar";
 import FeedLayoutContent from "../FeedLayoutContent";
-import MySessionsLayoutContent from "../MySessionsLayoutContent";
+import SessionsLayoutContent from "../SessionsLayoutContent";
+import SavedLayoutContent from "../SavedLayoutContent";
+import FollowingLayoutContent from "../FollowingLayoutContent";
 
 const MainLayout = () => {
     // eslint-disable-next-line
-    const [layoutContent, setLayoutContent] = useState('feed');
+    const [layoutContent, setLayoutContent] = useState('following');
 
     const getNavbarCreateOption = () => {
         switch (layoutContent) {
@@ -21,7 +23,9 @@ const MainLayout = () => {
     const getLayoutContent = () => {
         switch (layoutContent) {
             case 'feed': return <FeedLayoutContent />
-            case 'sessions': return <MySessionsLayoutContent />
+            case 'sessions': return <SessionsLayoutContent />
+            case 'saved': return <SavedLayoutContent />
+            case 'following': return <FollowingLayoutContent />
             default: return;
         }
     }

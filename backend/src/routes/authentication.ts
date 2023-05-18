@@ -4,30 +4,47 @@ import PangeaService from "../services/Pangea";
 
 const router:Router = express.Router();
 
-const getSampleUser = () => {
-    const RANDOM_VALUE:string = new Date().getTime().toString();
-    const EMAIL:string = `user.email+test${RANDOM_VALUE}@pangea.cloud`;
-    const PASSWORD:string = "My1s+Password";
-    const PROFILE = { name: "User name", country: "Argentina" };
-    return {EMAIL, PASSWORD, PROFILE};
-}
-
-router.get('/signup', async (req:Request, res:Response) => {
-    const sampleUser = getSampleUser();
+router.post('/signup', async (req:Request, res:Response) => {
     const authn = PangeaService.getAuthentication();
     try {
-        await authn.user.create(
-            sampleUser.EMAIL,
-            sampleUser.PASSWORD,
+        const response = await authn.user.create(
+            req.body.username,
+            req.body.password,
             AuthN.IDProvider.PASSWORD,
-            { profile: sampleUser.PROFILE }
+            { 
+                profile: {
+                    fullname: req.body.fullname,
+                    role: 'User'
+                }   
+            }
         );
-        res.status(200).send("Success!")
-    } catch (err) {
+        res.status(200).send(response.result);
+    } catch (err:any) {
         if (err instanceof PangeaErrors.APIError) {
             console.log(err);
+            res.status(400).send(err.summary)
         } else {
-            throw err;
+            console.log(err);
+            res.status(500).send("Server error!");
+        }
+    }
+});
+
+router.post('/signin', async (req:Request, res:Response) => {
+    const authn = PangeaService.getAuthentication();
+    try {
+        const response = await authn.user.login.password(
+            req.body.username,
+            req.body.password,
+        );
+        res.status(200).send(response.result);
+    } catch (err:any) {
+        if (err instanceof PangeaErrors.APIError) {
+            console.log(err);
+            res.status(400).send(err.summary)
+        } else {
+            console.log(err);
+            res.status(500).send("Server error!");
         }
     }
 });

@@ -8,6 +8,7 @@ const PORT:Number = 8000;
 
 const server: Express = express();
 server.use(cors());
+server.use(express.json())
 
 server.use("/authentication", authenticationRoutes);
 server.use("/text-processing", textProcessingRoutes);

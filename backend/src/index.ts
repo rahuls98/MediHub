@@ -1,12 +1,22 @@
 import express, { Express, Request, Response } from "express";
 var cors = require('cors')
+import mongoose from 'mongoose';
 require('dotenv').config();
 import authenticationRoutes from "./routes/authentication";
 import textProcessingRoutes from "./routes/textProcessing";
 import vaultRoutes from "./routes/vault";
+import MongoConfig from "./services/Mongo";
 const PORT:Number = 8000;
 
 const server: Express = express();
+mongoose.connect(MongoConfig.mongo.url)
+.then(() => {
+    console.log("💽 Database connected!");
+})
+.catch((err) => {
+    console.log(err);
+})
+
 server.use(cors());
 server.use(express.json());
 

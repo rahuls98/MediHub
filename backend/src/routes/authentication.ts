@@ -2,6 +2,7 @@ import express, {Request, Response, Router} from "express"
 import { PangeaErrors, AuthN } from "pangea-node-sdk";
 import { verifyToken } from "../middleware/authorization";
 import PangeaService from "../services/Pangea";
+import MedicalExpertModel from "../models/MedicalExpert";
 
 const router:Router = express.Router();
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MedicalExpertSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     pangeaUserId: {
         type: String,
         required: true
@@ -13,11 +13,12 @@ const MedicalExpertSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    followerCount: {
-        type: Number,
-        default: 0
-    },
-    expertiseTopics: [String]
+    savedPosts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Post',
+        }
+    ]
 });
 
-export default MedicalExpertSchema;
+export default UserSchema;

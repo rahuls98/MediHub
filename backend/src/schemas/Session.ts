@@ -1,0 +1,24 @@
+const mongoose = require('mongoose');
+
+const SessionSchema = new mongoose.Schema({
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'MedicalExpert',
+        required: true
+    },
+    interestedUsers: {
+        type: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ],
+        default: []
+    },
+    createdDate: {
+        type: Date,
+        default: Date.now, 
+    },
+});
+
+export default SessionSchema;

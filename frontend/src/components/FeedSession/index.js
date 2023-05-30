@@ -1,12 +1,33 @@
+import { useState } from "react";
 import "./style.css";
 import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import BackHandIcon from '@mui/icons-material/BackHand';
+import BackHandOutlinedIcon from '@mui/icons-material/BackHandOutlined';
 import ShareIcon from '@mui/icons-material/Share';
 import EventIcon from '@mui/icons-material/Event';
 import TopicChip from "../TopicChip";
 
 const FeedSession = () => {
+    const [enrolled, setEnrolled] = useState(false);
+    const [enrolledSnackbar, setEnrolledSnackbar] = useState(false);
+
+    const handleEnrollOnClick = () => {
+        if (!enrolled) {
+            setEnrolledSnackbar(true);
+        }
+        setEnrolled(!enrolled);
+    }
+
+    const handleEnrolledSnackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setEnrolledSnackbar(false);
+    };
+
 
     return <div className="FeedSession_container">
         <div className="FeedSession_content">
@@ -21,7 +42,13 @@ const FeedSession = () => {
                     </p>
                 </div>
                 <div className="FeedSession_actions">
-                    <BackHandIcon sx={{ fontSize: 25 }}/>
+                    <span onClick={() => handleEnrollOnClick()}>
+                        {
+                            enrolled?
+                            <BackHandIcon sx={{ fontSize: 25 }}/>:
+                            <BackHandOutlinedIcon sx={{ fontSize: 25 }}/>
+                        }
+                    </span>
                     <ShareIcon sx={{ fontSize: 25 }}/>
                 </div>
             </div>
@@ -41,6 +68,11 @@ const FeedSession = () => {
                 <span>When</span>
             </div>
         </div>
+        <Snackbar open={enrolledSnackbar} autoHideDuration={2000} onClose={handleEnrolledSnackbarClose}>
+            <Alert icon={false} onClose={handleEnrolledSnackbarClose} severity="info" sx={{ width: '100%' }}>
+                Enrolled in session
+            </Alert>
+        </Snackbar>
     </div>
 }
 

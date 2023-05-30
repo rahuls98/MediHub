@@ -1,17 +1,40 @@
 import "./style.css";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import SidebarFavoritesItem from "../SidebarFavoritesItem";
+import Stack from '@mui/material/Stack';
+import TopicChip from "../TopicChip";
 
 const FeedTrending = () => {
     return <div className="FeedTrending_container">
-        <span>Trending</span>
-        <TrendingUpIcon />
-        <SidebarFavoritesItem type="topic" title="Topic 1"/>
-        <SidebarFavoritesItem type="topic" title="Topic 2"/>
-        <SidebarFavoritesItem type="topic" title="Topic 3"/>
-        <SidebarFavoritesItem type="topic" title="Topic 4"/>
-        <SidebarFavoritesItem type="topic" title="Topic 5"/>
-        <SidebarFavoritesItem type="topic" title="Topic 6"/>
+        <div className="FeedTrending_header">
+            <span>Trending 30</span>
+            <TrendingUpIcon sx={{ fontSize: 16 }} />
+        </div>
+        <Stack direction="row" flexWrap="wrap">
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" />
+        </Stack>
     </div>
 }
 

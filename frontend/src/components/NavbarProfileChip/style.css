@@ -2,6 +2,19 @@
     justify-self: end;
 }
 
+.NavbarProfileChip_container .MuiChip-action {
+    background: white;
+}
+
+.NavbarProfileChip_container .MuiChip-action:hover {
+    background: white;
+}
+
 .NavbarProfileChip_container .MuiSvgIcon-root {
     margin: 0;
+}
+
+.NavbarProfileChip_container .MuiChip-label {
+    font-size: 15px;
+    font-weight: 300;
 }

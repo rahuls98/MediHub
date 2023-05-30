@@ -13,7 +13,7 @@ const NavbarProfileChip = () => {
             endDecorator={<ArrowDropDownIcon fontSize="md" />}
             onClick={() => alert('You clicked the Joy Chip!')}
         >
-            User name
+            username
         </Chip>
     </div>
 }

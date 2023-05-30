@@ -1,34 +1,77 @@
 .FeedSession_container {
     margin: 0 10px 20px 10px;
     background: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: var(--box-shadow);
     display: flex;
 }
 
-.FeedSession_content {
-    margin-left: 10px;
-    flex-grow: 1;
+.FeedSession_header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 9fr 1fr;
+    grid-auto-flow: row;
+    margin-bottom: 10px;
 }
 
-.FeedSession_header {
+.FeedSession_expert_photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: gray;
+} 
+
+.FeedSession_expert_name {
+    font-size: 18px;
+}
+
+.FeedSession_expert_username {
+    font-size: 15px;
+    margin-left: 10px;
+    font-weight: 300;
+}
+
+.FeedSession_date {
+    font-size: 13px;
+    display: flex;
+    margin: 5px 0 20px 0;
+}
+
+.FeedSession_date .MuiSvgIcon-root path {
+    color: rgb(138, 140, 146);
+}
+
+.FeedSession_date span {
+    margin-left: 5px;
+    color: rgb(138, 140, 146);
+}
+
+.FeedSession_actions {
+    height: max-content;
+    justify-self: end;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.FeedSession_expert_photo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: gray;
-} 
-
-.FeedSession_metrics{
-    display: flex;
+.FeedSession_title {
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
-.FeedSession_metrics div {
-    text-align: center;
+.FeedSession_content_text {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: justify;
+}
+
+.FeedSession_when {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.FeedSession_when span {
+    margin-left: 8px;
 }

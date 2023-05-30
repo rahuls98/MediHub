@@ -1,0 +1,12 @@
+.TopicChip_container .MuiChip-root {
+    border: var(--text-soft-highlight) solid 1px;
+}
+
+.TopicChip_container .MuiChip-root:hover {
+    cursor: pointer;
+    background: var(--background);
+}
+
+.TopicChip_container .MuiChip-label {
+    color: var(--text-soft-highlight);
+}

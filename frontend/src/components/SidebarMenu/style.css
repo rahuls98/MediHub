@@ -1,0 +1,4 @@
+.SidebarMenu_container .MuiListItemButton-root.MuiListItemButton-colorPrimary {
+    background-color: var(--background);
+    box-shadow: var(--box-shadow);
+}

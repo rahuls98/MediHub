@@ -20,7 +20,7 @@ const MainLayout = () => {
         switch (layoutContent) {
             case 'feed': 
                 navbarOptions.withSearch = true;
-                navbarOptions.createOption = 'feed';
+                navbarOptions.createOption = 'post';
                 break;
             case 'sessions': 
                 navbarOptions.withSearch = true;

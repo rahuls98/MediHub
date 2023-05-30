@@ -1,34 +1,90 @@
 .FeedPost_container {
     margin: 0 10px 20px 10px;
     background: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: var(--box-shadow);
-    display: flex;
-}
-
-.FeedPost_content {
-    margin-left: 10px;
-    flex-grow: 1;
 }
 
 .FeedPost_header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 9fr 1fr;
+    grid-auto-flow: row;
+    margin-bottom: 10px;
+}
+
+.FeedPost_expert_photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: gray;
+} 
+
+.FeedPost_expert_name {
+    font-size: 18px;
+}
+
+.FeedPost_expert_username {
+    font-size: 15px;
+    margin-left: 10px;
+    font-weight: 300;
+}
+
+.FeedPost_date {
+    font-size: 13px;
+    display: flex;
+    margin: 5px 0 20px 0;
+}
+
+.FeedPost_date .MuiSvgIcon-root path {
+    color: rgb(138, 140, 146);
+}
+
+.FeedPost_date span {
+    margin-left: 5px;
+    color: rgb(138, 140, 146);
+}
+
+.FeedPost_actions {
+    height: max-content;
+    justify-self: end;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.FeedPost_expert_photo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: gray;
-} 
-
-.FeedPost_metrics{
-    display: flex;
+.FeedPost_actions .MuiSvgIcon-root path {
+    color: var(--lighter-primary);
 }
 
-.FeedPost_metrics div {
-    text-align: center;
+.FeedPost_content_text {
+    margin-top: 25px;
+    margin-bottom: 0;
+    text-align: justify;
+}
+
+.FeedPost_vote {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    grid-auto-flow: row;
+    margin-top: 25px;
+    border-top: whitesmoke solid 1px;
+    padding-top: 15px;
+    color: var(--text-grey-highlight);
+}
+
+.FeedPost_vote div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FeedPost_vote div .FeedPost_vote_action {
+    margin: 0 10px 0 5px;
+}
+
+.FeedPost_vote div .MuiChip-root {
+    background: whitesmoke;
+    border: whitesmoke;
 }

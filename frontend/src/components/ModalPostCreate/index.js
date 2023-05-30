@@ -5,12 +5,14 @@ import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
 import TextEditor from "../TextEditor";
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 const ModalPostCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
 
     return <div className="ModalPostCreate_container">
         <Button variant="outlined" onClick={() => setModalOpen(true)}>
+            <EditNoteIcon />
             New post
         </Button>
         <Modal open={modalOpen} onClose={() => setModalOpen(false)}>

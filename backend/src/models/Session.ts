@@ -36,6 +36,17 @@ const readSessionsByUser = async (
     }
 }
 
+const searchSessionsByTopic = async (
+    topic:string
+) => {
+    try {
+        const sessions = await Session.find({ topics: topic });
+        return sessions;
+    } catch (error) {
+        console.error('Error searchSessionsByTopic: ', error);
+    }
+}
+
 const editSessionForInterestedUser = async (
     id:string,
     user:string
@@ -55,6 +66,7 @@ const SessionModel = {
     createSession,
     readSessionsByAuthors,
     readSessionsByUser,
+    searchSessionsByTopic,
     editSessionForInterestedUser
 }
 

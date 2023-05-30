@@ -15,6 +15,7 @@ const SessionSchema = new mongoose.Schema({
         ],
         default: []
     },
+    topics: [String],
     createdDate: {
         type: Date,
         default: Date.now, 

@@ -27,15 +27,27 @@ const readPostsByAuthors = async (
 ) => {
     try {
         const posts = await Post.find({ author: { "$in": authors } });
-        console.log("Posts: ", posts);
+        return posts;
     } catch (error) {
         console.error('Error readPostsByAuthors: ', error);
     }
 }
 
+const searchPostsByTopic = async (
+    topic:string
+) => {
+    try {
+        const posts = await Post.find({ topics: topic });
+        return posts;
+    } catch (error) {
+        console.error('Error searchPostsByTopic: ', error);
+    }
+}
+
 const PostModel = {
     createPost,
-    readPostsByAuthors
+    readPostsByAuthors,
+    searchPostsByTopic
 };
 
 export default PostModel;

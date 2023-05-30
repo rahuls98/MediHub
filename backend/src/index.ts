@@ -4,10 +4,14 @@ import mongoose from 'mongoose';
 require('dotenv').config();
 import authenticationRoutes from "./routes/authentication";
 import vaultRoutes from "./routes/vault";
+import feedRoutes from "./routes/feed";
+import followingRoutes from "./routes/following";
+import expertRoutes from "./routes/expert";
+import topicRoutes from "./routes/topic";
+import postRoutes from "./routes/post";
+
 import MongoConfig from "./services/Mongo";
 const PORT:Number = 8000;
-
-import UserModel from "./models/User";
 
 const server: Express = express();
 mongoose.connect(MongoConfig.mongo.url)
@@ -22,11 +26,12 @@ server.use(cors());
 server.use(express.json());
 
 server.use("/authentication", authenticationRoutes);
-server.use("/vault", vaultRoutes)
-
-server.get("/test", (req: Request, res: Response) => {
-    UserModel.readUserSavedPosts("6473dbc099e4b2438e2bc699");
-});
+server.use("/vault", vaultRoutes);
+server.use("/feed", feedRoutes);
+server.use("/following", followingRoutes);
+server.use("/expert", expertRoutes);
+server.use("/topic", topicRoutes);
+server.use("/post", postRoutes);
 
 server.get("/", (req: Request, res: Response) => {
     res.status(200).send("MediHub is live!")

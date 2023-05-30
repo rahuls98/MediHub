@@ -22,6 +22,17 @@ const createUser = async (
     }
 }
 
+const createSavedPost = async (
+    user:string,
+    post:string
+) => {
+    try {
+        await User.updateOne({ _id: user }, { "$push": { 'savedPosts': post}});
+    } catch (error) {
+        console.error('Error createSavedPost: ', error);
+    }
+}
+
 const readUsers = async () => {
     try {
         const users = await User.find();
@@ -42,10 +53,23 @@ const readUserSavedPosts = async (
     }
 }
 
+const deleteSavedPost = async (
+    user:string,
+    post:string
+) => {
+    try {
+        await User.updateOne({ _id: user }, { "$pull": { 'savedPosts': post}});
+    } catch (error) {
+        console.error('Error deleteSavedPost: ', error);
+    }
+}
+
 const UserModel = {
     createUser,
+    createSavedPost,
     readUsers,
-    readUserSavedPosts
+    readUserSavedPosts,
+    deleteSavedPost
 };
 
 export default UserModel;

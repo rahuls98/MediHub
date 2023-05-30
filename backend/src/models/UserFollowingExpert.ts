@@ -22,19 +22,33 @@ const readFollowedExperts = async  (
     user:string
 ) => {
     try {
-        const followedExperts = await UserFollowingExpert.find({ user }, { 
+        const followedExpertsObjects = await UserFollowingExpert.find({ user }, { 
             _id: false,
             expert: true 
         });
-        console.log(followedExperts);
+        let followedExperts:string[] = followedExpertsObjects.map(followedExpert => 
+            followedExpert.expert.valueOf().toString());
+        return followedExperts;
     } catch (error) {
         console.error('Error readFollowedExperts: ', error);
     }
 }
 
+const deleteUserFollowingExpert = async (
+    user:string,
+    expert:string
+) => {
+    try {
+        await UserFollowingExpert.deleteOne({ user, expert });
+    } catch (error) {
+        console.error('Error deleteUserFollowingExpert: ', error);
+    }
+}
+
 const UserFollowingExpertModel = {
     createUserFollowingExpert,
-    readFollowedExperts
+    readFollowedExperts,
+    deleteUserFollowingExpert
 };
 
 export default UserFollowingExpertModel;

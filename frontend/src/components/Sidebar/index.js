@@ -9,8 +9,8 @@ const Sidebar = () => {
             <img className="Sidebar_logo" src={logo} alt="logo" />
         </div>
         <SidebarMenu />
-        <hr />
-        <SidebarFavorites />
+        {/* <hr />
+        <SidebarFavorites /> */}
     </div>
 }
 

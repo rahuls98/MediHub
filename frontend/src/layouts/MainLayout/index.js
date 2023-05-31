@@ -9,8 +9,19 @@ import SavedLayoutContent from "../SavedLayoutContent";
 import FollowingLayoutContent from "../FollowingLayoutContent";
 
 const MainLayout = () => {
-    // eslint-disable-next-line
+    const [selected, setSelected] = useState(0);
     const [layoutContent, setLayoutContent] = useState('feed');
+
+    const handleMenuSelection = ind => {
+        setSelected(ind);
+        switch(ind) {
+            case 0: setLayoutContent('feed'); break;
+            case 1: setLayoutContent('sessions'); break;
+            case 2: setLayoutContent('following'); break;
+            case 3: setLayoutContent('saved'); break;
+            default: break;
+        }
+    }
 
     const getNavbarOptions = () => {
         let navbarOptions = {
@@ -44,7 +55,7 @@ const MainLayout = () => {
     return <div className="MainLayout_container">
         <Grid container spacing={0}>
             <Grid item lg={2}>
-               <Sidebar />
+               <Sidebar selected={selected} setSelected={handleMenuSelection}/>
             </Grid>
             <Grid item lg={10}>
                 <Navbar {...getNavbarOptions()} />

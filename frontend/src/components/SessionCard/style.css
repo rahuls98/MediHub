@@ -1,0 +1,82 @@
+.SessionCard_container {
+    width: 100%;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 9fr 1fr;
+    grid-auto-flow: row;
+}
+
+.SessionCard_datetime {
+    border-right: rgb(220, 220, 220) solid 1px;
+    display: flex;
+    align-items: center;
+}
+
+.SessionCard_date {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.SessionCard_time {
+    font-size: 13px;
+}
+
+.SessionCard_details {
+    padding-left: 20px;
+}
+
+.SessionCard_details h3 {
+    margin: 0 0 10px 0;
+}
+
+.SessionCard_details p {
+    margin: 5px 0 0 0;
+    text-align: justify;
+}
+
+.SessionCard_action {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px 12px 8px 12px;
+    margin: 15px 0 5px 0;
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+}
+
+.SessionCard_action .MuiSvgIcon-root path {
+    color: white;
+}
+
+.SessionCard_action span {
+    margin-left: 8px;
+    color: white;
+}
+
+.SessionCard_action:hover {
+    cursor: pointer;
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+    box-shadow: var(--box-shadow);
+}
+
+.SessionCard_menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.SessionCard_menu .Mui-focused {
+    border: none;
+}
+
+.SessionCard_menu_trigger {
+    height: fit-content;
+}

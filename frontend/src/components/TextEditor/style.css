@@ -1,3 +1,7 @@
 .TextEditor_container {
     width: 600px;
 }
+
+.TextEditor_container .ql-container {
+    height: 200px;
+}

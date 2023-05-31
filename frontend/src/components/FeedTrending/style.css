@@ -17,8 +17,3 @@
 .FeedTrending_header span {
     margin-right: 5px;
 }
-
-.FeedTrending_container .MuiChip-root {
-    margin: 10px 10px 0 0;
-    font-size: 12px;
-}

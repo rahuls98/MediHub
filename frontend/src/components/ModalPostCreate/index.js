@@ -6,6 +6,7 @@ import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
 import TextEditor from "../TextEditor";
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import NavbarSearch from "../NavbarSearch";
 
 const ModalPostCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -19,8 +20,19 @@ const ModalPostCreate = () => {
             <ModalDialog variant="plain">
                 <ModalClose />
                 <h2 className="ModalPostCreate_heading">New post</h2>
-                <br />
+                <span className="ModalPostCreate_label">What's on your mind?</span>
                 <TextEditor />
+                <br/>
+                <span className="ModalPostCreate_label">Relevant tags</span>
+                <NavbarSearch />
+                <div className="ModalPostCreate_actions">
+                    <div className="ModalPostCreate_cancel">
+                        <Button variant="outlined">Cancel</Button>
+                    </div>
+                    <div className="ModalPostCreate_post">
+                        <Button variant="outlined">Post</Button>
+                    </div>
+                </div>
             </ModalDialog>
       </Modal>
     </div>

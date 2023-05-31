@@ -2,6 +2,10 @@
     border: var(--text-soft-highlight) solid 1px;
 }
 
+.TopicChip_container.with_margin {
+    margin: 0 10px 10px 0;
+}
+
 .TopicChip_container .MuiChip-root:hover {
     cursor: pointer;
     background: var(--background);

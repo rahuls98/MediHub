@@ -10,30 +10,30 @@ const FeedTrending = () => {
             <TrendingUpIcon sx={{ fontSize: 16 }} />
         </div>
         <Stack direction="row" flexWrap="wrap">
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
-            <TopicChip label="topic 1" />
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
+            <TopicChip label="topic 1" withMargin/>
         </Stack>
     </div>
 }

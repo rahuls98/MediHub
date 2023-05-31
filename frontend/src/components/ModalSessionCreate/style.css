@@ -1,3 +1,28 @@
+.ModalSessionCreate_container {
+    margin-right: 20px;
+}
+
+.ModalSessionCreate_container .MuiButton-root {
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+}
+
+.ModalSessionCreate_container .MuiButton-root:hover {
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+    box-shadow: var(--box-shadow);
+}
+
+.ModalSessionCreate_container .MuiSvgIcon-root {
+    margin-right: 5px;
+}
+
+.ModalSessionCreate_container .MuiSvgIcon-root path {
+    color: white;
+}
+
 .ModalSessionCreate_heading {
     margin-top: 0;
 }

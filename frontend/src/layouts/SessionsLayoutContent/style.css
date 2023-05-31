@@ -2,8 +2,32 @@
     height: calc(100vh - 70px);
     padding: 20px;
     box-sizing: border-box;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
-.SessionsLayoutContent_container th {
-    background: transparent;
+.SessionsLayoutContent_container::-webkit-scrollbar {
+    display: none;
+}
+
+.SessionsLayoutContent_container .JoyTable-root {
+    background: white;
+}
+
+.SessionsLayoutContent_container .JoyTable-root td {
+    vertical-align: top;
+}
+
+.SessionsLayoutContent_action {
+    display: flex;
+    align-items: center;
+    background: var(--background);
+    border-radius: 8px;
+    padding: 8px 12px 8px 12px;
+    margin-bottom: 5px;
+}
+
+.SessionsLayoutContent_action span {
+    margin-left: 5px;
 }

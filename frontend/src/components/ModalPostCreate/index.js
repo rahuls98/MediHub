@@ -11,6 +11,11 @@ import TopicChip from "../TopicChip";
 
 const ModalPostCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
+    const [editorValue, setEditorValue] = useState('');
+
+    const handleSubmit = () => {
+        console.log(editorValue);
+    }
 
     return <div className="ModalPostCreate_container">
         <Button variant="outlined" onClick={() => setModalOpen(true)}>
@@ -22,7 +27,7 @@ const ModalPostCreate = () => {
                 <ModalClose />
                 <h2 className="ModalPostCreate_heading">New post</h2>
                 <span className="ModalPostCreate_label">What's on your mind?</span>
-                <TextEditor />
+                <TextEditor editorValue={editorValue} setEditorValue={setEditorValue} />
                 <br/>
                 <span className="ModalPostCreate_label">Relevant tags</span>
                 <NavbarSearch />
@@ -54,7 +59,7 @@ const ModalPostCreate = () => {
                         <Button variant="outlined">Cancel</Button>
                     </div>
                     <div className="ModalPostCreate_post">
-                        <Button variant="outlined">Post</Button>
+                        <Button variant="outlined" onClick={() => handleSubmit()}>Post</Button>
                     </div>
                 </div>
             </ModalDialog>

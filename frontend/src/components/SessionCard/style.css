@@ -30,13 +30,38 @@
     padding-left: 20px;
 }
 
+.SessionCard_details.collapsed {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .SessionCard_details h3 {
     margin: 0 0 10px 0;
 }
 
-.SessionCard_details p {
+.SessionCard_description {
     margin: 5px 0 0 0;
     text-align: justify;
+}
+
+.SessionCard_description.collapsed {
+    text-overflow: ellipsis;
+}
+
+.SessionCard_parah_moreless {
+    margin-top: 5px;
+    text-align: right;
+    color: var(--text-grey-highlight);
+}
+
+.SessionCard_parah_moreless span {
+    font-size: 12px;
+    text-decoration: underline;
+    color: var(--text-grey-highlight);
+}
+
+.SessionCard_parah_moreless:hover {
+    cursor: pointer;
 }
 
 .SessionCard_action {
@@ -45,7 +70,7 @@
     align-items: center;
     border-radius: 8px;
     padding: 8px 12px 8px 12px;
-    margin: 15px 0 5px 0;
+    margin: 5px 0 5px 0;
     background: var(--text-soft-highlight);
     border: none;
     color: white;

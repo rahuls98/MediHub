@@ -1,0 +1,10 @@
+.NoData_container {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.NoData_container span {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--lighter-primary);
+}

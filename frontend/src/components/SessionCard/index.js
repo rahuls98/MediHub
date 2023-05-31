@@ -16,6 +16,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 const SessionCard = props => {
     const [anchorEl, setAnchorEl] = useState(null);
     const actionsMenuOpen = Boolean(anchorEl);
+    const [descriptionCollapsed, setDescriptionCollapsed] = useState(true);
+
     const handleMenuTriggerClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -31,16 +33,19 @@ const SessionCard = props => {
                 <span className="SessionCard_time">09:00 AM</span>
             </div>
         </div>
-        <div className="SessionCard_details">
+        <div className={"SessionCard_details".concat(descriptionCollapsed? " collapsed" : "")}>
             <h3>Session title</h3>
             <Stack direction="row" flexWrap="wrap">
                 <TopicChip label="topic 1" withMargin/>
                 <TopicChip label="topic 2" withMargin/>
                 <TopicChip label="topic 2" withMargin/>
             </Stack>
-            <p>
+            <p className={"SessionCard_description".concat(descriptionCollapsed? " collapsed" : "")}>
                 Eget mauris pharetra et ultrices. Leo in vitae turpis massa. Sit amet consectetur adipiscing elit pellentesque habitant. Sit amet massa vitae tortor condimentum. Tortor aliquam nulla facilisi cras fermentum odio eu. Quisque egestas diam in arcu cursus euismod quis viverra nibh. Dignissim sodales ut eu sem integer vitae justo. Placerat vestibulum lectus mauris ultrices eros in cursus turpis. Donec pretium vulputate sapien nec.
             </p>
+            <div className="SessionCard_parah_moreless">
+                <span onClick={() => setDescriptionCollapsed(!descriptionCollapsed)}>{descriptionCollapsed? "more": "less"}</span>
+            </div>
             <div className="SessionCard_action">
                 <LoginOutlinedIcon sx={{ fontSize: 18 }}/>
                 <span>Join</span>

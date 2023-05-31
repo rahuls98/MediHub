@@ -1,4 +1,3 @@
 .FollowingTableExperts_container {
-    height: 100%;
-    overflow: scroll;
+    padding-right: 10px;
 }

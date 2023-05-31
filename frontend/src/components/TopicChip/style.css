@@ -16,5 +16,5 @@
 }
 
 .TopicChip_container .MuiSvgIcon-root path {
-    color: var(--text-grey-highlight);
+    color: var(--lighter-primary);
 }

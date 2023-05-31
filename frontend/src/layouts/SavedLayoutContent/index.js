@@ -1,16 +1,14 @@
 import "./style.css";
 import FeedPost from "../../components/FeedPost";
-import FeedSession from "../../components/FeedSession";
+// import NoData from "../../components/NoData";
 
 const SavedLayoutContent = () => {
     return <div className="SavedLayoutContent_container">
-        <FeedPost />
-        <FeedSession />
-        <FeedPost />
-        <FeedSession />
-        <FeedPost />
-        <FeedSession />
-        <FeedPost />
+        <FeedPost saved />
+        <FeedPost saved />
+        <FeedPost saved />
+        <FeedPost saved />
+        {/* <NoData /> */}
     </div>
 }
 

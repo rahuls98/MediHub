@@ -12,8 +12,8 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import TopicChip from "../TopicChip";
 
-const FeedPost = () => {
-    const [saved, setSaved] = useState(false);
+const FeedPost = props => {
+    const [saved, setSaved] = useState(props.saved);
     const [savedSnackbar, setSavedSnackbar] = useState(false);
 
     const handleSaveOnClick = () => {

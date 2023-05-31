@@ -1,3 +1,30 @@
 .FollowingLayoutContent_container {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 70px);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.FollowingLayoutContent_titles {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    grid-auto-flow: row;
+}
+
+.FollowingLayoutContent_titles h3 {
+    margin: 0 10px 20px 10px;
+}
+
+.FollowingLayoutContent_cards {
+    height: 600px;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    grid-auto-flow: row;
+}
+
+.FollowingLayoutContent_cards .FollowingLayoutContent_experts,.FollowingLayoutContent_topics {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    margin: 0 10px 0 10px;
+    overflow: scroll;
 }

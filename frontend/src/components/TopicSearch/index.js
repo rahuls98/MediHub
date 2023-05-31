@@ -6,8 +6,8 @@ import Autocomplete, {createFilterOptions} from '@mui/joy/Autocomplete';
 
 const searchOptions = [...medicalDictionary, ...medicalAbbreviations];
 
-const NavbarSearch = () => {
-    return <div className="NavbarSearch_container">
+const TopicSearch = () => {
+    return <div className="TopicSearch_container">
         <Autocomplete
             placeholder="Search"
             freeSolo
@@ -22,4 +22,4 @@ const NavbarSearch = () => {
     </div>
 }
 
-export default NavbarSearch;
+export default TopicSearch;

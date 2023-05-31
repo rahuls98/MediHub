@@ -6,7 +6,7 @@ import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
 import TextEditor from "../TextEditor";
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import NavbarSearch from "../NavbarSearch";
+import TopicSearch from "../TopicSearch";
 import TopicChip from "../TopicChip";
 
 const ModalPostCreate = () => {
@@ -30,7 +30,7 @@ const ModalPostCreate = () => {
                 <TextEditor editorValue={editorValue} setEditorValue={setEditorValue} />
                 <br/>
                 <span className="ModalPostCreate_label">Relevant tags</span>
-                <NavbarSearch />
+                <TopicSearch />
                 <div className="ModalPostCreate_chips">
                     <TopicChip label="Item 1" withMargin onDelete={() => {}}/>
                     <TopicChip label="Item 2" withMargin onDelete={() => {}} />

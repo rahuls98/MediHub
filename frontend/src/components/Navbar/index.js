@@ -1,6 +1,6 @@
 import "./style.css";
 import NavbarProfileChip from "../NavbarProfileChip";
-import NavbarSearch from "../NavbarSearch";
+import TopicSearch from "../TopicSearch";
 import ModalPostCreate from "../ModalPostCreate";
 import ModalSessionCreate from "../ModalSessionCreate";
 
@@ -18,7 +18,7 @@ const Navbar = props => {
         <div className="Navbar_left">
             {
                 props.withSearch ?
-                <NavbarSearch /> :
+                <TopicSearch /> :
                 null
             }
         </div>

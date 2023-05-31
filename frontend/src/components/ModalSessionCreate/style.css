@@ -26,3 +26,44 @@
 .ModalSessionCreate_heading {
     margin-top: 0;
 }
+
+.ModalSessionCreate_label {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.ModalSessionCreate_actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ModalSessionCreate_cancel .MuiButton-root {
+    background: var(--background);
+    border: none;
+    color: var(--lighter-primary);
+}
+
+.ModalSessionCreate_cancel .MuiButton-root:hover {
+    background: var(--background);
+    border: none;
+    color: var(--lighter-primary);
+    box-shadow: var(--box-shadow);
+}
+
+.ModalSessionCreate_create {
+    margin-left: 20px;
+}
+
+.ModalSessionCreate_create .MuiButton-root {
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+}
+
+.ModalSessionCreate_create .MuiButton-root:hover {
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+    box-shadow: var(--box-shadow);
+}

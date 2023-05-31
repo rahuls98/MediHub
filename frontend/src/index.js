@@ -3,16 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { HMSRoomProvider } from '@100mslive/react-sdk';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HMSRoomProvider>
-      <App />
-    </HMSRoomProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <HMSRoomProvider>
+        <App />
+      </HMSRoomProvider>
+    </LocalizationProvider>
   </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

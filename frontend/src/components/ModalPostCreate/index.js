@@ -7,6 +7,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import TextEditor from "../TextEditor";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import NavbarSearch from "../NavbarSearch";
+import TopicChip from "../TopicChip";
 
 const ModalPostCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -25,6 +26,29 @@ const ModalPostCreate = () => {
                 <br/>
                 <span className="ModalPostCreate_label">Relevant tags</span>
                 <NavbarSearch />
+                <div className="ModalPostCreate_chips">
+                    <TopicChip label="Item 1" withMargin onDelete={() => {}}/>
+                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
+                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                </div>
                 <div className="ModalPostCreate_actions">
                     <div className="ModalPostCreate_cancel">
                         <Button variant="outlined">Cancel</Button>

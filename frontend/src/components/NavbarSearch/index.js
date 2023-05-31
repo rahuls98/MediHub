@@ -16,7 +16,7 @@ const NavbarSearch = () => {
                 matchFrom: 'any',
                 limit: 500,
             })}
-            sx={{ width: 400 }}
+            // sx={{ width: 400 }}
             startDecorator={<SearchIcon />}
         />
     </div>

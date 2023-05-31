@@ -10,7 +10,7 @@ import FollowingLayoutContent from "../FollowingLayoutContent";
 
 const MainLayout = () => {
     // eslint-disable-next-line
-    const [layoutContent, setLayoutContent] = useState('sessions');
+    const [layoutContent, setLayoutContent] = useState('feed');
 
     const getNavbarOptions = () => {
         let navbarOptions = {

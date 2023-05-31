@@ -32,6 +32,25 @@
     margin-bottom: 8px;
 }
 
+.ModalPostCreate_container .MuiAutocomplete-root {
+    width: 100%;
+}
+
+.ModalPostCreate_chips {
+    width: 600px;
+    display: flex;
+    margin-top: 10px;
+    border-top: #cccccc90 solid 1px;
+    padding-top: 5px;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.ModalPostCreate_chips::-webkit-scrollbar {
+    display: none;
+}
+
 .ModalPostCreate_actions {
     margin-top: 30px;
     display: flex;

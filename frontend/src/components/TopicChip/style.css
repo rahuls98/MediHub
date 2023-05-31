@@ -14,3 +14,7 @@
 .TopicChip_container .MuiChip-label {
     color: var(--text-soft-highlight);
 }
+
+.TopicChip_container .MuiSvgIcon-root path {
+    color: var(--text-grey-highlight);
+}

@@ -4,6 +4,7 @@
 
 .NavbarProfileChip_container .MuiChip-action {
     background: white;
+    height: inherit;
 }
 
 .NavbarProfileChip_container .MuiChip-action:hover {

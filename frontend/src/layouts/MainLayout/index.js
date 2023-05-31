@@ -37,6 +37,12 @@ const MainLayout = props => {
                 navbarOptions.withSearch = true;
                 navbarOptions.createOption = 'session';
                 break;
+            case 'saved': 
+                navbarOptions.withSearch = true;
+                break;
+            case 'following': 
+                navbarOptions.withSearch = true;
+                break;
             default: break;
         }
         return navbarOptions;

@@ -8,7 +8,7 @@ import SessionsLayoutContent from "../SessionsLayoutContent";
 import SavedLayoutContent from "../SavedLayoutContent";
 import FollowingLayoutContent from "../FollowingLayoutContent";
 
-const MainLayout = () => {
+const MainLayout = props => {
     const [selected, setSelected] = useState(0);
     const [layoutContent, setLayoutContent] = useState('feed');
 
@@ -45,7 +45,7 @@ const MainLayout = () => {
     const getLayoutContent = () => {
         switch (layoutContent) {
             case 'feed': return <FeedLayoutContent />
-            case 'sessions': return <SessionsLayoutContent />
+            case 'sessions': return <SessionsLayoutContent setLayout={props.setLayout}/>
             case 'saved': return <SavedLayoutContent />
             case 'following': return <FollowingLayoutContent />
             default: return;

@@ -8,7 +8,8 @@ const Hms = () => {
 
     return (
         <div className="App wrapper"> 
-        {isConnected
+        {   
+            isConnected
             ? <Room />
             : <JoinRoom />
         }

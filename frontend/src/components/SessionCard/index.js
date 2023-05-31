@@ -21,9 +21,14 @@ const SessionCard = props => {
     const handleMenuTriggerClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
+
     const handleMenuClose = () => {
       setAnchorEl(null);
     };
+
+    const handleJoinClick = () => {
+        props.setLayout(2);
+    }
 
     return <div className="SessionCard_container">
         <div className="SessionCard_datetime">
@@ -46,7 +51,7 @@ const SessionCard = props => {
             <div className="SessionCard_parah_moreless">
                 <span onClick={() => setDescriptionCollapsed(!descriptionCollapsed)}>{descriptionCollapsed? "more": "less"}</span>
             </div>
-            <div className="SessionCard_action">
+            <div className="SessionCard_action" onClick={() => handleJoinClick()}>
                 <LoginOutlinedIcon sx={{ fontSize: 18 }}/>
                 <span>Join</span>
             </div>

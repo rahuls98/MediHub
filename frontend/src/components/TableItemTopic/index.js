@@ -9,15 +9,15 @@ import IconButton from '@mui/material/IconButton';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
-const FollowingItemTopic = () => {
+const TableItemTopic = () => {
     const [unfollow, setUnfollow] = useState(true);
 
     const handleUnfollow = () => {
         setUnfollow(!unfollow);
     }
 
-    return <div className="FollowingItemTopic_container">
-        <div className="FollowingItemTopic_listitem">
+    return <div className="TableItemTopic_container">
+        <div className="TableItemTopic_listitem">
             <ListItem
                 secondaryAction={
                 <IconButton edge="end" onClick={() => handleUnfollow()}>
@@ -35,4 +35,4 @@ const FollowingItemTopic = () => {
     </div>
 }
 
-export default FollowingItemTopic;
+export default TableItemTopic;

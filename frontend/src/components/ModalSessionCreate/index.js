@@ -55,7 +55,7 @@ const ModalSessionCreate = () => {
                         onChange={(newValue) => setTime(newValue)}/>
                 </Stack>
                 <br/>
-                <span className="ModalSessionCreate_label">Relevant tags</span>
+                <span className="ModalSessionCreate_label">Relevant topics</span>
                 <TopicSearch />
                 <div className="ModalPostCreate_chips">
                     <TopicChip label="Item 1" withMargin onDelete={() => {}}/>

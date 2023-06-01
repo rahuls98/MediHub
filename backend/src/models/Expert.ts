@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 import ExpertSchema from "../schemas/Expert";
 
-const Expert = mongoose.model('MedicalExpert', ExpertSchema);
+const Expert = mongoose.model('Expert', ExpertSchema);
 
 const createExpert = async (
     fullname:string, 
@@ -22,6 +22,14 @@ const createExpert = async (
     }
 };
 
+const readExperts = async () => {
+    try {
+        return await Expert.find();
+    } catch (error) {
+        console.error('Error readExperts: ', error);
+    }
+}
+
 const readExpertsById = async (
     expertIds:string[]
 ) => {
@@ -36,6 +44,7 @@ const readExpertsById = async (
 
 const ExpertModel = {
     createExpert,
+    readExperts,
     readExpertsById
 };
   

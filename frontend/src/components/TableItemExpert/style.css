@@ -1,0 +1,25 @@
+.TableItemExpert_listitem .MuiButtonBase-root path {
+    color: var(--text-soft-highlight);
+}
+
+.TableItemExpert_listitem .MuiButton-root {
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+    text-transform: capitalize;
+}
+
+.TableItemExpert_listitem .MuiButton-root:hover {
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+    box-shadow: var(--box-shadow);
+}
+
+.TableItemExpert_listitem .MuiSvgIcon-root {
+    margin-right: 5px;
+}
+
+.TableItemExpert_listitem .MuiSvgIcon-root path {
+    color: white;
+}

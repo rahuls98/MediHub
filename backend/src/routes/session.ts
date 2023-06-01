@@ -1,8 +1,12 @@
 import express, {Request, Response, Router} from "express";
+import SessionModel from "../models/Session";
 
 const router:Router = express.Router();
 
-router.get('/', async (req:Request, res:Response) => {});
+router.get('/', async (req:Request, res:Response) => {
+    const sessions:object[] = await SessionModel.readSessions() || [];
+    res.status(200).send(sessions);
+});
 
 router.post('/', async (req:Request, res:Response) => {});
 

@@ -1,7 +1,13 @@
 import express, {Request, Response, Router} from "express";
+import TopicModel from "../models/Topic";
 import UserFollowingTopicModel from "../models/UserFollowingTopic";
 
 const router:Router = express.Router();
+
+router.get('/', async (req:Request, res:Response) => {
+    const topics:object[] = await TopicModel.readTopics() || [];
+    res.status(200).send(topics);
+})
 
 router.post('/follow', async (req:Request, res:Response) => {
     const userId:string = req.body.user;

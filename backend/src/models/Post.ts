@@ -22,11 +22,23 @@ const createPost = async (
     }
 }
 
+const readPosts = async () => {
+    try {
+        return await Post.find();
+    } catch (error) {
+        console.error('Error readPosts: ', error);
+    }
+}
+
 const readPostsByAuthors = async (
     authors:string[]
 ) => {
     try {
-        const posts = await Post.find({ author: { "$in": authors } });
+        const posts = await Post.find({ author: { "$in": authors }}, {} , {createdDate : -1})
+        .populate({
+            path: 'author',
+            model: 'ExpertSchema',
+        });
         return posts;
     } catch (error) {
         console.error('Error readPostsByAuthors: ', error);
@@ -46,6 +58,7 @@ const searchPostsByTopic = async (
 
 const PostModel = {
     createPost,
+    readPosts,
     readPostsByAuthors,
     searchPostsByTopic
 };

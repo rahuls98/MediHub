@@ -6,7 +6,7 @@ import Autocomplete, {createFilterOptions} from '@mui/joy/Autocomplete';
 
 const searchOptions = [...medicalDictionary, ...medicalAbbreviations];
 
-const TopicSearch = () => {
+const TopicSearch = props => {
     return <div className="TopicSearch_container">
         <Autocomplete
             placeholder="Search"
@@ -16,7 +16,10 @@ const TopicSearch = () => {
                 matchFrom: 'any',
                 limit: 500,
             })}
-            // sx={{ width: 400 }}
+            onChange={(event, newValue) => {
+                if (newValue)
+                    props.onSelect(newValue);
+            }}
             startDecorator={<SearchIcon />}
         />
     </div>

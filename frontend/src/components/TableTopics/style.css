@@ -1,0 +1,7 @@
+.TableTopics_container.not_empty {
+    padding-right: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    overflow: scroll;
+}

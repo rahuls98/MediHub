@@ -7,6 +7,7 @@ import FeedLayoutContent from "../FeedLayoutContent";
 import SessionsLayoutContent from "../SessionsLayoutContent";
 import SavedLayoutContent from "../SavedLayoutContent";
 import FollowingLayoutContent from "../FollowingLayoutContent";
+import ExploreLayout from "../ExploreLayout";
 
 const MainLayout = props => {
     const [selected, setSelected] = useState(0);
@@ -19,6 +20,7 @@ const MainLayout = props => {
             case 1: setLayoutContent('sessions'); break;
             case 2: setLayoutContent('following'); break;
             case 3: setLayoutContent('saved'); break;
+            case 4: setLayoutContent('explore'); break;
             default: break;
         }
     }
@@ -30,17 +32,16 @@ const MainLayout = props => {
         }
         switch (layoutContent) {
             case 'feed': 
-                navbarOptions.withSearch = true;
                 navbarOptions.createOption = 'post';
                 break;
             case 'sessions': 
-                navbarOptions.withSearch = true;
                 navbarOptions.createOption = 'session';
                 break;
             case 'saved': 
-                navbarOptions.withSearch = true;
                 break;
             case 'following': 
+                break;
+            case 'explore':
                 navbarOptions.withSearch = true;
                 break;
             default: break;
@@ -54,6 +55,7 @@ const MainLayout = props => {
             case 'sessions': return <SessionsLayoutContent setLayout={props.setLayout}/>
             case 'saved': return <SavedLayoutContent />
             case 'following': return <FollowingLayoutContent />
+            case 'explore': return <ExploreLayout />
             default: return;
         }
     }

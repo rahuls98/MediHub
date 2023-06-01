@@ -1,6 +1,6 @@
 import "./style.css";
-import FollowingTableExperts from "../../components/FollowingTableExperts";
-import FollowingTableTopics from "../../components/FollowingTableTopics";
+import TableExperts from "../../components/TableExperts";
+import TableTopics from "../../components/TableTopics";
 
 const FollowingLayoutContent = () => {
     return <div className="FollowingLayoutContent_container">
@@ -10,10 +10,10 @@ const FollowingLayoutContent = () => {
         </div>
         <div className="FollowingLayoutContent_cards">
             <div className="FollowingLayoutContent_experts">
-                <FollowingTableExperts />
+                <TableExperts />
             </div>
             <div className="FollowingLayoutContent_topics">
-                <FollowingTableTopics />
+                <TableTopics />
             </div>
         </div>
     </div>

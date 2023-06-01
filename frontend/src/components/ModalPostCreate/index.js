@@ -8,13 +8,29 @@ import TextEditor from "../TextEditor";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import TopicSearch from "../TopicSearch";
 import TopicChip from "../TopicChip";
+import postApis from "../../apis/post";
 
 const ModalPostCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [editorValue, setEditorValue] = useState('');
+    const [topics, setTopics] = useState([]);
+
+    const handleTopicSelection = (selected) => {
+        setTopics([...topics, selected]);
+    }
+
+    const handleTopicDeletion = (ind) => {
+        let updatedTopics = [...topics];
+        updatedTopics.splice(ind, 1);
+        setTopics(updatedTopics);
+    }
 
     const handleSubmit = () => {
-        console.log(editorValue);
+        postApis.createPost({
+            content: editorValue.toString(),
+            topics: topics
+        });
+        setModalOpen(false);
     }
 
     return <div className="ModalPostCreate_container">
@@ -29,30 +45,16 @@ const ModalPostCreate = () => {
                 <span className="ModalPostCreate_label">What's on your mind?</span>
                 <TextEditor editorValue={editorValue} setEditorValue={setEditorValue} />
                 <br/>
-                <span className="ModalPostCreate_label">Relevant tags</span>
-                <TopicSearch />
+                <span className="ModalPostCreate_label">Relevant topics</span>
+                <TopicSearch onSelect={handleTopicSelection} />
                 <div className="ModalPostCreate_chips">
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}}/>
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                    {
+                        topics?.map((topic, index) => <TopicChip 
+                            key={index}
+                            label={topic} 
+                            withMargin 
+                            onDelete={() => handleTopicDeletion(index)}/>)
+                    }
                 </div>
                 <div className="ModalPostCreate_actions">
                     <div className="ModalPostCreate_cancel">

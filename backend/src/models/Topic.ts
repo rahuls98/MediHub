@@ -3,9 +3,20 @@ import TopicSchema from "../schemas/Topic";
 
 const Topic = mongoose.model('Topic', TopicSchema);
 
+const readTopics = async () => {
+    try {
+        const topics:object[] = await Topic.find();
+        return topics;
+    } catch (error) {
+        console.error('Error readTopics: ', error);
+    }
+}
+
 const readTrendingTopics = async () => {
     try {
-        const topics:object[] = await Topic.find().sort({ searchCounter: -1 }).limit(6);
+        const topics:object[] = await Topic.find()
+            .sort({ searchCounter: -1 })
+            .limit(30);
         return topics;
     } catch (error) {
         console.error('Error readTrendingTopics: ', error);
@@ -25,6 +36,7 @@ const readTopicsById = async (
 }
 
 const TopicModel = {
+    readTopics,
     readTrendingTopics,
     readTopicsById
 };

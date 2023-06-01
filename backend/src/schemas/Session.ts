@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const SessionSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'MedicalExpert',
+        ref: 'Expert',
         required: true
     },
     interestedUsers: {

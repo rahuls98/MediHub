@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const PostSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ExpertSchema',
+        ref: 'Expert',
         required: true,
     },
     createdDate: {
@@ -11,13 +11,20 @@ const PostSchema = new mongoose.Schema({
         default: Date.now, 
     },
     profilePhoto: String,
-    topics: [String],
-    content: String,
+    topics: {
+        type: [String],
+        required: true,
+        default: []
+    },
+    content: {
+        type: String,
+        required: true,
+    },
     upvotes: {
         type: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'ExpertSchema',
+                ref: 'Expert',
             }
         ],
         default: [],
@@ -26,7 +33,7 @@ const PostSchema = new mongoose.Schema({
         type: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'ExpertSchema',
+                ref: 'Expert',
             }
         ],
         default: [],

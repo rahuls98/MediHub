@@ -11,3 +11,8 @@
 * {
     color: var(--text-primary);
 }
+
+.MuiAlert-message {
+  display: flex;
+  align-items: center;
+}

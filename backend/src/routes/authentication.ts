@@ -22,7 +22,7 @@ router.post('/signup', async (req:Request, res:Response) => {
         UserModel.createUser(
             response.result.id,
             req.body.email,
-            req.body.password,
+            req.body.fullname,
             []
         );
         res.status(200).send(response.result);

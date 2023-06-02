@@ -1,7 +1,7 @@
 import "./style.css";
 import logoTransparent from "../../assets/images/logo_transparent.png";
-import FormSignin from "../../components/FormSignin";
-// import FormSignup from "../../components/FormSignup";
+// import FormSignin from "../../components/FormSignin";
+import FormSignup from "../../components/FormSignup";
 
 const AuthenticationLayout = () => {
     return <div className="Authenticationlayout_container">
@@ -10,8 +10,8 @@ const AuthenticationLayout = () => {
         </div>
         <div className="Authenticationlayout_form_container">
             <div className="Authenticationlayout_form">
-                <FormSignin />
-                {/* <FormSignup /> */}
+                {/* <FormSignin /> */}
+                <FormSignup />
             </div>
         </div>
     </div>

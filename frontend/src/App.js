@@ -5,7 +5,7 @@ import MainLayout from './layouts/MainLayout';
 import HmsLayout from './external/Hms';
 
 const App = () => {
-    const [layout, setLayout] = useState(1);
+    const [layout, setLayout] = useState(0);
 
     const getLayout = () => {
         switch(layout) {

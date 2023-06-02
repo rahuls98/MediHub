@@ -10,7 +10,6 @@ const SavedLayoutContent = () => {
     useEffect(() => {
         const getSavedPosts = async () => {
             const posts = await postApis.getSavedPosts();
-            console.log("SavedPosts", posts);
             setSavedPosts(posts);
         }
         getSavedPosts();

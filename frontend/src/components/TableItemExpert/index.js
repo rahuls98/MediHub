@@ -18,7 +18,6 @@ const TableItemExpert = props => {
     // const [snackbarMessage, setSnackbarMessage] = useState("Unfollowed");
 
     const handleActionClick = async () => {
-        console.log(itemAction);
         if (itemAction === "Unfollow") {
             // setSnackbarMessage("Unfollowed");
             await expertApis.unfollowExpert({"expert": props.expertId});

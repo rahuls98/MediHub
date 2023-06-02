@@ -14,7 +14,6 @@ const FeedLayoutContent = () => {
     useEffect(() => {
         const getUserFeed = async () => {
             const feed = await feedApis.getUserFeed();
-            console.log(feed.posts)
             setPosts(feed.posts);
             setSessions(feed.sessions);
         }

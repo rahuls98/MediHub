@@ -14,7 +14,6 @@ const getAllSessions = async () => {
 
 const getEnrolledSessions = async () => {
     const enrolledSessions = await requestMethods.get(`/session/enrolled?user=${userId}`);
-    console.log(enrolledSessions);
     return enrolledSessions;
 }
 

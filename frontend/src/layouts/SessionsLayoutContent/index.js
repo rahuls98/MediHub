@@ -10,7 +10,6 @@ const SessionsLayoutContent = props => {
     useEffect(() => {
         const getEnrolledSessions = async () => {
             const enrolledSessions = await sessionApis.getEnrolledSessions();
-            console.log(enrolledSessions);
             setSessions(enrolledSessions);
         };
         getEnrolledSessions();

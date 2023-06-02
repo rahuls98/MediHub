@@ -55,7 +55,11 @@ const readUserSavedPosts = async (
     user:string
 ) => {
     try {
-        const posts = await User.find({ _id: user }, { savedPosts: 1, _id: 0 });
+        const posts = await User.find({ _id: user }, { savedPosts: 1, _id: 0 })
+            .populate({
+                path: 'savedPosts',
+                populate: 'author'
+            });
         return posts[0].savedPosts;
     } catch (error) {
         console.error('Error readUserSavedPosts: ', error);

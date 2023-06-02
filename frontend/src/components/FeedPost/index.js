@@ -13,7 +13,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import TopicChip from "../TopicChip";
-import getReadableTimestamp from "../../utils/datetime";
+import datetimeUtils from "../../utils/datetime";
 import postApis from "../../apis/post";
 
 const FeedPost = props => {
@@ -77,7 +77,9 @@ const FeedPost = props => {
                     <br/>
                     <div className="FeedPost_date">
                         <AccessTimeIcon sx={{ fontSize: 15 }}/> 
-                        <span>{getReadableTimestamp(props.post?.createdDate)}</span>
+                        <span>{
+                            `${datetimeUtils.dateToReadableString(props.post?.createdDate)}, ${datetimeUtils.timeToReadableString(props.post?.createdDate)}`
+                        }</span>
                     </div>
                 </div>
                 <div className="FeedPost_actions">

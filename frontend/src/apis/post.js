@@ -1,7 +1,7 @@
 import requestMethods from "./base";
 
 const userDetails = JSON.parse(window.localStorage.getItem('user'));
-    const userId = userDetails.user[0]._id;
+const userId = userDetails.user[0]._id;
 
 const createPost = async (data) => {
     data['author'] = "64790812a87694aeb45fa145";

@@ -11,6 +11,8 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import datetimeUtils from "../../utils/datetime";
+import sessionApis from "../../apis/session";
 
 const ModalSessionCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -18,9 +20,30 @@ const ModalSessionCreate = () => {
     const [description, setDescription] = useState("");
     const [date, setDate] = useState(null);
     const [time, setTime] = useState(null);
+    const [topics, setTopics] = useState([]);
 
-    const handleSubmit = () => {
-        console.log(title, description, date, time)
+    const handleTopicSelection = (selected) => {
+        setTopics([...topics, selected]);
+    }
+
+    const handleTopicDeletion = (ind) => {
+        let updatedTopics = [...topics];
+        updatedTopics.splice(ind, 1);
+        setTopics(updatedTopics);
+    }
+
+    const handleSubmit = async () => {
+        const dateString = datetimeUtils.dateToReadableString(date.$d);
+        const timeString = datetimeUtils.timeToReadableString(time.$d);
+        const sessionData = {
+            title,
+            description,
+            date: dateString,
+            time: timeString,
+            topics
+        }
+        await sessionApis.createSession(sessionData);
+        setModalOpen(false);
     }
 
     return <div className="ModalSessionCreate_container">
@@ -56,29 +79,15 @@ const ModalSessionCreate = () => {
                 </Stack>
                 <br/>
                 <span className="ModalSessionCreate_label">Relevant topics</span>
-                <TopicSearch />
+                <TopicSearch onSelect={handleTopicSelection} />
                 <div className="ModalPostCreate_chips">
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}}/>
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 1" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 2" withMargin onDelete={() => {}} />
-                    <TopicChip label="Item 3" withMargin onDelete={() => {}} />
+                {
+                    topics?.map((topic, index) => <TopicChip 
+                    key={index}
+                    label={topic} 
+                    withMargin 
+                    onDelete={() => handleTopicDeletion(index)}/>)
+                }
                 </div>
                 <div className="ModalSessionCreate_actions">
                     <div className="ModalSessionCreate_cancel">

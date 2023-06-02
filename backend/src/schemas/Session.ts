@@ -20,6 +20,22 @@ const SessionSchema = new mongoose.Schema({
         type: Date,
         default: Date.now, 
     },
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    sessionDate: {
+        type: String,
+        required: true
+    },
+    sessionTime: {
+        type: String,
+        required: true
+    }
 });
 
 export default SessionSchema;

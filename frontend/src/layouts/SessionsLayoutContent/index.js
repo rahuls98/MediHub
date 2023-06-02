@@ -1,15 +1,27 @@
+import { useState, useEffect } from "react";
 import "./style.css";
 import SessionCard from "../../components/SessionCard";
-// import NoData from "../../components/NoData";
+import sessionApis from "../../apis/session";
+import NoData from "../../components/NoData";
 
 const SessionsLayoutContent = props => {
+    const [sessions, setSessions] = useState([]);
+
+    useEffect(() => {
+        const getEnrolledSessions = async () => {
+            const enrolledSessions = await sessionApis.getEnrolledSessions();
+            console.log(enrolledSessions);
+            setSessions(enrolledSessions);
+        };
+        getEnrolledSessions();
+    }, [])
+
     return <div className="SessionsLayoutContent_container">
-        {/* <h2>My sessions</h2> */}
-        <SessionCard setLayout={props.setLayout} />
-        <SessionCard setLayout={props.setLayout} />
-        <SessionCard setLayout={props.setLayout} />
-        <SessionCard setLayout={props.setLayout} />
-        {/* <NoData /> */}
+        {
+            (sessions.length === 0)? 
+            <NoData />:
+            sessions.map((session, ind) => <SessionCard key={ind} session={session} />)
+        }
     </div>
 }
 

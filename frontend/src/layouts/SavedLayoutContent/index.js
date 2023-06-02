@@ -5,22 +5,22 @@ import postApis from "../../apis/post";
 import NoData from "../../components/NoData";
 
 const SavedLayoutContent = () => {
-    const [saved, setSaved] = useState([]);
+    const [savedPosts, setSavedPosts] = useState([]);
 
     useEffect(() => {
         const getSavedPosts = async () => {
             const posts = await postApis.getSavedPosts();
             console.log(posts);
-            setSaved(posts);
+            setSavedPosts(posts);
         }
         getSavedPosts();
     }, [])
 
     return <div className="SavedLayoutContent_container">
         {
-            (saved.length === 0)?
+            (savedPosts?.length === 0)?
             <NoData />:
-            saved.map((post, ind) => <FeedPost key={ind} saved post={post}/>)
+            savedPosts.map((post, ind) => <FeedPost key={ind} saved post={post}/>)
         }
     </div>
 }

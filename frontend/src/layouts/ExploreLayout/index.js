@@ -11,7 +11,7 @@ import topicApis from "../../apis/topic";
 import postApis from "../../apis/post";
 import sessionApis from "../../apis/session";
 import FeedPost from "../../components/FeedPost";
-import SessionCard from "../../components/SessionCard";
+import FeedSession from "../../components/FeedSession";
 import NoData from "../../components/NoData";
 
 const ExploreLayout = () => {
@@ -39,8 +39,9 @@ const ExploreLayout = () => {
             setPosts(experts);
         }
         const getAllSessions = async () => {
-            const topics = await sessionApis.getAllSessions();
-            setSessions(topics);
+            const sessions = await sessionApis.getAllSessions();
+            console.log(sessions);
+            setSessions(sessions);
         }
         getAllExperts();
         getAllTopics();
@@ -69,7 +70,7 @@ const ExploreLayout = () => {
                 {
                     (sessions.length === 0)?
                     <NoData />:
-                    sessions.map(session => <SessionCard key={session._id} />)
+                    sessions.map(session => <FeedSession key={session._id} session={session} />)
                 }
             </TabPanel>
         </TabContext>

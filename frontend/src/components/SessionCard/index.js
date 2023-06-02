@@ -12,11 +12,12 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
+// import sessionApis from "../../apis/session";
 
 const SessionCard = props => {
     const [anchorEl, setAnchorEl] = useState(null);
     const actionsMenuOpen = Boolean(anchorEl);
-    const [descriptionCollapsed, setDescriptionCollapsed] = useState(true);
+    // const [descriptionCollapsed, setDescriptionCollapsed] = useState(true);
 
     const handleMenuTriggerClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -26,6 +27,11 @@ const SessionCard = props => {
       setAnchorEl(null);
     };
 
+    const handleUnenrollmentClick = async () => {
+        console.log("Unenroll!");
+        // await sessionApis.unenrollInSession(props.session._id);
+    }
+
     const handleJoinClick = () => {
         props.setLayout(2);
     }
@@ -33,24 +39,27 @@ const SessionCard = props => {
     return <div className="SessionCard_container">
         <div className="SessionCard_datetime">
             <div>
-                <span className="SessionCard_date">May 22</span>
+                <span className="SessionCard_date">{props.session?.sessionDate || ""}</span>
                 <br />
-                <span className="SessionCard_time">09:00 AM</span>
+                <span className="SessionCard_time">{props.session?.sessionTime || ""}</span>
             </div>
         </div>
-        <div className={"SessionCard_details".concat(descriptionCollapsed? " collapsed" : "")}>
-            <h3>Session title</h3>
+        {/* <div className={"SessionCard_details".concat(descriptionCollapsed? " collapsed" : "")}> */}
+        <div className="SessionCard_details">
+            <h3>{props.session?.title || ""}</h3>
             <Stack direction="row" flexWrap="wrap">
-                <TopicChip label="topic 1" withMargin/>
-                <TopicChip label="topic 2" withMargin/>
-                <TopicChip label="topic 2" withMargin/>
+            {
+                (props.session?.topics.length === 0)?null:
+                props.session?.topics.map((topic, ind) => <TopicChip key={ind} label={topic} withMargin/>)
+            }
             </Stack>
-            <p className={"SessionCard_description".concat(descriptionCollapsed? " collapsed" : "")}>
-                Eget mauris pharetra et ultrices. Leo in vitae turpis massa. Sit amet consectetur adipiscing elit pellentesque habitant. Sit amet massa vitae tortor condimentum. Tortor aliquam nulla facilisi cras fermentum odio eu. Quisque egestas diam in arcu cursus euismod quis viverra nibh. Dignissim sodales ut eu sem integer vitae justo. Placerat vestibulum lectus mauris ultrices eros in cursus turpis. Donec pretium vulputate sapien nec.
+            {/* <p className={"SessionCard_description".concat(descriptionCollapsed? " collapsed" : "")}> */}
+            <p className="SessionCard_description">
+                {props.session?.description || ""}
             </p>
-            <div className="SessionCard_parah_moreless">
+            {/* <div className="SessionCard_parah_moreless">
                 <span onClick={() => setDescriptionCollapsed(!descriptionCollapsed)}>{descriptionCollapsed? "more": "less"}</span>
-            </div>
+            </div> */}
             <div className="SessionCard_action" onClick={() => handleJoinClick()}>
                 <LoginOutlinedIcon sx={{ fontSize: 18 }}/>
                 <span>Join</span>
@@ -87,7 +96,7 @@ const SessionCard = props => {
                         </ListItemIcon>
                         <ListItemText>Delete</ListItemText>
                     </MenuItem>
-                    <MenuItem>
+                    <MenuItem onClick={() => handleUnenrollmentClick()}>
                         <ListItemIcon>
                             <CancelPresentationOutlinedIcon fontSize="small" />
                         </ListItemIcon>

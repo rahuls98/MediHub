@@ -9,14 +9,18 @@ import BackHandOutlinedIcon from '@mui/icons-material/BackHandOutlined';
 import ShareIcon from '@mui/icons-material/Share';
 import EventIcon from '@mui/icons-material/Event';
 import TopicChip from "../TopicChip";
+import sessionApis from "../../apis/session";
 
-const FeedSession = () => {
+const FeedSession = props => {
     const [enrolled, setEnrolled] = useState(false);
     const [enrolledSnackbar, setEnrolledSnackbar] = useState(false);
 
-    const handleEnrollOnClick = () => {
+    const handleEnrollOnClick = async () => {
         if (!enrolled) {
             setEnrolledSnackbar(true);
+            await sessionApis.enrollInSession({session: props.session._id});
+        } else {
+            await sessionApis.unenrollInSession({session: props.session._id});
         }
         setEnrolled(!enrolled);
     }
@@ -34,8 +38,8 @@ const FeedSession = () => {
             <div className="FeedSession_header">
                 <div className="FeedSession_expert_photo"></div>
                 <div>
-                    <span className="FeedSession_expert_name">Name</span>
-                    <span className="FeedSession_expert_username">@username</span>
+                    <span className="FeedSession_expert_name">{props.session.author.fullname}</span>
+                    {/* <span className="FeedSession_expert_username">@username</span> */}
                     <p className="FeedSession_date">
                         <AccessTimeIcon sx={{ fontSize: 15 }}/> 
                         <span>Posted date</span>
@@ -54,18 +58,18 @@ const FeedSession = () => {
             </div>
             <div className="FeedSession_topics">
                 <Stack direction="row" spacing={1} flexWrap="wrap">
-                    <TopicChip label="topic 1" />
-                    <TopicChip label="topic 1" />
-                    <TopicChip label="topic 1" />
+                    {
+                        props.session.topics.map((topic, ind) => <TopicChip key={ind} label={topic} />)
+                    }
                 </Stack>
             </div>
-            <h3 className="FeedSession_title">Session: Title</h3>
+            <h3 className="FeedSession_title">Session: {props.session.title}</h3>
             <p className="FeedSession_content_text">
-                Eget mauris pharetra et ultrices. Leo in vitae turpis massa. Sit amet consectetur adipiscing elit pellentesque habitant. Sit amet massa vitae tortor condimentum. Tortor aliquam nulla facilisi cras fermentum odio eu. Quisque egestas diam in arcu cursus euismod quis viverra nibh. Dignissim sodales ut eu sem integer vitae justo. Placerat vestibulum lectus mauris ultrices eros in cursus turpis. Donec pretium vulputate sapien nec.
+                {props.session.description}
             </p>
             <div className="FeedSession_when">
                 <EventIcon /> 
-                <span>When</span>
+                <span>{`${props.session.sessionDate}, ${props.session.sessionTime}`}</span>
             </div>
         </div>
         <Snackbar open={enrolledSnackbar} autoHideDuration={2000} onClose={handleEnrolledSnackbarClose}>

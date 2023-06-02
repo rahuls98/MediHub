@@ -22,12 +22,12 @@ const readFollowedExperts = async  (
     user:string
 ) => {
     try {
-        const followedExpertsObjects = await UserFollowingExpert.find({ user }, { 
-            _id: false,
-            expert: true 
-        });
-        let followedExperts:string[] = followedExpertsObjects.map(followedExpert => 
-            followedExpert.expert.valueOf().toString());
+        const followedExpertsObject = await UserFollowingExpert.find({ user }, { expert: true, _id: false })
+            .populate('expert');
+        let followedExperts:object[] = [];
+        for (let object of followedExpertsObject) {
+            followedExperts.push(object.expert);
+        }
         return followedExperts;
     } catch (error) {
         console.error('Error readFollowedExperts: ', error);

@@ -4,27 +4,22 @@
     box-sizing: border-box;
 }
 
-.FollowingLayoutContent_titles {
-    display: grid;
-    grid-template-columns: 6fr 6fr;
-    grid-auto-flow: row;
+.FollowingLayoutContent_container::-webkit-scrollbar {
+    display: none;
 }
 
-.FollowingLayoutContent_titles h3 {
-    margin: 0 10px 20px 10px;
+.FollowingLayoutContent_container .MuiTabs-root {
+    margin: 0 24px 0 24px;
 }
 
-.FollowingLayoutContent_cards {
-    height: 600px;
-    display: grid;
-    grid-template-columns: 6fr 6fr;
-    grid-auto-flow: row;
+.FollowingLayoutContent_container .MuiTab-root {
+    text-transform: capitalize;
 }
 
-.FollowingLayoutContent_cards .FollowingLayoutContent_experts,.FollowingLayoutContent_topics {
-    background: white;
-    border-radius: 8px;
-    box-shadow: var(--box-shadow);
-    margin: 0 10px 0 10px;
-    overflow: scroll;
+.FollowingLayoutContent_container .MuiTab-root.Mui-selected {
+    color: var(--text-highlight);
+}
+
+.FollowingLayoutContent_container .MuiTabs-indicator {
+    background-color: var(--text-highlight);
 }

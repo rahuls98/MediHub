@@ -4,8 +4,13 @@ const getAllTopics = async () => {
     return await requestMethods.get('/topic');
 }
 
+const getFollowingTopics = async () => {
+    return await requestMethods.get('/topic');
+}
+
 const topicApis = {
-    getAllTopics
+    getAllTopics,
+    getFollowingTopics
 }
 
 export default topicApis;

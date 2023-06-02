@@ -25,9 +25,11 @@ const readFollowedTopics = async  (
         const followedTopicsObjects = await UserFollowingTopic.find({ user }, { 
             _id: false,
             topic: true 
-        });
-        let followedTopics:string[] = followedTopicsObjects.map(followedTopic => 
-            followedTopic.topic.valueOf().toString());
+        }).populate('topic');
+        let followedTopics:object[] = [];
+        for (let object of followedTopicsObjects) {
+            followedTopics.push(object.topic);
+        }
         return followedTopics;
     } catch (error) {
         console.error('Error readFollowedTopics: ', error);

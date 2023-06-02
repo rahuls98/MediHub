@@ -19,6 +19,13 @@ const SessionCard = props => {
     const actionsMenuOpen = Boolean(anchorEl);
     // const [descriptionCollapsed, setDescriptionCollapsed] = useState(true);
 
+    const getDate = () => {
+        let dateString = props.session?.sessionDate;
+        // eslint-disable-next-line
+        const [month, date, year] = dateString.split(" ");
+        return `${month} ${date}`;
+    }
+
     const handleMenuTriggerClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -39,7 +46,7 @@ const SessionCard = props => {
     return <div className="SessionCard_container">
         <div className="SessionCard_datetime">
             <div>
-                <span className="SessionCard_date">{props.session?.sessionDate || ""}</span>
+                <span className="SessionCard_date">{getDate()}</span>
                 <br />
                 <span className="SessionCard_time">{props.session?.sessionTime || ""}</span>
             </div>

@@ -4,6 +4,10 @@ const getAllExperts = async () => {
     return await requestMethods.get('/expert');
 }
 
+const getFollowingExperts = async () => {
+    return await requestMethods.get('/expert');
+}
+
 const followExpert = async (data) => {
     const userDetails = JSON.parse(window.localStorage.getItem('user'));
     data['user'] = userDetails.user[0]._id;
@@ -18,6 +22,7 @@ const unfollowExpert = async (data) => {
 
 const expertApis = {
     getAllExperts,
+    getFollowingExperts,
     followExpert,
     unfollowExpert
 }

@@ -86,7 +86,7 @@ const deleteSavedPost = async (
     post:string
 ) => {
     try {
-        await Post.updateOne({ _id: user }, { "$pull": { 'savedBy': post}});
+        await Post.updateOne({ _id: post }, { "$pull": { 'savedBy': user }});
     } catch (error) {
         console.error('Error deleteSavedPost: ', error);
     }

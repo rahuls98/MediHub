@@ -1,7 +1,9 @@
 import requestMethods from "./base";
 
 const getUserFeed = async () => {
-    return await requestMethods.get('/feed/6473a42478d6ba47f364b4b4');
+    const userDetails = JSON.parse(window.localStorage.getItem('user'));
+    const userId = userDetails.user[0]._id;
+    return await requestMethods.get(`/feed/${userId}`);
 }
 
 const getTrendingTopics = async () => {

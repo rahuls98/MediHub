@@ -24,21 +24,25 @@ router.put('/upvote', async (req:Request, res:Response) => {});
 
 router.put('/downvote', async (req:Request, res:Response) => {});
 
-router.get('/saved', async (req:Request, res:Response) => {});
+router.get('/saved', async (req:Request, res:Response) => {
+    const user:string = req.query.user?.toString() || "";
+    const posts = await UserModel.readUserSavedPosts(user);
+    res.status(200).send(posts);
+});
 
 router.put('/save', async (req:Request, res:Response) => {
-    const post:string = req.query.post?.toString() || "";
-    const user:string = "6473a42478d6ba47f364b4b4";
-    UserModel.createSavedPost(user, post);
+    const post:string = req.body.post;
+    const user:string = req.body.user;
+    await UserModel.createSavedPost(user, post);
     res.status(200).send({
         "msg": "Success!"
     });
 });
 
 router.put('/unsave', async (req:Request, res:Response) => {
-    const post:string = req.query.post?.toString() || "";
-    const user:string = "6473a42478d6ba47f364b4b4";
-    UserModel.deleteSavedPost(user, post);
+    const post:string = req.body.post;
+    const user:string = req.body.user;
+    await UserModel.deleteSavedPost(user, post);
     res.status(200).send({
         "msg": "Success!"
     });

@@ -37,7 +37,7 @@ const readPostsByAuthors = async (
         const posts = await Post.find({ author: { "$in": authors }}, {} , {createdDate : -1})
         .populate({
             path: 'author',
-            model: 'ExpertSchema',
+            model: 'Expert',
         });
         return posts;
     } catch (error) {

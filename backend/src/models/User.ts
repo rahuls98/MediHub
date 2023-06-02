@@ -56,7 +56,7 @@ const readUserSavedPosts = async (
 ) => {
     try {
         const posts = await User.find({ _id: user }, { savedPosts: 1, _id: 0 });
-        console.log("Posts: ", posts);
+        return posts[0].savedPosts;
     } catch (error) {
         console.error('Error readUserSavedPosts: ', error);
     }

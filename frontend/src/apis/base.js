@@ -41,10 +41,27 @@ const del = async (url, data) => {
     }
 }
 
+const put = async (url, data) => {
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+    try {
+        const response = await fetch(BASE_URL + url, options);
+        return response.json();
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 const requestMethods = {
     get,
     post,
-    del
+    del,
+    put
 }
 
 export default requestMethods;

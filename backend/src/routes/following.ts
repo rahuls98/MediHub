@@ -14,8 +14,7 @@ router.get('/experts', async (req:Request, res:Response) => {
 
 router.get('/topics', async (req:Request, res:Response) => {
     const user:string = req.query.user?.toString() || "";
-    const followedTopicIds:string[] = await UserFollowingTopicModel.readFollowedTopics(user) || [];
-    const followedTopics:object[] = await TopicModel.readTopicsById(followedTopicIds) || [];
+    const followedTopics = await UserFollowingTopicModel.readFollowedTopics(user) || [];
     res.status(200).send(followedTopics);
 });
 

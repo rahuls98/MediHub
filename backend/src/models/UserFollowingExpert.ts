@@ -24,7 +24,7 @@ const readFollowedExperts = async  (
     try {
         const followedExpertsObject = await UserFollowingExpert.find({ user }, { expert: true, _id: false })
             .populate('expert');
-        let followedExperts:object[] = [];
+        let followedExperts = [];
         for (let object of followedExpertsObject) {
             followedExperts.push(object.expert);
         }

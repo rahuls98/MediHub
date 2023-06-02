@@ -33,8 +33,12 @@ const readSessionsByAuthors = async (
     authors:string[]
 ) => {
     try {
-        const sessions = await Session.find({ author: { "$in": authors } });
-        console.log("Sessions: ", sessions);
+        const sessions = await Session.find({ author: { "$in": authors } }, {} , {createdDate : -1})
+        .populate({
+            path: 'author',
+            model: 'Expert',
+        });
+        return sessions;
     } catch (error) {
         console.error('Error readSessionsByAuthors: ', error);
     }

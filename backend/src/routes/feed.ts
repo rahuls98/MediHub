@@ -26,10 +26,13 @@ router.get('/search', async (req:Request, res:Response) => {
 
 router.get('/:userId', async (req:Request, res:Response) => {
     const userId:string = req.params.userId;
-    const followedExperts:string[] = await UserFollowingExpertModel.readFollowedExperts(userId) || [];
-    const followedExpertsPosts:object[] = await PostModel.readPostsByAuthors(followedExperts);
+    const followedExperts = await UserFollowingExpertModel.readFollowedExperts(userId) || [];
+    const followedExpertsIds:string[] = followedExperts.map(expert => expert._id.toString());
+    const followedExpertsPosts:object[] = await PostModel.readPostsByAuthors(followedExpertsIds);
+    const followedExpertsSessions:object[] = await SessionModel.readSessionsByAuthors(followedExpertsIds) || [];
     res.status(200).json({
-        posts: followedExpertsPosts
+        posts: followedExpertsPosts,
+        sessions: followedExpertsSessions
     });
 });
 

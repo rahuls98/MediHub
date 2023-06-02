@@ -14,6 +14,7 @@ const FeedLayoutContent = () => {
     useEffect(() => {
         const getUserFeed = async () => {
             const feed = await feedApis.getUserFeed();
+            console.log("Feed", feed);
             setPosts(feed.posts);
             setSessions(feed.sessions);
         }
@@ -28,7 +29,7 @@ const FeedLayoutContent = () => {
                         posts?.map(post => <FeedPost key={post._id} post={post} />)
                     }
                     {
-                        sessions?.map(session => <FeedSession key={session._id} />)
+                        sessions?.map(session => <FeedSession key={session._id} session={session} />)
                     }
                     {/* <NoData /> */}
                 </Grid>

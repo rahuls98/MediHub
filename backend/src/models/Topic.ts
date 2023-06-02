@@ -3,6 +3,17 @@ import TopicSchema from "../schemas/Topic";
 
 const Topic = mongoose.model('Topic', TopicSchema);
 
+const createTopic = async (
+    title:string
+) => {
+    try {
+        const topic = new Topic({title});
+        await topic.save();
+    } catch (error) {
+        console.error('Error createTopic: ', error);
+    }
+}
+
 const readTopics = async () => {
     try {
         const topics:object[] = await Topic.find();
@@ -36,6 +47,7 @@ const readTopicsById = async (
 }
 
 const TopicModel = {
+    createTopic,
     readTopics,
     readTrendingTopics,
     readTopicsById

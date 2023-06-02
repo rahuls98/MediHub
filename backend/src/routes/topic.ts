@@ -9,6 +9,14 @@ router.get('/', async (req:Request, res:Response) => {
     res.status(200).send(topics);
 })
 
+router.post('/', async (req:Request, res:Response) => {
+    const topic = req.body.topic;
+    await TopicModel.createTopic(topic);
+    res.status(201).send({
+        "msg": "Success!"
+    });
+})
+
 router.post('/follow', async (req:Request, res:Response) => {
     const userId:string = req.body.user;
     const topicId:string = req.body.topic;

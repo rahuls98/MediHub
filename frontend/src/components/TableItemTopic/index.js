@@ -5,33 +5,43 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import expertApis from "../../apis/expert";
 
-const TableItemTopic = () => {
-    const [unfollow, setUnfollow] = useState(true);
+const TableItemTopic = props => {
+    const [itemAction, setItemAction] = useState(props.initialAction);
 
-    const handleUnfollow = () => {
-        setUnfollow(!unfollow);
+    const handleActionClick = async () => {
+        if (itemAction === "Unfollow") {
+            await expertApis.unfollowExpert({"expert": props.expertId});
+            setItemAction("Follow");
+        } else if (itemAction === "Follow") {
+            await expertApis.followExpert({"expert": props.expertId});
+            setItemAction("Unfollow");
+        }
     }
 
     return <div className="TableItemTopic_container">
         <div className="TableItemTopic_listitem">
             <ListItem
                 secondaryAction={
-                <IconButton edge="end" onClick={() => handleUnfollow()}>
-                    { unfollow? <RemoveCircleOutlinedIcon /> : <AddCircleOutlinedIcon /> }
-                </IconButton>
+                    <Button variant="outlined" size="small" onClick={() => handleActionClick()}>
+                        {(itemAction === "Unfollow")?<RemoveCircleOutlinedIcon />:<AddCircleOutlinedIcon />}
+                        {itemAction}
+                    </Button>
                 }
             >
                 <ListItemAvatar>
-                <Avatar alt="AIDS" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={props.topic} src="/static/images/avatar/2.jpg" />
                 </ListItemAvatar>
-                <ListItemText primary="AIDS" />
+                <ListItemText primary={props.topic} />
             </ListItem>
         </div>
-        <Divider variant="inset" component="li" />
+        {
+            props.lastItem? null: <Divider variant="inset" component="li" />
+        }
     </div>
 }
 

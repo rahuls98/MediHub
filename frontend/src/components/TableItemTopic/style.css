@@ -1,3 +1,25 @@
 .TableItemTopic_container .MuiButtonBase-root path {
     color: var(--text-soft-highlight);
 }
+
+.TableItemTopic_container .MuiButton-root {
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+    text-transform: capitalize;
+}
+
+.TableItemTopic_container .MuiButton-root:hover {
+    background: var(--text-soft-highlight);
+    border: none;
+    color: white;
+    box-shadow: var(--box-shadow);
+}
+
+.TableItemTopic_container .MuiSvgIcon-root {
+    margin-right: 5px;
+}
+
+.TableItemTopic_container .MuiSvgIcon-root path {
+    color: white;
+}

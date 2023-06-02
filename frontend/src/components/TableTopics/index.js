@@ -13,7 +13,13 @@ const TableTopics = props => {
             <NoData />:
             <List sx={{ width: '100%' }}>
                 {
-                    props.data.map((topic, ind) => <TableItemTopic key={ind} />)
+                    props.data.map((topic, ind) => 
+                    <TableItemTopic
+                        key={topic._id}
+                        topicId={topic._id}
+                        lastItem={ind === props.data.length-1}
+                        initialAction="Follow"
+                        topic={topic.title} />)
                 }
             </List>
         }

@@ -41,10 +41,14 @@ router.post('/signin', async (req:Request, res:Response) => {
     const authn = PangeaService.getAuthentication();
     try {
         const response = await authn.user.login.password(
-            req.body.username,
+            req.body.email,
             req.body.password,
         );
-        res.status(200).send(response.result);
+        const user = await UserModel.readByPangeaId(response.result.active_token.identity);
+        res.status(200).send({
+            ...response.result,
+            user
+        });
     } catch (err:any) {
         if (err instanceof PangeaErrors.APIError) {
             console.log(err);

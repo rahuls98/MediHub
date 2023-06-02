@@ -42,10 +42,28 @@ const readExpertsById = async (
     }
 }
 
+const increaseFollowerCount = async (expertId:string) => {
+    try {
+        await Expert.updateOne({ _id: expertId }, {$inc : {followerCount : 1}})
+    } catch (error) {
+        console.error('Error increaseFollowerCount: ', error);
+    }
+}
+
+const decreaseFollowerCount = async (expertId:string) => {
+    try {
+        await Expert.updateOne({ _id: expertId }, {$inc : {followerCount : -1}})
+    } catch (error) {
+        console.error('Error increaseFollowerCount: ', error);
+    }
+}
+
 const ExpertModel = {
     createExpert,
     readExperts,
-    readExpertsById
+    readExpertsById,
+    increaseFollowerCount,
+    decreaseFollowerCount
 };
   
 export default ExpertModel;

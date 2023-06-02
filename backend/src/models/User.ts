@@ -42,6 +42,15 @@ const readUsers = async () => {
     }
 }
 
+const readByPangeaId = async (pangeaId:string) => {
+    try {
+        const user = await User.find({ pangeaUserId: pangeaId });
+        return user;
+    } catch (error) {
+        console.error('Error readByPangeaId: ', error);
+    }
+}
+
 const readUserSavedPosts = async (
     user:string
 ) => {
@@ -68,6 +77,7 @@ const UserModel = {
     createUser,
     createSavedPost,
     readUsers,
+    readByPangeaId,
     readUserSavedPosts,
     deleteSavedPost
 };

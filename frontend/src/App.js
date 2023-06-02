@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import './App.css';
 import AuthenticationLayout from './layouts/AuthenticationLayout';
 import MainLayout from './layouts/MainLayout';
@@ -6,6 +6,12 @@ import HmsLayout from './external/Hms';
 
 const App = () => {
     const [layout, setLayout] = useState(0);
+
+    useEffect(() => {
+        if (window.localStorage.getItem('user')) {
+            setLayout(1);
+        }
+    }, [])
 
     const getLayout = () => {
         switch(layout) {

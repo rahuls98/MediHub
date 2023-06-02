@@ -13,9 +13,11 @@ const TableExperts = props => {
             <NoData />:
             <List sx={{ width: '100%' }}>
                 {
+                    
                     props.data.map((expert, ind) => 
                     <TableItemExpert 
-                        key={ind} 
+                        key={expert._id} 
+                        expertId={expert._id}
                         lastItem={ind === props.data.length-1}
                         initialAction="Follow"
                         fullname={expert.fullname} 

@@ -25,9 +25,26 @@ const post = async (url, data) => {
     }
 }
 
+const del = async (url, data) => {
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+    try {
+        const response = await fetch(BASE_URL + url, options);
+        return response.json();
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 const requestMethods = {
     get,
-    post
+    post,
+    del
 }
 
 export default requestMethods;

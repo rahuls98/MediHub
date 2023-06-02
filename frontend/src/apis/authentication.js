@@ -1,11 +1,16 @@
 import requestMethods from "./base";
 
-const createNewUser = async (data) => {
+const signinUser = async (data) => {
+    return await requestMethods.post('/authentication/signin/', data);
+}
+
+const signupUser = async (data) => {
     return await requestMethods.post('/authentication/signup/', data);
 }
 
 const authenticationApis = {
-    createNewUser
+    signinUser,
+    signupUser
 }
 
 export default authenticationApis;

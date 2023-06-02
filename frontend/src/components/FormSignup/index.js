@@ -13,7 +13,7 @@ const FormSignup = () => {
 
     const handleSignupSubmit = async () => {
         const userData = {fullname, email, password}
-        const response = await authenticationApis.createNewUser(userData);
+        const response = await authenticationApis.signupUser(userData);
         console.log(response);
     }
 

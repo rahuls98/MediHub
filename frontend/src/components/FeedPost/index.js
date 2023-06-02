@@ -6,7 +6,9 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShareIcon from '@mui/icons-material/Share';
@@ -15,7 +17,11 @@ import getReadableTimestamp from "../../utils/datetime";
 import postApis from "../../apis/post";
 
 const FeedPost = props => {
-    const [saved, setSaved] = useState(props.saved);
+    const [saved, setSaved] = useState(props.saved || false);
+    const [upvoted, setUpvoted] = useState(props.upvoted || false);
+    const [upvotes, setUpvotes] = useState(props.post?.upvotes.length || 0);
+    const [downvoted, setDownvoted] = useState(props.downvoted || false);
+    const [downvotes, setDownvotes] = useState(props.post?.downvotes.length || 0);
     const [savedSnackbar, setSavedSnackbar] = useState(false);
 
     const handleSaveOnClick = async () => {
@@ -34,6 +40,32 @@ const FeedPost = props => {
         }
         setSavedSnackbar(false);
     };
+
+    const handleVoteOnClick = async (action) => {
+        if (action === "upvote") {
+            if (upvoted) {
+                setUpvoted(false);
+                setUpvotes(upvotes-1);
+                return
+            } else if (downvoted) {
+                setDownvoted(false);
+                setDownvotes(downvotes-1);
+            } 
+            setUpvoted(true);
+            setUpvotes(upvotes+1)
+        } else if (action === "downvote") {
+            if (downvoted) {
+                setDownvoted(false);
+                setDownvotes(downvotes-1);
+                return
+            } else if (upvoted) {
+                setUpvoted(false);
+                setUpvotes(upvotes-1)
+            } 
+            setDownvoted(true);
+            setDownvotes(downvotes+1);
+        }
+    }
 
     return <div className="FeedPost_container">
         <div className="FeedPost_content">
@@ -69,14 +101,18 @@ const FeedPost = props => {
             <p className="FeedPost_content_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <div className="FeedPost_vote">
                 <div>
-                    <ThumbUpAltIcon />
-                    <span className="FeedPost_vote_action">Upvote</span>
-                    <Chip label={props.post?.upvotes.length} variant="outlined" size="small"/>
+                    <div className={"FeedPost_vote_clickable".concat(upvoted?" selected":"")} onClick={() => handleVoteOnClick("upvote")}>
+                        {upvoted?<ThumbUpAltIcon />:<ThumbUpAltOutlinedIcon />}
+                        {<span className="FeedPost_vote_action">Upvote</span>}
+                    </div>
+                    <Chip label={upvotes} variant="outlined" size="small"/>
                 </div>
                 <div>
-                    <ThumbDownAltIcon />
-                    <span className="FeedPost_vote_action">Downvote</span>
-                    <Chip label={props.post?.downvotes.length} variant="outlined" size="small"/>
+                    <div className={"FeedPost_vote_clickable".concat(downvoted?" selected":"")} onClick={() => handleVoteOnClick("downvote")}>
+                        {downvoted?<ThumbDownAltIcon />:<ThumbDownAltOutlinedIcon />}
+                        {<span className="FeedPost_vote_action">Downvote</span>}
+                    </div>
+                    <Chip label={downvotes} variant="outlined" size="small"/>
                 </div>
             </div>
         </div>

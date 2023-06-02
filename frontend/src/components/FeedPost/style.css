@@ -80,8 +80,20 @@
     align-items: center;
 }
 
-.FeedPost_vote div .FeedPost_vote_action {
+.FeedPost_vote_clickable:hover {
+    cursor: pointer;
+}
+
+.FeedPost_vote_clickable .FeedPost_vote_action {
     margin: 0 10px 0 5px;
+}
+
+.FeedPost_vote_clickable.selected .MuiSvgIcon-root path {
+    color: var(--text-highlight);
+}
+
+.FeedPost_vote_clickable.selected .FeedPost_vote_action {
+    color: var(--text-highlight);
 }
 
 .FeedPost_vote div .MuiChip-root {

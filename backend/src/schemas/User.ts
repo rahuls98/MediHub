@@ -12,13 +12,7 @@ const UserSchema = new mongoose.Schema({
     fullname: {
         type: String,
         required: true,
-    },
-    savedPosts: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Post',
-        }
-    ]
+    }
 });
 
 export default UserSchema;

@@ -22,9 +22,11 @@ const createPost = async (
     }
 }
 
-const readPosts = async () => {
+const readPosts = async (
+    user:string
+) => {
     try {
-        return await Post.find();
+        return await Post.find({savedBy: {$ne: user }}).populate('author');
     } catch (error) {
         console.error('Error readPosts: ', error);
     }
@@ -56,11 +58,48 @@ const searchPostsByTopic = async (
     }
 }
 
+const createSavedPost = async (
+    user:string,
+    post:string
+) => {
+    try {
+        await Post.updateOne({ _id: post }, { "$push": { 'savedBy': user }});
+    } catch (error) {
+        console.error('Error createSavedPost: ', error);
+    }
+}
+
+const readUserSavedPosts = async (
+    user:string
+) => {
+    try {
+        const posts = await Post.find({ savedBy: user })
+            .populate('author');
+        return posts;
+    } catch (error) {
+        console.error('Error readUserSavedPosts: ', error);
+    }
+}
+
+const deleteSavedPost = async (
+    user:string,
+    post:string
+) => {
+    try {
+        await Post.updateOne({ _id: user }, { "$pull": { 'savedBy': post}});
+    } catch (error) {
+        console.error('Error deleteSavedPost: ', error);
+    }
+}
+
 const PostModel = {
     createPost,
     readPosts,
     readPostsByAuthors,
-    searchPostsByTopic
+    searchPostsByTopic,
+    createSavedPost,
+    readUserSavedPosts,
+    deleteSavedPost
 };
 
 export default PostModel;

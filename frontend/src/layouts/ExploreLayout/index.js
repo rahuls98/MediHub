@@ -40,7 +40,6 @@ const ExploreLayout = () => {
         }
         const getAllSessions = async () => {
             const sessions = await sessionApis.getAllSessions();
-            console.log(sessions);
             setSessions(sessions);
         }
         getAllExperts();

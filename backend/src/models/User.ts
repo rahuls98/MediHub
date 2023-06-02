@@ -22,16 +22,6 @@ const createUser = async (
     }
 }
 
-const createSavedPost = async (
-    user:string,
-    post:string
-) => {
-    try {
-        await User.updateOne({ _id: user }, { "$push": { 'savedPosts': post}});
-    } catch (error) {
-        console.error('Error createSavedPost: ', error);
-    }
-}
 
 const readUsers = async () => {
     try {
@@ -51,39 +41,11 @@ const readByPangeaId = async (pangeaId:string) => {
     }
 }
 
-const readUserSavedPosts = async (
-    user:string
-) => {
-    try {
-        const posts = await User.find({ _id: user }, { savedPosts: 1, _id: 0 })
-            .populate({
-                path: 'savedPosts',
-                populate: 'author'
-            });
-        return posts[0].savedPosts;
-    } catch (error) {
-        console.error('Error readUserSavedPosts: ', error);
-    }
-}
-
-const deleteSavedPost = async (
-    user:string,
-    post:string
-) => {
-    try {
-        await User.updateOne({ _id: user }, { "$pull": { 'savedPosts': post}});
-    } catch (error) {
-        console.error('Error deleteSavedPost: ', error);
-    }
-}
 
 const UserModel = {
     createUser,
-    createSavedPost,
     readUsers,
-    readByPangeaId,
-    readUserSavedPosts,
-    deleteSavedPost
+    readByPangeaId
 };
 
 export default UserModel;

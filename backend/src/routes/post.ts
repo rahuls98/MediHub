@@ -5,7 +5,8 @@ import UserModel from "../models/User";
 const router:Router = express.Router();
 
 router.get('/', async (req:Request, res:Response) => {
-    const posts:object[] = await PostModel.readPosts() || [];
+    const user:string = req.query.user?.toString() || "";
+    const posts:object[] = await PostModel.readPosts(user) || [];
     res.status(200).send(posts);
 });
 
@@ -26,14 +27,14 @@ router.put('/downvote', async (req:Request, res:Response) => {});
 
 router.get('/saved', async (req:Request, res:Response) => {
     const user:string = req.query.user?.toString() || "";
-    const posts = await UserModel.readUserSavedPosts(user);
+    const posts = await PostModel.readUserSavedPosts(user);
     res.status(200).send(posts);
 });
 
 router.put('/save', async (req:Request, res:Response) => {
     const post:string = req.body.post;
     const user:string = req.body.user;
-    await UserModel.createSavedPost(user, post);
+    await PostModel.createSavedPost(user, post);
     res.status(200).send({
         "msg": "Success!"
     });
@@ -42,7 +43,7 @@ router.put('/save', async (req:Request, res:Response) => {
 router.put('/unsave', async (req:Request, res:Response) => {
     const post:string = req.body.post;
     const user:string = req.body.user;
-    await UserModel.deleteSavedPost(user, post);
+    await PostModel.deleteSavedPost(user, post);
     res.status(200).send({
         "msg": "Success!"
     });

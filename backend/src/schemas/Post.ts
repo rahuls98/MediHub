@@ -38,6 +38,15 @@ const PostSchema = new mongoose.Schema({
         ],
         default: [],
     },
+    savedBy: {
+        type: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ],
+        default: []
+    },
 });
 
 export default PostSchema;

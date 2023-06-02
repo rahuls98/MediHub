@@ -31,7 +31,7 @@ const NavbarProfileChip = () => {
             endDecorator={<ArrowDropDownIcon fontSize="md" />}
             onClick={handleChipClick}
         >
-            username
+            {JSON.parse(window.localStorage.getItem('user')).user[0].fullname}
         </Chip>
         <Menu
             anchorEl={anchorEl}

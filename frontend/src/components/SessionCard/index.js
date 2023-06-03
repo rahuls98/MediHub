@@ -13,11 +13,13 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 // import sessionApis from "../../apis/session";
+import { useHMSActions } from "@100mslive/react-sdk";
 
 const SessionCard = props => {
     const [anchorEl, setAnchorEl] = useState(null);
     const actionsMenuOpen = Boolean(anchorEl);
     // const [descriptionCollapsed, setDescriptionCollapsed] = useState(true);
+    const hmsActions = useHMSActions();
 
     const getDate = () => {
         let dateString = props.session?.sessionDate;
@@ -39,7 +41,39 @@ const SessionCard = props => {
         // await sessionApis.unenrollInSession(props.session._id);
     }
 
-    const handleJoinClick = () => {
+    const handleJoinClick = async () => {
+        const userDetails = JSON.parse(window.localStorage.getItem('user'));
+        const userName = userDetails.active_token.profile.fullname;
+        const userRole = userDetails.active_token.profile.role;
+        let hmsRole = "";
+        if (userRole === "User") {
+            hmsRole = "hls-viewer";
+        } else if (userRole === "Expert") {
+            hmsRole = "broadcaster";
+        }
+        hmsRole = "broadcaster";
+        let vaultResponse;
+        try {
+            vaultResponse = await fetch('http://localhost:8000/vault/hms');
+        } catch (err) {
+            console.log(err);
+        }
+        const { HMS_ROOM_ID, HMS_TOKEN_ENDPOINT } = await vaultResponse.json();
+        const response = await fetch(`${HMS_TOKEN_ENDPOINT}api/token`, {
+            method: "POST",
+            body: JSON.stringify({
+                user_id: `${Date.now()}`,
+                role: hmsRole, //broadcaster, hls-viewer
+                type: "app",
+                room_id: HMS_ROOM_ID,
+            }),
+        })
+        const { token } = await response.json();
+        
+        hmsActions.join({
+            userName: userName,
+            authToken: token,
+        });
         props.setLayout(2);
     }
 

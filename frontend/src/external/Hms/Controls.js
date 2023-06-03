@@ -11,7 +11,7 @@ import {
   import { selectHLSState, useHMSActions, useHMSStore } from '@100mslive/react-sdk'
   import { selectIsLocalAudioEnabled, selectIsLocalVideoEnabled, selectLocalPeer } from '@100mslive/react-sdk'
   
-  function Controls() {
+  const Controls = props => {
   
     const hmsActions = useHMSActions()
     const hlsState = useHMSStore(selectHLSState)
@@ -48,9 +48,10 @@ import {
       if(localPeer.roleName === 'broadcaster'){
         hmsActions.leave()
         await hmsActions.stopHLSStreaming()
-      }else{
+      } else{
         hmsActions.leave()
       }
+      props.setLayout(1);
     }
   
     

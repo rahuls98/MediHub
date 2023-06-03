@@ -2,13 +2,13 @@ import Stream from './Stream'
 import ChatNdParticipants from './ChatNdParticipants'
 import Controls from './Controls'
 
-function Room() {
+const Room = props => {
 
   return (
     <div className='room'>
         <div className='room__streamSpace'>
             <Stream />
-            <Controls />
+            <Controls setLayout={props.setLayout} />
         </div>
         <ChatNdParticipants />
     </div>

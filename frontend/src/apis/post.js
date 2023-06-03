@@ -10,7 +10,7 @@ const createPost = async (data) => {
 }
 
 const getAllPosts = async () => {
-    return await requestMethods.get('/post');
+    return await requestMethods.get(`/post?user=${userId}`);
 }
 
 const getSavedPosts = async () => {

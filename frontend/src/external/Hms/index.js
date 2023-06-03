@@ -1,17 +1,20 @@
 import "./style.css";
 import { useHMSStore, selectIsConnectedToRoom } from '@100mslive/react-sdk';
-import JoinRoom from './JoinRoom'
+// import JoinRoom from './JoinRoom'
+import CircularProgress from '@mui/material/CircularProgress';
 import Room from './Room';
 
-const Hms = () => {
+const Hms = props => {
+    // eslint-disable-next-line
     const isConnected = useHMSStore(selectIsConnectedToRoom)
 
     return (
-        <div className="App wrapper"> 
+        <div className="Hms_container"> 
         {   
             isConnected
-            ? <Room />
-            : <JoinRoom />
+            ? <Room setLayout={props.setLayout} />
+            : <div className="Hms_spinner"><CircularProgress /></div>
+            // : <JoinRoom />
         }
         </div>
     );

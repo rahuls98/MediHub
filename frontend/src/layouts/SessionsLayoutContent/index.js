@@ -19,7 +19,7 @@ const SessionsLayoutContent = props => {
         {
             (sessions.length === 0)? 
             <NoData />:
-            sessions.map((session, ind) => <SessionCard key={ind} session={session} />)
+            sessions.map((session, ind) => <SessionCard key={ind} session={session} setLayout={props.setLayout} />)
         }
     </div>
 }

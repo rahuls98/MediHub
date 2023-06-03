@@ -1,5 +1,6 @@
 import express, {Request, Response, Router} from "express";
 import SessionModel from "../models/Session";
+import TextProcessing from "../services/TextProcessing";
 
 const router:Router = express.Router();
 
@@ -44,6 +45,12 @@ router.get('/enrolled', async (req:Request, res:Response) => {
     const user:string = req.query.user?.toString() || "";
     const enrolledSessions = await SessionModel.readSessionsByUser(user);
     res.status(200).send(enrolledSessions);
+});
+
+router.post('/message/redact', async (req:Request, res:Response) => {
+    const content:string = req.body.content;
+    const redactResult = await TextProcessing.redact(content);
+    res.status(200).send(redactResult);
 });
 
 router.put('/:id', async (req:Request, res:Response) => {});

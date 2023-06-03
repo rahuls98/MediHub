@@ -2,6 +2,7 @@ import { useState } from "react"
 import Message from "./Message"
 import { selectHMSMessages, useHMSActions, useHMSStore } from "@100mslive/react-sdk"
 import { selectPeers } from "@100mslive/react-sdk"
+import sessionApis from "../../apis/session"
 
 function ChatNdParticipants() {
 
@@ -11,10 +12,15 @@ function ChatNdParticipants() {
   const hmsActions = useHMSActions()
   const peers = useHMSStore(selectPeers)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    hmsActions.sendBroadcastMessage(message)
-    setMessage('')
+    const redactResult = sessionApis.redactMessage({content:message});
+    if (redactResult.count === 0) {
+      hmsActions.sendBroadcastMessage(message)
+      setMessage('')
+    } else {
+      alert("Content cannot contain any personal information/vulgarity!");
+    }
   }
 
   return (

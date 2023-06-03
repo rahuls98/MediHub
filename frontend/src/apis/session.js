@@ -27,12 +27,17 @@ const unenrollInSession = async (data) => {
     return await requestMethods.put('/session/unenroll/', data);
 }
 
+const redactMessage = async (data) => {
+    return await requestMethods.post('/session/message/redact/', data);
+}
+
 const sessionApis = {
     getAllSessions,
     getEnrolledSessions,
     createSession,
     enrollInSession,
-    unenrollInSession
+    unenrollInSession,
+    redactMessage
 }
 
 export default sessionApis;

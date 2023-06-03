@@ -1,3 +1,4 @@
+import userUtils from "../utils/user";
 import requestMethods from "./base";
 
 const getAllExperts = async () => {
@@ -9,14 +10,12 @@ const getFollowingExperts = async () => {
 }
 
 const followExpert = async (data) => {
-    const userDetails = JSON.parse(window.localStorage.getItem('user'));
-    data['user'] = userDetails.user[0]._id;
+    data['user'] = userUtils.getPangeaId();
     return await requestMethods.post('/expert/follow/', data);
 }
 
 const unfollowExpert = async (data) => {
-    const userDetails = JSON.parse(window.localStorage.getItem('user'));
-    data['user'] = userDetails.user[0]._id;
+    data['user'] = userUtils.getPangeaId();
     return await requestMethods.del('/expert/unfollow/', data);
 }
 

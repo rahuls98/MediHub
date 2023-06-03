@@ -1,7 +1,7 @@
 import requestMethods from "./base";
+import userUtils from "../utils/user";
 
-const userDetails = JSON.parse(window.localStorage.getItem('user'));
-const userId = userDetails.user[0]._id;
+const userId = userUtils.getPangeaId();
 
 const getFollowingExperts = async () => {
     return await requestMethods.get(`/following/experts?user=${userId}`);

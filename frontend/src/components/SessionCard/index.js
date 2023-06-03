@@ -14,6 +14,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 // import sessionApis from "../../apis/session";
 import { useHMSActions } from "@100mslive/react-sdk";
+import userUtils from "../../utils/user";
+import vaultApis from "../../apis/vault";
 
 const SessionCard = props => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -42,9 +44,8 @@ const SessionCard = props => {
     }
 
     const handleJoinClick = async () => {
-        const userDetails = JSON.parse(window.localStorage.getItem('user'));
-        const userName = userDetails.active_token.profile.fullname;
-        const userRole = userDetails.active_token.profile.role;
+        const userName = userUtils.getUserName();
+        const userRole = userUtils.getRole();
         let hmsRole = "";
         if (userRole === "User") {
             hmsRole = "hls-viewer";
@@ -54,7 +55,7 @@ const SessionCard = props => {
         hmsRole = "broadcaster";
         let vaultResponse;
         try {
-            vaultResponse = await fetch('http://localhost:8000/vault/hms');
+            vaultResponse = await vaultApis.getHmsAuth();
         } catch (err) {
             console.log(err);
         }

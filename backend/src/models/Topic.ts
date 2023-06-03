@@ -62,12 +62,23 @@ const readTopicsById = async (
     }
 }
 
+const incrementSeachCounter = async (
+    topic:string
+) => {
+    try {
+        await Topic.updateOne({ title: topic }, {$inc : {searchCounter : 1}})
+    } catch (error) {
+        console.error('Error incrementSeachCounter: ', error);
+    }
+}
+
 const TopicModel = {
     createTopic,
     readTopics,
     searchTopics,
     readTrendingTopics,
-    readTopicsById
+    readTopicsById,
+    incrementSeachCounter
 };
 
 export default TopicModel;

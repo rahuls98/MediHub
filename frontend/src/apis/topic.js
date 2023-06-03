@@ -1,14 +1,14 @@
 import requestMethods from "./base";
+import userUtils from "../utils/user";
 
-const userDetails = JSON.parse(window.localStorage.getItem('user'));
-const user = userDetails.user[0]._id;
+const userId = userUtils.getPangeaId();
 
 const getAllTopics = async () => {
     return await requestMethods.get('/topic');
 }
 
 const getExplorableTopics = async () => {
-    return await requestMethods.get(`/topic?user=${user}`);
+    return await requestMethods.get(`/topic?user=${userId}`);
 }
 
 const getFollowingTopics = async () => {
@@ -16,12 +16,12 @@ const getFollowingTopics = async () => {
 }
 
 const followTopic = async (data) => {
-    data['user'] = user;
+    data['user'] = userId;
     return await requestMethods.post('/topic/follow/', data);
 }
 
 const unfollowTopic = async (data) => {
-    data['user'] = user;
+    data['user'] = userId;
     return await requestMethods.del('/topic/unfollow/', data);
 }
 

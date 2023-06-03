@@ -17,11 +17,11 @@ router.get('/trending', async (req:Request, res:Response) => {
 router.get('/search', async (req:Request, res:Response) => {
     let searchTopic:string = req.query.query?.toString() || '';
     searchTopic = searchTopic.replace(/%20/g, " ");
-    console.log(searchTopic);
     const relevantPosts:object[] = await PostModel.searchPostsByTopic(searchTopic);
     const relevantSessions:object[] = await SessionModel.searchSessionsByTopic(searchTopic) || [];
     const relevantTopics:object[] = await TopicModel.searchTopics(searchTopic) || [];
     const relevantExperts:object[] = await ExpertModel.searchExpertsByTopic(searchTopic) || [];
+    await TopicModel.incrementSeachCounter(searchTopic);
     const relevant = {
         posts: relevantPosts,
         sessions: relevantSessions,

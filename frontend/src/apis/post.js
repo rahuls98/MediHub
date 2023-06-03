@@ -1,10 +1,10 @@
 import requestMethods from "./base";
+import userUtils from "../utils/user";
 
-const userDetails = JSON.parse(window.localStorage.getItem('user'));
-const userId = userDetails.user[0]._id;
+const userId = userUtils.getPangeaId();
 
 const createPost = async (data) => {
-    data['author'] = "64790812a87694aeb45fa145";
+    data['author'] = userId; //"64790812a87694aeb45fa145";
     data['profilePhoto'] = "";
     return await requestMethods.post('/post/', data);
 }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 import PostSchema from "../schemas/Post";
+import TextProcessing from "../services/TextProcessing";
 
 const Post = mongoose.model('Post', PostSchema);
 
@@ -10,13 +11,18 @@ const createPost = async (
     content:string, 
 ) => {
     try {
-        const post = new Post({
-            author,
-            profilePhoto,
-            topics,
-            content
-        })
-        await post.save();
+        const redactResponse = await TextProcessing.redact(content);
+        if (redactResponse.count == 0) {
+            const post = new Post({
+                author,
+                profilePhoto,
+                topics,
+                content
+            })
+            await post.save();
+            return true;
+        } else  
+            return false;
     } catch (error) {
         console.error('Error createPost: ', error);
     }

@@ -15,10 +15,15 @@ router.post('/', async (req:Request, res:Response) => {
     const profilePhoto:string = req.body.profilePhoto;
     const topics:string[] = req.body.topics;
     const content:string = req.body.content;
-    PostModel.createPost(author, profilePhoto, topics, content);
-    res.status(200).send({
-        "msg": "Success!"
-    });
+    const createRes = await PostModel.createPost(author, profilePhoto, topics, content);
+    if (createRes)
+        res.status(200).send({
+            "msg": "Success!"
+        });
+    else
+        res.status(403).send({
+            "msg": "Content cannot contain any personal information/vulgarity!"
+        });
 });
 
 router.put('/upvote', async (req:Request, res:Response) => {});

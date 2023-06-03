@@ -2,15 +2,14 @@ import PangeaService from "./Pangea";
 const axios = require('axios');
 const HUGGINGFACE_API_TOKEN = process.env.HUGGINGFACE_API_TOKEN;
 
-const redact = async () => {
+const redact = async (text:string) => {
     const redact = PangeaService.getReadact();
-    const text = "Hello, my email is rahs98@gmail.com.";
-    console.log("Redacting PII from: '%s'", text);
     const response = await redact.redact(text);
     if (response.success) {
-      console.log("Response:", response.result);
+        // console.log("Response:", response.result);
+        return response.result;
     } else {
-      console.log("Error", response.code, response.result);
+        console.log("Error", response.code, response.result);
     }
 }
 

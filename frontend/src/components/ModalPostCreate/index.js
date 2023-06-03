@@ -25,12 +25,16 @@ const ModalPostCreate = () => {
         setTopics(updatedTopics);
     }
 
-    const handleSubmit = () => {
-        postApis.createPost({
+    const handleSubmit = async () => {
+        const createResponse = await postApis.createPost({
             content: editorValue.toString(),
             topics: topics
         });
-        setModalOpen(false);
+        if (createResponse.msg !== "Success!") {
+            alert(createResponse.msg)
+        } else {
+            setModalOpen(false);
+        }
     }
 
     return <div className="ModalPostCreate_container">

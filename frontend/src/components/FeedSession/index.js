@@ -10,6 +10,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import EventIcon from '@mui/icons-material/Event';
 import TopicChip from "../TopicChip";
 import sessionApis from "../../apis/session";
+import datetimeUtils from "../../utils/datetime";
 
 const FeedSession = props => {
     const [enrolled, setEnrolled] = useState(false);
@@ -42,7 +43,9 @@ const FeedSession = props => {
                     {/* <span className="FeedSession_expert_username">@username</span> */}
                     <p className="FeedSession_date">
                         <AccessTimeIcon sx={{ fontSize: 15 }}/> 
-                        <span>Posted date</span>
+                        <span>
+                        {`${datetimeUtils.dateToReadableString(props.session?.createdDate)}, ${datetimeUtils.timeToReadableString(props.session?.createdDate)}`}
+                        </span>
                     </p>
                 </div>
                 <div className="FeedSession_actions">

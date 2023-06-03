@@ -47,7 +47,7 @@ import {
     const leaveRoom = async () => {
       if(localPeer.roleName === 'broadcaster'){
         hmsActions.leave()
-        await hmsActions.stopHLSStreaming()
+        // await hmsActions.stopHLSStreaming()
       } else{
         hmsActions.leave()
       }

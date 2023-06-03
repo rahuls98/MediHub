@@ -42,6 +42,18 @@ const readExpertsById = async (
     }
 }
 
+const searchExpertsByTopic = async (
+    searchCriteria:string
+) => {
+    try {
+        const regex = new RegExp(searchCriteria, "i");
+        const experts:object[] = await Expert.find({ expertiseTopics: { $regex: regex } })
+        return experts;
+    } catch (error) {
+        console.error('Error searchExpertsByTopic: ', error);
+    }
+}
+
 const increaseFollowerCount = async (expertId:string) => {
     try {
         await Expert.updateOne({ _id: expertId }, {$inc : {followerCount : 1}})
@@ -62,6 +74,7 @@ const ExpertModel = {
     createExpert,
     readExperts,
     readExpertsById,
+    searchExpertsByTopic,
     increaseFollowerCount,
     decreaseFollowerCount
 };

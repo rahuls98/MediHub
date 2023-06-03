@@ -8,17 +8,17 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
-import expertApis from "../../apis/expert";
+import topicApis from "../../apis/topic";
 
 const TableItemTopic = props => {
     const [itemAction, setItemAction] = useState(props.initialAction);
 
     const handleActionClick = async () => {
         if (itemAction === "Unfollow") {
-            await expertApis.unfollowExpert({"expert": props.expertId});
+            await topicApis.unfollowTopic({"topic": props.topicId});
             setItemAction("Follow");
         } else if (itemAction === "Follow") {
-            await expertApis.followExpert({"expert": props.expertId});
+            await topicApis.followTopic({"topic": props.topicId});
             setItemAction("Unfollow");
         }
     }

@@ -5,6 +5,9 @@ import ModalPostCreate from "../ModalPostCreate";
 import ModalSessionCreate from "../ModalSessionCreate";
 
 const Navbar = props => {
+    const handleSearchSelection = (s) => {
+        props.setSearchString(s);
+    }
 
     const getNavbarCreateOption = () => {
         switch (props.createOption) {
@@ -18,7 +21,7 @@ const Navbar = props => {
         <div className="Navbar_left">
             {
                 props.withSearch ?
-                <TopicSearch /> :
+                <TopicSearch onSelect={handleSearchSelection} onSearchClose={props.onSearchClose} /> :
                 null
             }
         </div>

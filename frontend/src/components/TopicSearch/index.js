@@ -19,6 +19,8 @@ const TopicSearch = props => {
             onChange={(event, newValue) => {
                 if (newValue)
                     props.onSelect(newValue);
+                else 
+                    props.onSearchClose();
             }}
             startDecorator={<SearchIcon />}
         />

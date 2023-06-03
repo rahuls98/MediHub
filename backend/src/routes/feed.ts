@@ -1,4 +1,5 @@
 import express, {Request, Response, Router} from "express";
+import ExpertModel from "../models/Expert";
 import PostModel from "../models/Post";
 import SessionModel from "../models/Session";
 import TopicModel from "../models/Topic";
@@ -14,12 +15,18 @@ router.get('/trending', async (req:Request, res:Response) => {
 });
 
 router.get('/search', async (req:Request, res:Response) => {
-    const searchTopic:string = req.query.query?.toString() || '';
+    let searchTopic:string = req.query.query?.toString() || '';
+    searchTopic = searchTopic.replace(/%20/g, " ");
+    console.log(searchTopic);
     const relevantPosts:object[] = await PostModel.searchPostsByTopic(searchTopic);
     const relevantSessions:object[] = await SessionModel.searchSessionsByTopic(searchTopic) || [];
+    const relevantTopics:object[] = await TopicModel.searchTopics(searchTopic) || [];
+    const relevantExperts:object[] = await ExpertModel.searchExpertsByTopic(searchTopic) || [];
     const relevant = {
         posts: relevantPosts,
-        sessions: relevantSessions
+        sessions: relevantSessions,
+        topics: relevantTopics,
+        experts: relevantExperts
     }
     res.status(200).json(relevant);
 });

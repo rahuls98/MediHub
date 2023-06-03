@@ -26,7 +26,7 @@ const readPosts = async (
     user:string
 ) => {
     try {
-        return await Post.find({savedBy: {$ne: user }}).populate('author');
+        return await Post.find({savedBy: { $ne: user }}).populate('author');
     } catch (error) {
         console.error('Error readPosts: ', error);
     }

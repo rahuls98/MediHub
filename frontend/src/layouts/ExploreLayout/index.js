@@ -13,8 +13,9 @@ import sessionApis from "../../apis/session";
 import FeedPost from "../../components/FeedPost";
 import FeedSession from "../../components/FeedSession";
 import NoData from "../../components/NoData";
+import feedApis from "../../apis/feed";
 
-const ExploreLayout = () => {
+const ExploreLayout = props => {
     const [tab, setTab] = useState('1');
     const [experts, setExperts] = useState([]);
     const [topics, setTopics] = useState([]);
@@ -26,27 +27,39 @@ const ExploreLayout = () => {
     };
 
     useEffect(() => {
-        const getAllExperts = async () => {
-            const experts = await expertApis.getAllExperts();
-            setExperts(experts);
+        if (props.searchString !== "") {
+            const search = async () => {
+                const searchResult = await feedApis.search(props.searchString);
+                console.log(props.searchString, searchResult)
+                setExperts(searchResult.experts || []);
+                setTopics(searchResult.topics || []);
+                setPosts(searchResult.posts || []);
+                setSessions(searchResult.sessions || []);
+            }
+            search();
+        } else {
+            const getAllExperts = async () => {
+                const experts = await expertApis.getAllExperts();
+                setExperts(experts);
+            }
+            const getAllTopics = async () => {
+                const topics = await topicApis.getExplorableTopics();
+                setTopics(topics);
+            }
+            const getAllPosts = async () => {
+                const experts = await postApis.getAllPosts();
+                setPosts(experts);
+            }
+            const getAllSessions = async () => {
+                const sessions = await sessionApis.getAllSessions();
+                setSessions(sessions);
+            }
+            getAllExperts();
+            getAllTopics();
+            getAllPosts();
+            getAllSessions();
         }
-        const getAllTopics = async () => {
-            const topics = await topicApis.getAllTopics();
-            setTopics(topics);
-        }
-        const getAllPosts = async () => {
-            const experts = await postApis.getAllPosts();
-            setPosts(experts);
-        }
-        const getAllSessions = async () => {
-            const sessions = await sessionApis.getAllSessions();
-            setSessions(sessions);
-        }
-        getAllExperts();
-        getAllTopics();
-        getAllPosts();
-        getAllSessions();
-    }, []);
+    }, [props.searchString]);
 
     return <div className="ExploreLayout_container">
         <TabContext value={tab}>
@@ -62,7 +75,7 @@ const ExploreLayout = () => {
                 {
                     (posts.length === 0)?
                     <NoData />:
-                    posts.map(post => <FeedPost key={post._id} />)
+                    posts.map(post => <FeedPost key={post._id} post={post} saved />)
                 }
             </TabPanel>
             <TabPanel value="4">

@@ -14,12 +14,28 @@ const createTopic = async (
     }
 }
 
-const readTopics = async () => {
+const readTopics = async (
+    topicsToExclude:string[]
+) => {
     try {
-        const topics:object[] = await Topic.find();
+        const topics:object[] = await Topic.find({ _id: {$nin: topicsToExclude} })
+            .limit(100);
         return topics;
     } catch (error) {
         console.error('Error readTopics: ', error);
+    }
+}
+
+const searchTopics = async (
+    searchCriteria:string
+) => {
+    try {
+        const regex = new RegExp(searchCriteria, "i");
+        const topics:object[] = await Topic.find({ title: { $regex: regex } })
+            .limit(100);
+        return topics;
+    } catch (error) {
+        console.error('Error searchTopics: ', error);
     }
 }
 
@@ -49,6 +65,7 @@ const readTopicsById = async (
 const TopicModel = {
     createTopic,
     readTopics,
+    searchTopics,
     readTrendingTopics,
     readTopicsById
 };

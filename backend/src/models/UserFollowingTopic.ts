@@ -36,6 +36,24 @@ const readFollowedTopics = async  (
     }
 }
 
+const readFollowedTopicsIds = async  (
+    user:string
+) => {
+    try {
+        const followedTopicsObjects = await UserFollowingTopic.find({ user }, { 
+            _id: false,
+            topic: true 
+        }).populate('topic');
+        let followedTopicsIds:string[] = [];
+        for (let object of followedTopicsObjects) {
+            followedTopicsIds.push(object.topic._id.toString());
+        }
+        return followedTopicsIds;
+    } catch (error) {
+        console.error('Error readFollowedTopicsIds: ', error);
+    }
+}
+
 const deleteUserFollowingTopic = async (
     user:string,
     topic:string
@@ -50,6 +68,7 @@ const deleteUserFollowingTopic = async (
 const UserFollowingTopicModel = {
     createUserFollowingTopic,
     readFollowedTopics,
+    readFollowedTopicsIds,
     deleteUserFollowingTopic
 };
 

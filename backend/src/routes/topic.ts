@@ -5,7 +5,9 @@ import UserFollowingTopicModel from "../models/UserFollowingTopic";
 const router:Router = express.Router();
 
 router.get('/', async (req:Request, res:Response) => {
-    const topics:object[] = await TopicModel.readTopics() || [];
+    const user:string = req.query.user?.toString() || "";
+    const topicsToExclude:string[] = await UserFollowingTopicModel.readFollowedTopicsIds(user) || [];
+    const topics:object[] = await TopicModel.readTopics(topicsToExclude) || [];
     res.status(200).send(topics);
 })
 

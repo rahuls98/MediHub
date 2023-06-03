@@ -12,8 +12,10 @@ import ExploreLayout from "../ExploreLayout";
 const MainLayout = props => {
     const [selected, setSelected] = useState(0);
     const [layoutContent, setLayoutContent] = useState('feed');
+    const [searchString, setSearchString] = useState("");
 
     const handleMenuSelection = ind => {
+        setSearchString("")
         setSelected(ind);
         switch(ind) {
             case 0: setLayoutContent('feed'); break;
@@ -55,7 +57,7 @@ const MainLayout = props => {
             case 'sessions': return <SessionsLayoutContent setLayout={props.setLayout}/>
             case 'saved': return <SavedLayoutContent />
             case 'following': return <FollowingLayoutContent />
-            case 'explore': return <ExploreLayout />
+            case 'explore': return <ExploreLayout searchString={searchString}/>
             default: return;
         }
     }
@@ -66,7 +68,7 @@ const MainLayout = props => {
                <Sidebar selected={selected} setSelected={handleMenuSelection}/>
             </Grid>
             <Grid item lg={10}>
-                <Navbar {...getNavbarOptions()} />
+                <Navbar {...getNavbarOptions()} setSearchString={setSearchString} onSearchClose={() => setSearchString("")} />
                 { getLayoutContent() }
             </Grid>
         </Grid>

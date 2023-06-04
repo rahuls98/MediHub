@@ -15,7 +15,7 @@ const App = () => {
 
     const getLayout = () => {
         switch(layout) {
-            case 0: return <AuthenticationLayout />
+            case 0: return <AuthenticationLayout setLayout={setLayout}/>
             case 1: return <MainLayout setLayout={setLayout}/>
             case 2: return <HmsLayout setLayout={setLayout}/>
             default: return null;

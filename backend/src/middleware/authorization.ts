@@ -3,7 +3,7 @@ import { PangeaErrors } from "pangea-node-sdk";
 import PangeaService from "../services/Pangea";
 
 export const verifyToken = async (req:Request, res:Response, next:NextFunction) => {
-    const authn = PangeaService.getAuthentication();
+    const authn = await PangeaService.getAuthentication();
     try {
         const token = req.header("authorization");
         if (!token) {

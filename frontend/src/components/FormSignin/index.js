@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import VerticalSpace from "../../components/VerticalSpace";
 import authenticationApis from "../../apis/authentication";
 
-const FormSignin = () => {
+const FormSignin = props => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -13,6 +13,7 @@ const FormSignin = () => {
         const userData = {email, password}
         const response = await authenticationApis.signinUser(userData);
         window.localStorage.setItem('user', JSON.stringify(response));
+        props.setLayout(1);
     }
 
     return <div className="FormSignin_container">

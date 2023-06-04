@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-const NavbarProfileChip = () => {
+const NavbarProfileChip = props => {
     const [anchorEl, setAnchorEl] = useState(null);
     const actionsMenuOpen = Boolean(anchorEl);
 
@@ -21,6 +21,11 @@ const NavbarProfileChip = () => {
     const handleMenuClose = () => {
       setAnchorEl(null);
     };
+
+    const handleLogoutClick = () => {
+        window.localStorage.removeItem('user');
+        props.setLayout(0);
+    }
 
     return <div className="NavbarProfileChip_container">
         <Chip
@@ -42,7 +47,7 @@ const NavbarProfileChip = () => {
             }}
             >
             <MenuList>
-                <MenuItem>
+                <MenuItem onClick={() => handleLogoutClick()}>
                     <ListItemIcon>
                         <LogoutOutlinedIcon fontSize="small" />
                     </ListItemIcon>

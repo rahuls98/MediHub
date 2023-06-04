@@ -15,13 +15,18 @@ import MongoConfig from "./services/Mongo";
 const PORT:Number = 8000;
 
 const server: Express = express();
-mongoose.connect(MongoConfig.mongo.url)
-.then(() => {
-    console.log("💽 Database connected!");
-})
-.catch((err) => {
-    console.log(err);
-})
+
+const connectToDb = async () => {
+    mongoose.connect(await MongoConfig.getConnectionString())
+        .then(() => {
+            console.log("💽 Database connected!");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+connectToDb();
 
 server.use(cors());
 server.use(express.json());

@@ -3,10 +3,9 @@ const axios = require('axios');
 const HUGGINGFACE_API_TOKEN = process.env.HUGGINGFACE_API_TOKEN;
 
 const redact = async (text:string) => {
-    const redact = PangeaService.getReadact();
+    const redact = await PangeaService.getRedact();
     const response = await redact.redact(text);
     if (response.success) {
-        // console.log("Response:", response.result);
         return response.result;
     } else {
         console.log("Error", response.code, response.result);

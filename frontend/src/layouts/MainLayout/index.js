@@ -68,7 +68,10 @@ const MainLayout = props => {
                <Sidebar selected={selected} setSelected={handleMenuSelection}/>
             </Grid>
             <Grid item lg={10}>
-                <Navbar {...getNavbarOptions()} setSearchString={setSearchString} onSearchClose={() => setSearchString("")} />
+                <Navbar {...getNavbarOptions()} 
+                    setSearchString={setSearchString} 
+                    onSearchClose={() => setSearchString("")} 
+                    setLayout={props.setLayout} />
                 { getLayoutContent() }
             </Grid>
         </Grid>

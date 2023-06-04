@@ -6,7 +6,7 @@ import PangeaService from "../services/Pangea";
 const router:Router = express.Router();
 
 router.post('/signup', async (req:Request, res:Response) => {
-    const authn = PangeaService.getAuthentication();
+    const authn = await PangeaService.getAuthentication();
     try {
         const response = await authn.user.create(
             req.body.email,
@@ -38,7 +38,7 @@ router.post('/signup', async (req:Request, res:Response) => {
 });
 
 router.post('/signin', async (req:Request, res:Response) => {
-    const authn = PangeaService.getAuthentication();
+    const authn = await PangeaService.getAuthentication();
     try {
         const response = await authn.user.login.password(
             req.body.email,

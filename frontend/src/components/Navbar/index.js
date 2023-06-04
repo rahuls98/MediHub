@@ -27,7 +27,7 @@ const Navbar = props => {
         </div>
         <div className="Navbar_right">
             {getNavbarCreateOption()}
-            <NavbarProfileChip />
+            <NavbarProfileChip setLayout={props.setLayout}/>
         </div>
     </div>
 }

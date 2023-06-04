@@ -1,13 +1,13 @@
 import requestMethods from "./base";
 import userUtils from "../utils/user";
 
-const userId = userUtils.getPangeaId();
-
 const getFollowingExperts = async () => {
+    const userId = userUtils.getPangeaId();
     return await requestMethods.get(`/following/experts?user=${userId}`);
 }
 
 const getFollowingTopics = async () => {
+    const userId = userUtils.getPangeaId();
     return await requestMethods.get(`/following/topics?user=${userId}`);
 }
 

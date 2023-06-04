@@ -8,6 +8,8 @@ import SessionsLayoutContent from "../SessionsLayoutContent";
 import SavedLayoutContent from "../SavedLayoutContent";
 import FollowingLayoutContent from "../FollowingLayoutContent";
 import ExploreLayout from "../ExploreLayout";
+import TagClickContext from "../../utils/TagClickContext";
+import userUtils from "../../utils/user";
 
 const MainLayout = props => {
     const [selected, setSelected] = useState(0);
@@ -27,6 +29,12 @@ const MainLayout = props => {
         }
     }
 
+    const handleOnTagClick = (topic) => {
+        setSearchString(topic);
+        setSelected(4);
+        setLayoutContent("explore");
+    }
+
     const getNavbarOptions = () => {
         let navbarOptions = {
             withSearch: false,
@@ -34,10 +42,12 @@ const MainLayout = props => {
         }
         switch (layoutContent) {
             case 'feed': 
-                navbarOptions.createOption = 'post';
+                if (userUtils.getRole() === "Expert")
+                    navbarOptions.createOption = 'post';
                 break;
             case 'sessions': 
-                navbarOptions.createOption = 'session';
+                if (userUtils.getRole() === "Expert")
+                    navbarOptions.createOption = 'session';
                 break;
             case 'saved': 
                 break;
@@ -53,28 +63,31 @@ const MainLayout = props => {
 
     const getLayoutContent = () => {
         switch (layoutContent) {
-            case 'feed': return <FeedLayoutContent />
-            case 'sessions': return <SessionsLayoutContent setLayout={props.setLayout}/>
-            case 'saved': return <SavedLayoutContent />
-            case 'following': return <FollowingLayoutContent />
-            case 'explore': return <ExploreLayout searchString={searchString}/>
+            case 'feed': return <FeedLayoutContent onTagClick={handleOnTagClick} />
+            case 'sessions': return <SessionsLayoutContent setLayout={props.setLayout} onTagClick={handleOnTagClick}/>
+            case 'saved': return <SavedLayoutContent onTagClick={handleOnTagClick}/>
+            case 'following': return <FollowingLayoutContent onTagClick={handleOnTagClick}/>
+            case 'explore': return <ExploreLayout searchString={searchString} onTagClick={handleOnTagClick}/>
             default: return;
         }
     }
 
     return <div className="MainLayout_container">
-        <Grid container spacing={0}>
-            <Grid item lg={2}>
-               <Sidebar selected={selected} setSelected={handleMenuSelection}/>
+        <TagClickContext.Provider value={{onTagClick: handleOnTagClick}}>
+            <Grid container spacing={0}>
+                <Grid item lg={2}>
+                <Sidebar selected={selected} setSelected={handleMenuSelection}/>
+                </Grid>
+                <Grid item lg={10}>
+                    <Navbar {...getNavbarOptions()} 
+                        searchString={searchString}
+                        setSearchString={setSearchString} 
+                        onSearchClose={() => setSearchString("")} 
+                        setLayout={props.setLayout} />
+                    { getLayoutContent() }
+                </Grid>
             </Grid>
-            <Grid item lg={10}>
-                <Navbar {...getNavbarOptions()} 
-                    setSearchString={setSearchString} 
-                    onSearchClose={() => setSearchString("")} 
-                    setLayout={props.setLayout} />
-                { getLayoutContent() }
-            </Grid>
-        </Grid>
+        </TagClickContext.Provider>
     </div>
 }
 

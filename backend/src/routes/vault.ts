@@ -1,10 +1,13 @@
 import express, {Request, Response, Router} from "express";
+import Pangea from "../services/Pangea";
 
 const router:Router = express.Router();
 
-router.get('/hms', (req:Request, res:Response) => {
+router.get('/hms', async (req:Request, res:Response) => {
+    const HMS_ROOM_ID_VAULT_ID = process.env.HMS_ROOM_ID || "";
+    const HMS_ROOM_ID = await Pangea.getVaultSecret(HMS_ROOM_ID_VAULT_ID);
     res.status(200).send({
-        'HMS_ROOM_ID': process.env.HMS_ROOM_ID,
+        'HMS_ROOM_ID': HMS_ROOM_ID,
         'HMS_TOKEN_ENDPOINT': process.env.HMS_TOKEN_ENDPOINT
     })
 })

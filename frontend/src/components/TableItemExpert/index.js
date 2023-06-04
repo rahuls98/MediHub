@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import expertApis from "../../apis/expert";
+// import TopicChip from "../TopicChip";
 
 const TableItemExpert = props => {
     const [itemAction, setItemAction] = useState(props.following?"Unfollow":"Follow");
@@ -48,14 +49,21 @@ const TableItemExpert = props => {
                     </Button>
                 }>
                 <ListItemAvatar>
-                    <Avatar alt={props.fullname} src="/static/images/avatar/2.jpg" />
+                    <Avatar>{props.fullname[0].toUpperCase()}</Avatar>
                 </ListItemAvatar>
                 <ListItemText
                     primary={props.fullname}
                     secondary={
-                        <div>
-                            <i style={{fontSize: '13px'}}>Expertise: {props.expertiseTopics.join(', ')}</i> 
-                        </div>
+                        <>
+                            <i style={{fontSize: '13px'}}>Expertise: {props.expertiseTopics.join(', ')}</i>
+                            {/* <div style={{display:'flex'}}>
+                            {
+                                props.expertiseTopics.map((topic, ind) => <TopicChip key={ind} label={topic} withMargin />)
+                            }
+                            </div> */}
+                            <br />
+                            <i style={{fontSize: '13px'}}>Followers: {props.followerCount}</i>
+                        </>
                     }
                 />
             </ListItem>

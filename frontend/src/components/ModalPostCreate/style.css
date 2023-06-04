@@ -8,12 +8,25 @@
     color: white;
 }
 
+.ModalPostCreate_container .MuiButton-root.Joy-disabled {
+    background: var(--text-grey-highlight);
+    color: white;
+}
+
+.ModalPostCreate_container .MuiButton-root.Joy-disabled:hover {
+    cursor: pointer;
+}
+
 .ModalPostCreate_container .MuiButton-root:hover {
     background: var(--text-soft-highlight);
     border: none;
     color: white;
     box-shadow: var(--box-shadow);
 }
+
+/* .ModalPostCreate_container .MuiButton-root.Joy-disabled:hover {
+    cursor: pointer;
+} */
 
 .ModalPostCreate_container .MuiSvgIcon-root {
     margin-right: 5px;

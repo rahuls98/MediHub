@@ -29,8 +29,15 @@ const getRedact = async () => {
     return redactService; 
 }
 
+const getVaultSecret = async (secretId:string) => {
+    const vaultResponse = await vault.getItem(secretId);
+    const secret = vaultResponse.result.current_version.secret;
+    return secret;
+}
+
 export default {
     getAuthentication,
     getRedact,
-    vault
+    vault,
+    getVaultSecret
 }

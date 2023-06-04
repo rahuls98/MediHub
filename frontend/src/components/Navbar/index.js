@@ -21,7 +21,7 @@ const Navbar = props => {
         <div className="Navbar_left">
             {
                 props.withSearch ?
-                <TopicSearch onSelect={handleSearchSelection} onSearchClose={props.onSearchClose} /> :
+                <TopicSearch searchString={props.searchString} onSelect={handleSearchSelection} onSearchClose={props.onSearchClose} /> :
                 null
             }
         </div>

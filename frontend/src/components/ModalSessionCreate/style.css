@@ -8,6 +8,15 @@
     color: white;
 }
 
+.ModalSessionCreate_container .MuiButton-root.Joy-disabled {
+    background: var(--text-grey-highlight);
+    color: white;
+}
+
+.ModalSessionCreate_container .Joy-disabled:hover {
+    cursor: pointer;
+}
+
 .ModalSessionCreate_container .MuiButton-root:hover {
     background: var(--text-soft-highlight);
     border: none;

@@ -14,10 +14,12 @@
 
 .FeedSession_header {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 9fr 1fr;
-    grid-auto-flow: row;
-    margin-bottom: 10px;
+    display: flex;
+}
+
+.FeedSession_header_content {
+    margin-left: 15px;
+    width: 100%;
 }
 
 .FeedSession_expert_photo {
@@ -54,10 +56,12 @@
 
 .FeedSession_actions {
     height: max-content;
-    justify-self: end;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+}
+
+.FeedSession_actions .MuiSvgIcon-root:hover {
+    cursor: pointer;
 }
 
 .FeedSession_title {
@@ -67,7 +71,7 @@
 
 .FeedSession_content_text {
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     text-align: justify;
 }
 
@@ -79,4 +83,5 @@
 
 .FeedSession_when span {
     margin-left: 8px;
+    font-size: 14px;
 }

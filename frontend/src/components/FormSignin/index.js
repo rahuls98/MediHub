@@ -4,16 +4,43 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import VerticalSpace from "../../components/VerticalSpace";
 import authenticationApis from "../../apis/authentication";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
 
 const FormSignin = props => {
     const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState(false);
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     const handleSigninSubmit = async () => {
-        const userData = {email, password}
-        const response = await authenticationApis.signinUser(userData);
-        window.localStorage.setItem('user', JSON.stringify(response));
-        props.setLayout(1);
+        setEmailError(false);
+        setPasswordError(false);
+        if (email === "") {
+            setEmailError(true);
+        }
+        if (password === "") {
+            setPasswordError(true);
+        }
+        if (email && password) {
+            const userData = {email, password}
+            const response = await authenticationApis.signinUser(userData);
+            if (!response.success) {
+                alert(response.message);
+            } else {
+                window.localStorage.setItem('user', JSON.stringify(response));
+                props.setLayout(1);
+            }
+        }
     }
 
     return <div className="FormSignin_container">
@@ -28,6 +55,8 @@ const FormSignin = props => {
             style={{ background: 'white' }}
             fullWidth 
             required 
+            error={emailError}
+            helperText={emailError?"Required!":""}
             value={email}
             onChange={val => setEmail(val.target.value)} />
         <VerticalSpace size={30} />
@@ -35,10 +64,25 @@ const FormSignin = props => {
             id="outlined-basic" 
             label="Password" 
             variant="outlined"
-            type="password" 
+            type={showPassword ? 'text' : 'password'}
+            InputProps={{
+                endAdornment: 
+                    <InputAdornment position="end">
+                        <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                        >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                    </InputAdornment>
+            }}
             style={{ background: 'white' }}
             fullWidth 
             required 
+            error={passwordError}
+            helperText={passwordError?"Required!":""}
             value={password}
             onChange={val => setPassword(val.target.value)} />
         <VerticalSpace size={10} />
@@ -50,7 +94,7 @@ const FormSignin = props => {
         <VerticalSpace size={20} />
         <div className="FormSignin_signup_container">
             <span>Don't have an account? </span>
-            <span>Sign up</span>
+            <span className="FormSignin_signup_option" onClick={() => props.setForm(1)}>Sign up</span>
         </div>
     </div>
 }

@@ -11,10 +11,12 @@ import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import ShareIcon from '@mui/icons-material/Share';
+// import ShareIcon from '@mui/icons-material/Share';
 import TopicChip from "../TopicChip";
 import datetimeUtils from "../../utils/datetime";
 import postApis from "../../apis/post";
+import Avatar from '@mui/material/Avatar';
+import userUtils from "../../utils/user";
 
 const FeedPost = props => {
     const [saved, setSaved] = useState(props.saved || false);
@@ -70,10 +72,9 @@ const FeedPost = props => {
     return <div className="FeedPost_container">
         <div className="FeedPost_content">
             <div className="FeedPost_header">
-                <div className="FeedPost_expert_photo"></div>
-                <div>
+                <Avatar>{props.post?.author.fullname[0].toUpperCase()}</Avatar>
+                <div className="FeedPost_header_content">
                     <span className="FeedPost_expert_name">{props.post?.author.fullname}</span>
-                    {/* <span className="FeedPost_expert_username">{`@${props.email}`}</span> */}
                     <br/>
                     <div className="FeedPost_date">
                         <AccessTimeIcon sx={{ fontSize: 15 }}/> 
@@ -90,7 +91,6 @@ const FeedPost = props => {
                             <BookmarkBorderIcon sx={{ fontSize: 25 }}/>
                         }
                     </span>
-                    <ShareIcon sx={{ fontSize: 25 }}/>
                 </div>
             </div>
             <div className="FeedPost_topics">
@@ -101,22 +101,26 @@ const FeedPost = props => {
                 </Stack>
             </div>
             <div className="FeedPost_content_text" dangerouslySetInnerHTML={{__html: props.post?.content}} />
-            <div className="FeedPost_vote">
-                <div>
-                    <div className={"FeedPost_vote_clickable".concat(upvoted?" selected":"")} onClick={() => handleVoteOnClick("upvote")}>
-                        {upvoted?<ThumbUpAltIcon />:<ThumbUpAltOutlinedIcon />}
-                        {<span className="FeedPost_vote_action">Upvote</span>}
+            {
+                (userUtils.getRole() === "User")?
+                null:
+                <div className="FeedPost_vote">
+                    <div>
+                        <div className={"FeedPost_vote_clickable".concat(upvoted?" selected":"")} onClick={() => handleVoteOnClick("upvote")}>
+                            {upvoted?<ThumbUpAltIcon />:<ThumbUpAltOutlinedIcon />}
+                            {<span className="FeedPost_vote_action">Upvote</span>}
+                        </div>
+                        <Chip label={upvotes} variant="outlined" size="small"/>
                     </div>
-                    <Chip label={upvotes} variant="outlined" size="small"/>
-                </div>
-                <div>
-                    <div className={"FeedPost_vote_clickable".concat(downvoted?" selected":"")} onClick={() => handleVoteOnClick("downvote")}>
-                        {downvoted?<ThumbDownAltIcon />:<ThumbDownAltOutlinedIcon />}
-                        {<span className="FeedPost_vote_action">Downvote</span>}
+                    <div>
+                        <div className={"FeedPost_vote_clickable".concat(downvoted?" selected":"")} onClick={() => handleVoteOnClick("downvote")}>
+                            {downvoted?<ThumbDownAltIcon />:<ThumbDownAltOutlinedIcon />}
+                            {<span className="FeedPost_vote_action">Downvote</span>}
+                        </div>
+                        <Chip label={downvotes} variant="outlined" size="small"/>
                     </div>
-                    <Chip label={downvotes} variant="outlined" size="small"/>
                 </div>
-            </div>
+            }
         </div>
         <Snackbar open={savedSnackbar} autoHideDuration={2000} onClose={handleSavedSnackbarClose}>
             <Alert icon={false} onClose={handleSavedSnackbarClose} severity="info" sx={{ width: '100%' }}>

@@ -8,10 +8,12 @@
 
 .FeedPost_header {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 9fr 1fr;
-    grid-auto-flow: row;
-    margin-bottom: 10px;
+    display: flex;
+}
+
+.FeedPost_header_content {
+    margin-left: 15px;
+    width: 100%;
 }
 
 .FeedPost_expert_photo {
@@ -48,10 +50,12 @@
 
 .FeedPost_actions {
     height: max-content;
-    justify-self: end;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+}
+
+.FeedPost_actions .MuiSvgIcon-root:hover {
+    cursor: pointer;
 }
 
 .FeedPost_actions .MuiSvgIcon-root path {

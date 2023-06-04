@@ -46,19 +46,18 @@ const SessionCard = props => {
         const userName = userUtils.getUserName();
         const userRole = userUtils.getRole();
         let hmsRole = "";
-        if (userRole === "User") {
+        if (userRole === "User" || props.session?.author !== userUtils.getUserId) {
             hmsRole = "hls-viewer";
         } else if (userRole === "Expert") {
             hmsRole = "broadcaster";
         }
-        hmsRole = "broadcaster";
         let vaultResponse;
         try {
             vaultResponse = await vaultApis.getHmsAuth();
         } catch (err) {
             console.log(err);
         }
-        const { HMS_ROOM_ID, HMS_TOKEN_ENDPOINT } = await vaultResponse.json();
+        const { HMS_ROOM_ID, HMS_TOKEN_ENDPOINT } = vaultResponse;
         const response = await fetch(`${HMS_TOKEN_ENDPOINT}api/token`, {
             method: "POST",
             body: JSON.stringify({
@@ -125,18 +124,24 @@ const SessionCard = props => {
                 }}
                 >
                 <MenuList>
-                    <MenuItem>
-                        <ListItemIcon>
-                            <EditOutlinedIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText>Edit</ListItemText>
-                    </MenuItem>
-                    <MenuItem>
-                        <ListItemIcon>
-                            <DeleteOutlinedIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText>Delete</ListItemText>
-                    </MenuItem>
+                    {
+                        (userUtils.getRole() === "User" || props.session?.author !== userUtils.getUserId)?
+                        null:
+                        <>
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <EditOutlinedIcon fontSize="small" />
+                                </ListItemIcon>
+                                <ListItemText>Edit</ListItemText>
+                            </MenuItem>
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <DeleteOutlinedIcon fontSize="small" />
+                                </ListItemIcon>
+                                <ListItemText>Delete</ListItemText>
+                            </MenuItem>
+                        </>
+                    }
                     <MenuItem onClick={() => handleUnenrollmentClick()}>
                         <ListItemIcon>
                             <CancelPresentationOutlinedIcon fontSize="small" />

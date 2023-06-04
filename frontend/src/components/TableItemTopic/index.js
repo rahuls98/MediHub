@@ -34,7 +34,7 @@ const TableItemTopic = props => {
                 }
             >
                 <ListItemAvatar>
-                <Avatar alt={props.topic} src="/static/images/avatar/2.jpg" />
+                    <Avatar>{props.topic[0].toUpperCase()}</Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={props.topic} />
             </ListItem>

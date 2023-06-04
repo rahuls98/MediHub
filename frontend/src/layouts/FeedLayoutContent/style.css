@@ -15,3 +15,19 @@
 .FeedLayoutContent_content::-webkit-scrollbar {
     display: none;
 }
+
+.FeedLayoutContent_container .MuiTabs-root {
+    margin: 0 24px 0 24px;
+}
+
+.FeedLayoutContent_container .MuiTab-root {
+    text-transform: capitalize;
+}
+
+.FeedLayoutContent_container .MuiTab-root.Mui-selected {
+    color: var(--text-highlight);
+}
+
+.FeedLayoutContent_container .MuiTabs-indicator {
+    background-color: var(--text-highlight);
+}

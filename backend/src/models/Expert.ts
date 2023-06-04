@@ -42,6 +42,15 @@ const readExpertsById = async (
     }
 }
 
+const readByPangeaId = async (pangeaId:string) => {
+    try {
+        const user = await Expert.find({ pangeaUserId: pangeaId });
+        return user;
+    } catch (error) {
+        console.error('Error readByPangeaId: ', error);
+    }
+}
+
 const searchExpertsByTopic = async (
     searchCriteria:string
 ) => {
@@ -74,6 +83,7 @@ const ExpertModel = {
     createExpert,
     readExperts,
     readExpertsById,
+    readByPangeaId,
     searchExpertsByTopic,
     increaseFollowerCount,
     decreaseFollowerCount

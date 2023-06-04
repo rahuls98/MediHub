@@ -30,7 +30,6 @@ const ExploreLayout = props => {
         if (props.searchString !== "") {
             const search = async () => {
                 const searchResult = await feedApis.search(props.searchString);
-                console.log(props.searchString, searchResult)
                 setExperts(searchResult.experts || []);
                 setTopics(searchResult.topics || []);
                 setPosts(searchResult.posts || []);
@@ -47,8 +46,8 @@ const ExploreLayout = props => {
                 setTopics(topics);
             }
             const getAllPosts = async () => {
-                const experts = await postApis.getAllPosts();
-                setPosts(experts);
+                const posts = await postApis.getAllPosts();
+                setPosts(posts);
             }
             const getAllSessions = async () => {
                 const sessions = await sessionApis.getAllSessions();
@@ -75,7 +74,7 @@ const ExploreLayout = props => {
                 {
                     (posts.length === 0)?
                     <NoData />:
-                    posts.map(post => <FeedPost key={post._id} post={post} saved />)
+                    posts.map(post => <FeedPost key={post._id} post={post} />)
                 }
             </TabPanel>
             <TabPanel value="4">

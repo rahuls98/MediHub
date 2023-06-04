@@ -9,6 +9,7 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import TopicSearch from "../TopicSearch";
 import TopicChip from "../TopicChip";
 import postApis from "../../apis/post";
+import userUtils from "../../utils/user";
 
 const ModalPostCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -38,7 +39,15 @@ const ModalPostCreate = () => {
     }
 
     return <div className="ModalPostCreate_container">
-        <Button variant="outlined" onClick={() => setModalOpen(true)}>
+        <Button 
+            variant="outlined" 
+            onClick={() => setModalOpen(true)}
+            disabled={
+                userUtils.getRole() === "Expert"?
+                   userUtils.getExpertIsVerified()? false : true   
+                : false
+            }
+        >
             <EditNoteIcon />
             New post
         </Button>

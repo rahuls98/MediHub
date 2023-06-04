@@ -1,3 +1,17 @@
 .FormSignup_signup_container {
     text-align: center;
 }
+
+.FormSignin_signin_option {
+    text-decoration: underline;
+}
+
+.FormSignin_signin_option:hover {
+    color: var(--text-highlight);
+    cursor: pointer;
+}
+
+.FormSignup_container .MuiFormHelperText-root {
+    margin: 0;
+    background: var(--background);
+}

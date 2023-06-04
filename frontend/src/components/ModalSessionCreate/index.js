@@ -13,6 +13,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import datetimeUtils from "../../utils/datetime";
 import sessionApis from "../../apis/session";
+import userUtils from "../../utils/user";
 
 const ModalSessionCreate = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -47,7 +48,15 @@ const ModalSessionCreate = () => {
     }
 
     return <div className="ModalSessionCreate_container">
-        <Button variant="outlined" onClick={() => setModalOpen(true)}>
+        <Button 
+            variant="outlined" 
+            onClick={() => setModalOpen(true)}
+            disabled={
+                userUtils.getRole() === "Expert"?
+                   userUtils.getExpertIsVerified()? false : true   
+                : false
+            }
+        >
             <VideoCallOutlinedIcon />
             New session
         </Button>

@@ -21,6 +21,7 @@ const TableExperts = props => {
                         lastItem={ind === props.data.length-1}
                         following={props.following}
                         fullname={expert.fullname} 
+                        followerCount={expert.followerCount}
                         expertiseTopics={expert.expertiseTopics} />)
                 }
             </List>

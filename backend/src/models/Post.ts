@@ -66,7 +66,7 @@ const searchPostsByTopic = async (
     topic:string
 ) => {
     try {
-        const posts = await Post.find({ topics: topic });
+        const posts = await Post.find({ topics: topic }).populate('author');;
         return posts;
     } catch (error) {
         console.error('Error searchPostsByTopic: ', error);

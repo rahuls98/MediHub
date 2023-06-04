@@ -12,6 +12,7 @@ const TopicSearch = props => {
             placeholder="Search"
             freeSolo
             options={searchOptions}
+            value={props.searchString || ""}
             filterOptions={createFilterOptions({
                 matchFrom: 'any',
                 limit: 500,

@@ -13,7 +13,7 @@ import sessionApis from "../../apis/session";
 import datetimeUtils from "../../utils/datetime";
 
 const FeedSession = props => {
-    const [enrolled, setEnrolled] = useState(false);
+    const [enrolled, setEnrolled] = useState(props.enrolled);
     const [enrolledSnackbar, setEnrolledSnackbar] = useState(false);
 
     const handleEnrollOnClick = async () => {

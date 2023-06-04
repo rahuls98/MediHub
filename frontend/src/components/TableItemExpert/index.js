@@ -13,7 +13,7 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import expertApis from "../../apis/expert";
 
 const TableItemExpert = props => {
-    const [itemAction, setItemAction] = useState(props.initialAction);
+    const [itemAction, setItemAction] = useState(props.following?"Unfollow":"Follow");
     // const [snackbar, setSnackbar] = useState(false);
     // const [snackbarMessage, setSnackbarMessage] = useState("Unfollowed");
 

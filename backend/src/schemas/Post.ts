@@ -46,7 +46,7 @@ const PostSchema = new mongoose.Schema({
             }
         ],
         default: []
-    },
+    }
 });
 
 export default PostSchema;

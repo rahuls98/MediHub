@@ -18,7 +18,7 @@ const TableTopics = props => {
                         key={topic._id}
                         topicId={topic._id}
                         lastItem={ind === props.data.length-1}
-                        initialAction="Follow"
+                        following={props.following}
                         topic={topic.title} />)
                 }
             </List>

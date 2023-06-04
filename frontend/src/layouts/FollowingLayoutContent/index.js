@@ -37,8 +37,8 @@ const FollowingLayoutContent = () => {
                     <Tab label="Experts" value="1" />
                     <Tab label="Topics" value="2" />
                 </TabList>
-                <TabPanel value="1"><TableExperts data={experts} /></TabPanel>
-                <TabPanel value="2"><TableTopics data={topics} /></TabPanel>
+                <TabPanel value="1"><TableExperts data={experts} following={true} /></TabPanel>
+                <TabPanel value="2"><TableTopics data={topics} following={true} /></TabPanel>
             </TabContext>
         </div>
     </div>

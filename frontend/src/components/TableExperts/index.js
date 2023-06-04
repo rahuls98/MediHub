@@ -19,7 +19,7 @@ const TableExperts = props => {
                         key={expert._id} 
                         expertId={expert._id}
                         lastItem={ind === props.data.length-1}
-                        initialAction="Follow"
+                        following={props.following}
                         fullname={expert.fullname} 
                         expertiseTopics={expert.expertiseTopics} />)
                 }

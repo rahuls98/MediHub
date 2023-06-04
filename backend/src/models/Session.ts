@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import SessionInterface from "../interfaces/Session";
 import SessionSchema from "../schemas/Session";
 
 const Session = mongoose.model('Session', SessionSchema);
@@ -30,15 +31,23 @@ const readSessions = async (
 }
 
 const readSessionsByAuthors = async (
-    authors:string[]
+    authors:string[],
+    user:string
 ) => {
     try {
-        const sessions = await Session.find({ author: { "$in": authors } }, {} , {createdDate : -1})
+        const sessions:SessionInterface[] = await Session.find({ author: { "$in": authors } }, {} , {createdDate : -1})
         .populate({
             path: 'author',
             model: 'Expert',
         });
-        return sessions;
+        const sessionsWithSavedInfo = sessions.map(session => {
+            const updatedSession:SessionInterface = {...session};
+            if (session.interestedUsers.includes(new mongoose.Types.ObjectId(user))) {
+                updatedSession['enrolled'] = true;
+            }
+            return updatedSession
+        })
+        return sessionsWithSavedInfo;
     } catch (error) {
         console.error('Error readSessionsByAuthors: ', error);
     }

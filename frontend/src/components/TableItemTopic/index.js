@@ -11,7 +11,7 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import topicApis from "../../apis/topic";
 
 const TableItemTopic = props => {
-    const [itemAction, setItemAction] = useState(props.initialAction);
+    const [itemAction, setItemAction] = useState(props.following?"Unfollow":"Follow");
 
     const handleActionClick = async () => {
         if (itemAction === "Unfollow") {

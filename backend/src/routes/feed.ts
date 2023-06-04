@@ -1,4 +1,5 @@
 import express, {Request, Response, Router} from "express";
+import PostInterface from "../interfaces/Post";
 import ExpertModel from "../models/Expert";
 import PostModel from "../models/Post";
 import SessionModel from "../models/Session";
@@ -35,8 +36,8 @@ router.get('/:userId', async (req:Request, res:Response) => {
     const userId:string = req.params.userId;
     const followedExperts = await UserFollowingExpertModel.readFollowedExperts(userId) || [];
     const followedExpertsIds:string[] = followedExperts.map(expert => expert._id.toString());
-    const followedExpertsPosts:object[] = await PostModel.readPostsByAuthors(followedExpertsIds);
-    const followedExpertsSessions:object[] = await SessionModel.readSessionsByAuthors(followedExpertsIds) || [];
+    const followedExpertsPosts:PostInterface[] = await PostModel.readPostsByAuthors(followedExpertsIds, userId) || [];
+    const followedExpertsSessions:object[] = await SessionModel.readSessionsByAuthors(followedExpertsIds, userId) || [];
     res.status(200).json({
         posts: followedExpertsPosts,
         sessions: followedExpertsSessions

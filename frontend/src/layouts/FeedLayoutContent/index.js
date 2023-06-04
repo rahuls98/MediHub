@@ -26,10 +26,10 @@ const FeedLayoutContent = () => {
             <Grid container spacing={0}>
                 <Grid item lg={8}>
                     {
-                        posts?.map(post => <FeedPost key={post._id} post={post} />)
+                        posts?.map(post => <FeedPost key={post._id} post={post._doc} saved={post.saved} />)
                     }
                     {
-                        sessions?.map(session => <FeedSession key={session._id} session={session} />)
+                        sessions?.map(session => <FeedSession key={session._id} session={session._doc} enrolled={session.enrolled} />)
                     }
                     {/* <NoData /> */}
                 </Grid>

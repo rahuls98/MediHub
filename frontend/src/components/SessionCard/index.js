@@ -12,7 +12,7 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-// import sessionApis from "../../apis/session";
+import sessionApis from "../../apis/session";
 import { useHMSActions } from "@100mslive/react-sdk";
 import userUtils from "../../utils/user";
 import vaultApis from "../../apis/vault";
@@ -39,8 +39,7 @@ const SessionCard = props => {
     };
 
     const handleUnenrollmentClick = async () => {
-        console.log("Unenroll!");
-        // await sessionApis.unenrollInSession(props.session._id);
+        await sessionApis.unenrollInSession({session: props.session._id});
     }
 
     const handleJoinClick = async () => {

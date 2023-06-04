@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 import PostSchema from "../schemas/Post";
 import TextProcessing from "../services/TextProcessing";
+import PostInterface from "../interfaces/Post";
 
 const Post = mongoose.model('Post', PostSchema);
 
@@ -39,15 +40,23 @@ const readPosts = async (
 }
 
 const readPostsByAuthors = async (
-    authors:string[]
+    authors:string[],
+    user:string
 ) => {
     try {
-        const posts = await Post.find({ author: { "$in": authors }}, {} , {createdDate : -1})
+        const posts:PostInterface[] = await Post.find({ author: { "$in": authors }}, {} , {createdDate : -1})
         .populate({
             path: 'author',
             model: 'Expert',
         });
-        return posts;
+        const postsWithSavedInfo = posts.map(post => {
+            const updatedPost:PostInterface = {...post};
+            if (post.savedBy.includes(new mongoose.Types.ObjectId(user))) {
+                updatedPost['saved'] = true;
+            }
+            return updatedPost
+        })
+        return postsWithSavedInfo;
     } catch (error) {
         console.error('Error readPostsByAuthors: ', error);
     }

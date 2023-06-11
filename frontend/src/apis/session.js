@@ -30,6 +30,10 @@ const unenrollInSession = async (data) => {
     return await requestMethods.put('/session/unenroll/', data);
 }
 
+const markSessionComplete = async (data) => {
+    return await requestMethods.put('/session/complete/', data);
+}
+
 const redactMessage = async (data) => {
     return await requestMethods.post('/session/message/redact/', data);
 }
@@ -40,7 +44,8 @@ const sessionApis = {
     createSession,
     enrollInSession,
     unenrollInSession,
-    redactMessage
+    redactMessage,
+    markSessionComplete
 }
 
 export default sessionApis;

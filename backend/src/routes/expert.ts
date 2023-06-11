@@ -1,15 +1,16 @@
 import express, {Request, Response, Router} from "express";
 import ExpertModel from "../models/Expert";
 import UserFollowingExpertModel from "../models/UserFollowingExpert";
+import { verifyToken } from "../middleware/authorization";
 
 const router:Router = express.Router();
 
-router.get('/', async (req:Request, res:Response) => {
+router.get('/', verifyToken, async (req:Request, res:Response) => {
     const experts:object[] = await ExpertModel.readExperts();
     res.status(200).send(experts);
 })
 
-router.post('/',  async (req:Request, res:Response) => {
+router.post('/', verifyToken, async (req:Request, res:Response) => {
     const pangeaUserId:string = req.body.pangeaUserId;
     const email:string = req.body.email;
     const fullname:string = req.body.fullname;
@@ -20,7 +21,7 @@ router.post('/',  async (req:Request, res:Response) => {
     });
 });
 
-router.post('/follow', async (req:Request, res:Response) => {
+router.post('/follow', verifyToken, async (req:Request, res:Response) => {
     const userId:string = req.body.user;
     const expertId:string = req.body.expert;
     await UserFollowingExpertModel.createUserFollowingExpert(userId, expertId);
@@ -30,7 +31,7 @@ router.post('/follow', async (req:Request, res:Response) => {
     });
 });
 
-router.delete('/unfollow', async (req:Request, res:Response) => {
+router.delete('/unfollow', verifyToken, async (req:Request, res:Response) => {
     const userId:string = req.body.user;
     const expertId:string = req.body.expert;
     await UserFollowingExpertModel.deleteUserFollowingExpert(userId, expertId);

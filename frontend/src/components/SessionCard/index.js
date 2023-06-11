@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./style.css";
 import Stack from '@mui/material/Stack';
 import TopicChip from "../TopicChip";
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+// import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+// import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DoneIcon from '@mui/icons-material/Done';
 import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
@@ -16,8 +17,10 @@ import sessionApis from "../../apis/session";
 import { useHMSActions } from "@100mslive/react-sdk";
 import userUtils from "../../utils/user";
 import vaultApis from "../../apis/vault";
+import MessageModalContext from "../../utils/MessageModalContext";
 
 const SessionCard = props => {
+    const {setMessageModalContent, messageModalHandleOpen} = useContext(MessageModalContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const actionsMenuOpen = Boolean(anchorEl);
     // const [descriptionCollapsed, setDescriptionCollapsed] = useState(true);
@@ -42,7 +45,16 @@ const SessionCard = props => {
         await sessionApis.unenrollInSession({session: props.session._id});
     }
 
+    const handleSessionDoneClick = async () => {
+        await sessionApis.markSessionComplete({session: props.session._id});
+    }
+
     const handleJoinClick = async () => {
+        if (props.session?.complete) {
+            messageModalHandleOpen(true);
+            setMessageModalContent("This session has already finished!")
+            return;
+        }
         const userName = userUtils.getUserName();
         const userRole = userUtils.getRole();
         let hmsRole = "";
@@ -62,7 +74,7 @@ const SessionCard = props => {
             method: "POST",
             body: JSON.stringify({
                 user_id: `${Date.now()}`,
-                role: hmsRole, //broadcaster, hls-viewer
+                role: hmsRole,
                 type: "app",
                 room_id: HMS_ROOM_ID,
             }),
@@ -100,10 +112,14 @@ const SessionCard = props => {
             {/* <div className="SessionCard_parah_moreless">
                 <span onClick={() => setDescriptionCollapsed(!descriptionCollapsed)}>{descriptionCollapsed? "more": "less"}</span>
             </div> */}
-            <div className="SessionCard_action" onClick={() => handleJoinClick()}>
-                <LoginOutlinedIcon sx={{ fontSize: 18 }}/>
-                <span>Join</span>
-            </div>
+            {
+                ((new Date()) < (new Date(`${props.session?.sessionDate} ${props.session?.sessionTime}`)))?
+                null:
+                <div className="SessionCard_action" onClick={() => handleJoinClick()}>
+                    <LoginOutlinedIcon sx={{ fontSize: 18 }}/>
+                    <span>Join</span>
+                </div>
+            }
         </div>
         <div className="SessionCard_menu">
             <div
@@ -128,17 +144,11 @@ const SessionCard = props => {
                         (userUtils.getRole() === "User" || props.session?.author !== userUtils.getUserId)?
                         null:
                         <>
-                            <MenuItem>
+                            <MenuItem onClick={() => handleSessionDoneClick()}>
                                 <ListItemIcon>
-                                    <EditOutlinedIcon fontSize="small" />
+                                    <DoneIcon fontSize="small" />
                                 </ListItemIcon>
-                                <ListItemText>Edit</ListItemText>
-                            </MenuItem>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <DeleteOutlinedIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText>Delete</ListItemText>
+                                <ListItemText>Done</ListItemText>
                             </MenuItem>
                         </>
                     }

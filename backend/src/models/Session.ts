@@ -105,6 +105,16 @@ const deleteEnrollment = async (
     }
 }
 
+const markSessionComplete = async (
+    id:string,
+) => {
+    try {
+        await Session.findOneAndUpdate({ _id: id }, { complete: true });
+    } catch (error) {
+        console.log("Error markSessionComplete: ", error);
+    }
+}
+
 const SessionModel = {
     createSession,
     readSessions,
@@ -112,6 +122,7 @@ const SessionModel = {
     readSessionsByUser,
     searchSessionsByTopic,
     addEnrollment,
+    markSessionComplete,
     deleteEnrollment
 }
 

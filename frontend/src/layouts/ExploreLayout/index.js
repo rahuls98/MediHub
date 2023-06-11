@@ -63,13 +63,13 @@ const ExploreLayout = props => {
     return <div className="ExploreLayout_container">
         <TabContext value={tab}>
             <TabList onChange={handleTabChange}>
-                <Tab label="Experts" value="1" />
-                <Tab label="Topics" value="2" />
+                <Tab label="Topics" value="1" />
+                <Tab label="Experts" value="2" />
                 <Tab label="Posts" value="3" />
                 <Tab label="Sessions" value="4" />
             </TabList>
-            <TabPanel value="1"><TableExperts data={experts} /></TabPanel>
-            <TabPanel value="2"><TableTopics data={topics} /></TabPanel>
+            <TabPanel value="1"><TableTopics data={topics} /></TabPanel>
+            <TabPanel value="2"><TableExperts data={experts} /></TabPanel>
             <TabPanel value="3">
                 {
                     (posts.length === 0)?

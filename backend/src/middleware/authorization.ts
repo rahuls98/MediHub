@@ -5,7 +5,7 @@ import PangeaService from "../services/Pangea";
 export const verifyToken = async (req:Request, res:Response, next:NextFunction) => {
     const authn = await PangeaService.getAuthentication();
     try {
-        const token = req.header("authorization");
+        const token = req.header("authorization")?.split(' ')[1];
         if (!token) {
             res.status(400).send("Unauthorized!");
             return;

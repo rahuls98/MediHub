@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./style.css";
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
@@ -10,8 +10,10 @@ import TopicSearch from "../TopicSearch";
 import TopicChip from "../TopicChip";
 import postApis from "../../apis/post";
 import userUtils from "../../utils/user";
+import MessageModalContext from "../../utils/MessageModalContext";
 
 const ModalPostCreate = () => {
+    const {setMessageModalContent, messageModalHandleOpen} = useContext(MessageModalContext);
     const [modalOpen, setModalOpen] = useState(false);
     const [editorValue, setEditorValue] = useState('');
     const [topics, setTopics] = useState([]);
@@ -32,7 +34,9 @@ const ModalPostCreate = () => {
             topics: topics
         });
         if (createResponse.msg !== "Success!") {
-            alert(createResponse.msg)
+            messageModalHandleOpen(true);
+            setMessageModalContent(createResponse.msg);
+            return;
         } else {
             setModalOpen(false);
         }

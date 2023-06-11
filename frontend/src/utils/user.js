@@ -1,3 +1,9 @@
+const getBearerToken = () => {
+    let userDetails = window.localStorage.getItem('user');
+    userDetails = JSON.parse(userDetails);
+    return userDetails.active_token.token;
+}
+
 const getRole = () => {
     let userDetails = window.localStorage.getItem('user');
     userDetails = JSON.parse(userDetails);
@@ -29,6 +35,7 @@ const getUserId = () => {
 }
 
 const userUtils = {
+    getBearerToken,
     getRole,
     getExpertIsVerified,
     getPangeaId,

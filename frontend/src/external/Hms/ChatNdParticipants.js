@@ -1,11 +1,12 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import Message from "./Message"
 import { selectHMSMessages, useHMSActions, useHMSStore } from "@100mslive/react-sdk"
 import { selectPeers } from "@100mslive/react-sdk"
 import sessionApis from "../../apis/session"
+import MessageModalContext from "../../utils/MessageModalContext";
 
 function ChatNdParticipants() {
-
+  const {setMessageModalContent, messageModalHandleOpen} = useContext(MessageModalContext);
   const [selectedOption, setSelectedOption] = useState('chat')
   const [message, setMessage] = useState('')
   const messages = useHMSStore(selectHMSMessages)
@@ -19,7 +20,8 @@ function ChatNdParticipants() {
       hmsActions.sendBroadcastMessage(message)
       setMessage('')
     } else {
-      alert("Content cannot contain any personal information/vulgarity!");
+      messageModalHandleOpen(true);
+      setMessageModalContent("Content cannot contain any personal information/vulgarity!");
     }
   }
 

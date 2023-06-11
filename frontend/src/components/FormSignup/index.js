@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./style.css";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -13,8 +13,10 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import MessageModalContext from "../../utils/MessageModalContext";
 
 const FormSignup = props => {
+    const {setMessageModalContent, messageModalHandleOpen} = useContext(MessageModalContext);
     const [role, setRole] = useState("User");
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
@@ -54,14 +56,17 @@ const FormSignup = props => {
             setConfirmPasswordError(true);
         }
         if (password !== confirmPassword) {
-            alert("Passwords do not match!");
+            messageModalHandleOpen(true);
+            setMessageModalContent("Password do not match!");
             return;
         }
         if (fullname && email && password && confirmPassword) {
             const userData = {fullname, email, password, role}
             const response = await authenticationApis.signupUser(userData);
             if (!response.success) {
-                alert(response.message);
+                console.log(response)
+                messageModalHandleOpen(true);
+                setMessageModalContent(response.message);
             } else {
                 props.setForm(0);
             }

@@ -1,16 +1,16 @@
 import express, {Request, Response, Router} from "express";
 import PostModel from "../models/Post";
-import UserModel from "../models/User";
+import { verifyToken } from "../middleware/authorization";
 
 const router:Router = express.Router();
 
-router.get('/', async (req:Request, res:Response) => {
+router.get('/', verifyToken, async (req:Request, res:Response) => {
     const user:string = req.query.user?.toString() || "";
     const posts:object[] = await PostModel.readPosts(user) || [];
     res.status(200).send(posts);
 });
 
-router.post('/', async (req:Request, res:Response) => {
+router.post('/', verifyToken, async (req:Request, res:Response) => {
     const author:string = req.body.author;
     const profilePhoto:string = req.body.profilePhoto;
     const topics:string[] = req.body.topics;
@@ -26,17 +26,49 @@ router.post('/', async (req:Request, res:Response) => {
         });
 });
 
-router.put('/upvote', async (req:Request, res:Response) => {});
+router.put('/upvote', verifyToken, async (req:Request, res:Response) => {
+    const post:string = req.body.post;
+    const expert:string = req.body.expert;
+    await PostModel.upvotePost(post, expert);
+    res.status(200).send({
+        "msg": "Success!"
+    });
+});
 
-router.put('/downvote', async (req:Request, res:Response) => {});
+router.delete('/upvote', verifyToken, async (req:Request, res:Response) => {
+    const post:string = req.body.post;
+    const expert:string = req.body.expert;
+    await PostModel.removePostUpvote(post, expert);
+    res.status(200).send({
+        "msg": "Success!"
+    });
+});
 
-router.get('/saved', async (req:Request, res:Response) => {
+router.put('/downvote', verifyToken, async (req:Request, res:Response) => {
+    const post:string = req.body.post;
+    const expert:string = req.body.expert;
+    await PostModel.downvotePost(post, expert);
+    res.status(200).send({
+        "msg": "Success!"
+    });
+});
+
+router.delete('/downvote', verifyToken, async (req:Request, res:Response) => {
+    const post:string = req.body.post;
+    const expert:string = req.body.expert;
+    await PostModel.removePostDownvote(post, expert);
+    res.status(200).send({
+        "msg": "Success!"
+    });
+});
+
+router.get('/saved', verifyToken, async (req:Request, res:Response) => {
     const user:string = req.query.user?.toString() || "";
     const posts = await PostModel.readUserSavedPosts(user);
     res.status(200).send(posts);
 });
 
-router.put('/save', async (req:Request, res:Response) => {
+router.put('/save', verifyToken, async (req:Request, res:Response) => {
     const post:string = req.body.post;
     const user:string = req.body.user;
     await PostModel.createSavedPost(user, post);
@@ -45,7 +77,7 @@ router.put('/save', async (req:Request, res:Response) => {
     });
 });
 
-router.put('/unsave', async (req:Request, res:Response) => {
+router.put('/unsave', verifyToken, async (req:Request, res:Response) => {
     const post:string = req.body.post;
     const user:string = req.body.user;
     await PostModel.deleteSavedPost(user, post);

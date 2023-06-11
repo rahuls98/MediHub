@@ -20,9 +20,9 @@ import userUtils from "../../utils/user";
 
 const FeedPost = props => {
     const [saved, setSaved] = useState(props.saved || false);
-    const [upvoted, setUpvoted] = useState(props.upvoted || false);
+    const [upvoted, setUpvoted] = useState(() => props.post?.upvotes.includes(userUtils.getUserId()));
     const [upvotes, setUpvotes] = useState(props.post?.upvotes.length || 0);
-    const [downvoted, setDownvoted] = useState(props.downvoted || false);
+    const [downvoted, setDownvoted] = useState(() => props.post?.downvotes.includes(userUtils.getUserId()));
     const [downvotes, setDownvotes] = useState(props.post?.downvotes.length || 0);
     const [savedSnackbar, setSavedSnackbar] = useState(false);
 
@@ -48,17 +48,20 @@ const FeedPost = props => {
             if (upvoted) {
                 setUpvoted(false);
                 setUpvotes(upvotes-1);
+                await postApis.removePostUpvote({ post: props.post?._id });
                 return
             } else if (downvoted) {
                 setDownvoted(false);
                 setDownvotes(downvotes-1);
             } 
             setUpvoted(true);
-            setUpvotes(upvotes+1)
+            setUpvotes(upvotes+1);
+            await postApis.upvotePost({ post: props.post?._id });
         } else if (action === "downvote") {
             if (downvoted) {
                 setDownvoted(false);
                 setDownvotes(downvotes-1);
+                await postApis.removePostDownvote({ post: props.post?._id });
                 return
             } else if (upvoted) {
                 setUpvoted(false);
@@ -66,6 +69,7 @@ const FeedPost = props => {
             } 
             setDownvoted(true);
             setDownvotes(downvotes+1);
+            await postApis.downvotePost({ post: props.post?._id });
         }
     }
 

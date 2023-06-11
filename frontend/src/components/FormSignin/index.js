@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./style.css";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -8,8 +8,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
+import MessageModalContext from "../../utils/MessageModalContext";
 
 const FormSignin = props => {
+    const {setMessageModalContent, messageModalHandleOpen} = useContext(MessageModalContext);
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [password, setPassword] = useState("");
@@ -35,7 +37,8 @@ const FormSignin = props => {
             const userData = {email, password}
             const response = await authenticationApis.signinUser(userData);
             if (!response.success) {
-                alert(response.message);
+                messageModalHandleOpen(true);
+                setMessageModalContent(response.message);
             } else {
                 window.localStorage.setItem('user', JSON.stringify(response));
                 props.setLayout(1);

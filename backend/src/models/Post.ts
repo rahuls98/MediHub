@@ -107,6 +107,64 @@ const deleteSavedPost = async (
     }
 }
 
+const upvotePost = async (
+    post:string,
+    expert:string
+) => {
+    try {   
+        const expertInDownvotes = await Post.find({ _id: post, downvotes: expert });
+        if (expertInDownvotes.length !== 0) {
+            await Post.updateOne({ _id: post }, { "$pull": { 'downvotes': expert }});
+        }
+        await Post.updateOne({ _id: post }, { "$push": { 'upvotes': expert }});
+    } catch (error) {
+        console.error('Error upvotePost: ', error);
+    }
+}
+
+const removePostUpvote = async (
+    post:string,
+    expert:string
+) => {
+    try {   
+        const expertInUpvotes = await Post.find({ _id: post, upvotes: expert });
+        if (expertInUpvotes.length !== 0) {
+            await Post.updateOne({ _id: post }, { "$pull": { 'upvotes': expert }});
+        }
+    } catch (error) {
+        console.error('Error removePostUpvote: ', error);
+    }
+}
+
+const downvotePost = async (
+    post:string,
+    expert:string
+) => {
+    try {   
+        const expertInUpvotes = await Post.find({ _id: post, upvotes: expert });
+        if (expertInUpvotes.length !== 0) {
+            await Post.updateOne({ _id: post }, { "$pull": { 'upvotes': expert }});
+        }
+        await Post.updateOne({ _id: post }, { "$push": { 'downvotes': expert }});
+    } catch (error) {
+        console.error('Error downvotePost: ', error);
+    }
+}
+
+const removePostDownvote = async (
+    post:string,
+    expert:string
+) => {
+    try {   
+        const expertInDownvotes = await Post.find({ _id: post, downvotes: expert });
+        if (expertInDownvotes.length !== 0) {
+            await Post.updateOne({ _id: post }, { "$pull": { 'downvotes': expert }});
+        }
+    } catch (error) {
+        console.error('Error removePostDownvote: ', error);
+    }
+}
+
 const PostModel = {
     createPost,
     readPosts,
@@ -114,7 +172,11 @@ const PostModel = {
     searchPostsByTopic,
     createSavedPost,
     readUserSavedPosts,
-    deleteSavedPost
+    deleteSavedPost,
+    upvotePost,
+    removePostUpvote,
+    downvotePost,
+    removePostDownvote
 };
 
 export default PostModel;

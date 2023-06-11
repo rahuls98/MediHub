@@ -15,7 +15,7 @@ function ChatNdParticipants() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const redactResult = sessionApis.redactMessage({content:message});
+    const redactResult = await sessionApis.redactMessage({content:message});
     if (redactResult.count === 0) {
       hmsActions.sendBroadcastMessage(message)
       setMessage('')

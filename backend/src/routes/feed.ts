@@ -39,10 +39,6 @@ router.get('/:userId', verifyToken, async (req:Request, res:Response) => {
     const followedExpertsIds:string[] = followedExperts.map(expert => expert._id.toString());
     const followedExpertsPosts:PostInterface[] = await PostModel.readPostsByAuthors(followedExpertsIds, userId) || [];
     const followedExpertsSessions:object[] = await SessionModel.readSessionsByAuthors(followedExpertsIds, userId) || [];
-    console.log({
-        posts: followedExpertsPosts,
-        sessions: followedExpertsSessions
-    })
     res.status(200).json({
         posts: followedExpertsPosts,
         sessions: followedExpertsSessions

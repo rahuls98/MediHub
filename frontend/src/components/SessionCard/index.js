@@ -58,7 +58,7 @@ const SessionCard = props => {
         const userName = userUtils.getUserName();
         const userRole = userUtils.getRole();
         let hmsRole = "";
-        if (userRole === "User" || props.session?.author !== userUtils.getUserId) {
+        if (userRole === "User" || props.session?.author !== userUtils.getUserId()) {
             hmsRole = "hls-viewer";
         } else if (userRole === "Expert") {
             hmsRole = "broadcaster";
@@ -141,23 +141,24 @@ const SessionCard = props => {
                 >
                 <MenuList>
                     {
-                        (userUtils.getRole() === "User" || props.session?.author !== userUtils.getUserId)?
-                        null:
-                        <>
-                            <MenuItem onClick={() => handleSessionDoneClick()}>
-                                <ListItemIcon>
-                                    <DoneIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText>Done</ListItemText>
-                            </MenuItem>
-                        </>
+                        (props.session?.author === userUtils.getUserId())?
+                        <MenuItem onClick={() => handleSessionDoneClick()}>
+                            <ListItemIcon>
+                                <DoneIcon fontSize="small" />
+                            </ListItemIcon>
+                            <ListItemText>Done</ListItemText>
+                        </MenuItem> : null
                     }
-                    <MenuItem onClick={() => handleUnenrollmentClick()}>
-                        <ListItemIcon>
-                            <CancelPresentationOutlinedIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText>Unenroll</ListItemText>
-                    </MenuItem>
+                    {
+                        (userUtils.getRole() === "User" || props.session?.author !== userUtils.getUserId())?
+                        <MenuItem onClick={() => handleUnenrollmentClick()}>
+                            <ListItemIcon>
+                                <CancelPresentationOutlinedIcon fontSize="small" />
+                            </ListItemIcon>
+                            <ListItemText>Unenroll</ListItemText>
+                        </MenuItem>: null
+                    }
+                    
                 </MenuList>
             </Menu>
         </div>

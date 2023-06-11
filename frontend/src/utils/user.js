@@ -13,7 +13,7 @@ const getRole = () => {
 const getExpertIsVerified = () => {
     let userDetails = window.localStorage.getItem('user');
     userDetails = JSON.parse(userDetails);
-    return userDetails.isVerified.verified;
+    return userDetails.isVerified;
 }
 
 const getPangeaId = () => {

@@ -106,7 +106,7 @@ const FeedPost = props => {
             </div>
             <div className="FeedPost_content_text" dangerouslySetInnerHTML={{__html: props.post?.content}} />
             {
-                (userUtils.getRole() === "User")?
+                (userUtils.getRole() === "User" || props.post?.author._id === userUtils.getUserId())?
                 null:
                 <div className="FeedPost_vote">
                     <div>

@@ -100,6 +100,34 @@ router.post('/signin', async (req:Request, res:Response) => {
     }
 });
 
-// router.post('/logout', async (req:Request, res:Response) => {});
+router.put('/verify', async (req:Request, res:Response) => {
+    const authn = await PangeaService.getAuthentication();
+    try {
+        const emailToVerify = req.body.email;
+        const response = await authn.user.update(
+            { email: emailToVerify },
+            { verified: true }
+        );
+        res.status(200).send({success: true, ...response.result});
+    } catch (err:any) {
+        if (err instanceof PangeaErrors.APIError) {
+            if (err.errors.length > 0) {
+                res.status(400).send({
+                    success: false,
+                    message: err.errors[0].detail
+                })
+            } else {
+                res.status(400).send({
+                    success: false,
+                    message: err.response.summary
+                })
+            }
+        } else {
+            console.log(err);
+            res.status(500).send("Server error!");
+        }
+    }
+    
+});
 
 export default router;

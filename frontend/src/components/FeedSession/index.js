@@ -66,7 +66,7 @@ const FeedSession = props => {
                     }
                 </Stack>
             </div>
-            <h3 className="FeedSession_title">Session: {props.session.title}</h3>
+            <h3 className="FeedSession_title">{props.session.title}</h3>
             <p className="FeedSession_content_text">
                 {props.session.description}
             </p>

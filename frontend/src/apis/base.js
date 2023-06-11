@@ -12,7 +12,6 @@ const get = async (url) => {
     };
     try {
         const response = await fetch(BASE_URL + url, options);
-        console.log(response)
         return response.json();
     } catch (err) {
         console.log(err);

@@ -1,6 +1,6 @@
 import userUtils from "../utils/user";
 
-const BASE_URL = "http://localhost:8000"
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 const get = async (url) => {
     const options = {

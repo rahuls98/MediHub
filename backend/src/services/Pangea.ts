@@ -1,3 +1,4 @@
+import GcpSecretManager from "./GcpSecretManager";
 import { 
     PangeaConfig,
     AuthNService,
@@ -17,14 +18,16 @@ const getVault = () => {
 const vault = getVault();
 
 const getAuthentication = async () => {
-    const vaultResponse = await vault.getItem(process.env.PANGEA_AUTHN_TOKEN);
-    const PANGEA_AUTHN_TOKEN = vaultResponse.result.current_version.secret;
+    // const vaultResponse = await vault.getItem(process.env.PANGEA_AUTHN_TOKEN);
+    // const PANGEA_AUTHN_TOKEN = vaultResponse.result.current_version.secret;
+    const PANGEA_AUTHN_TOKEN = await GcpSecretManager.getSecret(process.env.PANGEA_AUTHN_TOKEN);
     return new AuthNService(PANGEA_AUTHN_TOKEN, config);
 }
 
 const getRedact = async () => {
-    const vaultResponse = await vault.getItem(process.env.PANGEA_REDACT_TOKEN);
-    const PANGEA_REDACT_TOKEN = vaultResponse.result.current_version.secret;
+    // const vaultResponse = await vault.getItem(process.env.PANGEA_REDACT_TOKEN);
+    // const PANGEA_REDACT_TOKEN = vaultResponse.result.current_version.secret;
+    const PANGEA_REDACT_TOKEN = await GcpSecretManager.getSecret(process.env.PANGEA_REDACT_TOKEN);
     const redactService = new RedactService(PANGEA_REDACT_TOKEN, config);
     return redactService; 
 }

@@ -6,8 +6,7 @@ const getSecret = async (secretName:any) => {
     const [version] = await client.accessSecretVersion({
         name: secretName,
     });
-    const responsePayload = version.payload.data.toString();
-    let secret = JSON.parse(responsePayload);
+    const secret = version.payload.data.toString();
     return secret;
 }
 

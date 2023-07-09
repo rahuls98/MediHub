@@ -8,7 +8,11 @@ const TopicChip = props => {
 
     return <div className={"TopicChip_container".concat(props.withMargin? " with_margin":"")}>
         <Chip 
-            label={props.label} 
+            label={
+                (props.label.lenght <= 45)?
+                props.label:
+                props.label.substring(0,45).concat("...")
+            } 
             variant="outlined" 
             size="small" 
             onClick={() => props.onClick ? props.onClick() : onTagClick(props.label)}

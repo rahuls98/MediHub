@@ -43,7 +43,7 @@ const readTrendingTopics = async () => {
     try {
         const topics:object[] = await Topic.find()
             .sort({ searchCounter: -1 })
-            .limit(30);
+            .limit(10);
         return topics;
     } catch (error) {
         console.error('Error readTrendingTopics: ', error);

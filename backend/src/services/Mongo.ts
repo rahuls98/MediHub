@@ -1,15 +1,15 @@
 // import PangeaService from "./Pangea";
 import GcpSecretManagerService from "./GcpSecretManager";
-require('dotenv').config();
+require("dotenv").config();
 
 const getConnectionString = async () => {
-    // const vaultResponse = await PangeaService.vault.getItem(process.env.MONGO_DATABASE_CONN_STRING);
-    // return await vaultResponse.result.current_version.secret;
-    return GcpSecretManagerService.getSecret(process.env.MONGO_DATABASE_CONN_STRING);
-}
+    return GcpSecretManagerService.getSecret(
+        process.env.MONGO_DATABASE_CONN_STRING
+    );
+};
 
 const MongoConfig = {
-    getConnectionString
-}
+    getConnectionString,
+};
 
 export default MongoConfig;
